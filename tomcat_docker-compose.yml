@@ -1,0 +1,23 @@
+version: "3"
+services:
+   db:
+     image: mysql
+     #volumes:
+     #  - /home/debian/Docker/tomcat/db:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD: tomcat
+       MYSQL_DATABASE: tomcat
+       MYSQL_USER: tomcat
+       MYSQL_PASSWORD: tomcat
+   tomcat:
+     depends_on:
+       - db
+     image: tomcat
+     #volumes:
+     #  - /home/debian/Docker/tomcat/webapps:/usr/local/tomcat/webapps
+     ports:
+       - "8888:8080"
+     environment:
+       JDBC_URL: jdbc:mysql://db:3306/tomcat?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true
+       JDBC_USER: tomcat
+       JDBC_PASS: tomcat
