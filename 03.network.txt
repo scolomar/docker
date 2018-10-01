@@ -1,0 +1,29 @@
+docker run -p 8000:80 --rm --name web httpd
+links http://localhost:8000
+links http://$(ip a|grep inet|grep brd -m1|awk '{print $2}'|cut -d/ -f1):8000
+
+docker run -p 127.0.0.1:8000:80 --rm --name web httpd
+links http://localhost:8000
+links http://$(ip a|grep inet|grep brd -m1|awk '{print $2}'|cut -d/ -f1):8000
+
+docker run -d -p 80 --rm --name web httpd
+docker port web
+links http://localhost:$(docker port web|cut -d: -f2)
+links http://$(ip a|grep inet|grep brd -m1|awk '{print $2}'|cut -d/ -f1):$(docker port web|cut -d: -f2)
+docker kill web&&docker rm web
+docker rm -f web
+
+docker run -p 127.0.0.1::80 --rm --name web httpd
+docker port web
+links http://localhost:$(docker port web|cut -d: -f2)
+links http://$(ip a|grep inet|grep brd -m1|awk '{print $2}'|cut -d/ -f1):$(docker port web|cut -d: -f2)
+
+docker run --net=ejemplo --name web --rm -d httpd
+docker run --net=ejemplo --name cliente -it centos bash
+yum -y install elinks;links http://web;exit
+docker commit cliente centos:elinks
+docker rm cliente
+docker run --net=ejemplo --name cliente centos:elinks bash
+docker restart cliente web
+docker attach cliente
+links http://web

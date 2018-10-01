@@ -1,0 +1,4 @@
+docker build -f 06.Dockerfile.txt -t secobau/elinks . 
+docker run --rm -it secobau/elinks google.es
+docker images
+docker push secobau/elinks

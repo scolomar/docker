@@ -1,0 +1,8 @@
+for x in alpine hello-world ubuntu debian;do docker rmi $(docker images|grep $x|awk '{print $3}');done
+
+docker search httpd
+
+docker login
+docker images
+docker tag centos:elinks secobau/centos:elinks
+docker push secobau/centos:elinks
