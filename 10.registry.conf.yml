@@ -1,0 +1,35 @@
+version: 0.1
+log:
+        fields:
+                service: registry
+storage:
+        cache:
+                blobdescriptor: inmemory
+        filesystem:
+                rootdirectory: /var/lib/registry
+                maxthreads: 1024
+auth:                
+        htpasswd:
+                realm: basic-realm
+                path: /htpasswd
+http:                
+        addr: localhost:5000
+        net: tcp
+        host: https://django.gotdns.org:5000
+        secret: U1zuP1W6S09F6jQpiHlN3KK7UJU83cREGYXSe70z49dPCzD0xEsSzXDg0c3ob
+        tls:
+                certificate: /cert.pem
+                key: /key.pem
+        headers:
+                X-Content-Type-Options: [nosniff]                
+health:
+        storagedriver:
+                enabled: true
+                interval: 60s
+                threshold: 10
+        http:
+                uri: https://django.gotdns.org
+                headers:
+                        Authorization: [Basic c2Vjb2JhdQ==] 
+        tcp:
+                addr: localhost:5000                
