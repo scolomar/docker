@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+        nginx:
+                image: secobau/nginx 
+                deploy:
+                        mode: replicated
+                        replicas: 1
+                        restart_policy:
+                                condition: any                        
+                networks:
+                        - frontend
+                        - backend                        
+                ports:
+                        - target: 80
+                          published: 80
+                          protocol: tcp
+                          mode: ingress
+        php:
+                image: secobau/php
+                deploy:
+                        mode: replicated
+                        replicas: 1
+                        restart_policy:
+                                condition: any                        
+                networks:
+                        - backend                        
+networks:                          
+        frontend:
+                driver: overlay
+                attachable: true
+        backend:                
+                driver: overlay
+                attachable: true
+                internal: true

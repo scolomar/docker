@@ -1,0 +1,2 @@
+FROM php:rc-apache
+COPY index.php /var/www/html/
