@@ -1,0 +1,6 @@
+ssh-keygen
+cat .ssh/id_rsa.pub
+for x in $lista;do ssh $x mkdir /home/debian/.ssh;scp /root/.ssh/id_rsa.pub $x:/home/debian/.ssh/authorized_keys;done
+mkdir /home/debian/.ssh
+cp .ssh/authorized_keys /home/debian/.ssh/
+chown -R debian. /home/debian/

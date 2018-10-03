@@ -1,4 +1,4 @@
-https://docs.docker.com/install/linux/docker-ce/debian/
+#https://docs.docker.com/install/linux/docker-ce/debian/
 sudo apt-get update&&sudo apt-get -y upgrade
 sudo apt-get -y purge docker docker-engine docker.io docker-compose
 sudo apt-get -y autoremove
@@ -9,6 +9,6 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debi
 sudo apt-get update&&sudo apt-get -y upgrade
 sudo apt-get -y install docker-ce
 
-https://docs.docker.com/install/linux/linux-postinstall/
+#https://docs.docker.com/install/linux/linux-postinstall/
 sudo groupadd docker
 sudo usermod -aG docker $USER&&exit
