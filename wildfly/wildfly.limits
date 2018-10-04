@@ -1,0 +1,4 @@
+wildfly soft nofile 65536
+wildfly hard nofile 65536
+wildfly soft nproc 65536
+wildfly hard nproc 65536
