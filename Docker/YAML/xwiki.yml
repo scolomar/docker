@@ -1,0 +1,61 @@
+version: '3.3'
+services:
+ web:
+  image: "xwiki:mysql-tomcat"
+  ports:
+   - "80:8080"
+  environment:
+   - DB_USER_FILE=/run/secrets/xwiki-db-username
+   - DB_PASSWORD_FILE=/run/secrets/xwiki-db-password
+   - DB_DATABASE=xwiki
+   - DB_HOST=db
+  volumes:
+   - xwiki-data:/usr/local/xwiki
+  secrets:
+   - xwiki-db-username
+   - xwiki-db-password
+  deploy:
+   replicas: 1
+   restart_policy:
+    condition: any
+ db:
+  image: "mysql:5.7"
+  volumes:
+   - mysql-data:/var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=/run/secrets/xwiki-db-root-password
+   - MYSQL_USER_FILE=/run/secrets/xwiki-db-username
+   - MYSQL_PASSWORD_FILE=/run/secrets/xwiki-db-password
+   - MYSQL_DATABASE=xwiki
+  secrets:
+   - xwiki-db-username
+   - xwiki-db-password
+   - xwiki-db-root-password
+  deploy:
+   replicas: 1
+   restart_policy:
+    condition: any
+       #configs: 
+       #- source: mysql-config
+       #- target: /etc/mysql/conf.d/xwiki.cnf
+volumes:
+ mysql-data:
+ xwiki-data:
+secrets:
+ xwiki-db-username:
+  external:
+   name: xwiki-db-username
+ xwiki-db-password:
+  external:
+   name: xwiki-db-password
+ xwiki-db-root-password:
+  external:
+   name: xwiki-db-root-password
+   #configs:
+   #mysql-config:
+   #external:
+   #name: xwiki-mysql-config
+#echo xwiki | docker secret create xwiki-db-username -
+#echo $(openssl rand -base64 32|tr -d '+=/'|fold -w 16|head -1)|docker secret create xwiki-db-password -
+#echo $(openssl rand -base64 32|tr -d '+=/'|fold -w 16|head -1)|docker secret create xwiki-db-root-password -
+#docker config create xwiki-mysql-config /path/to/mysql/xwiki.cnf

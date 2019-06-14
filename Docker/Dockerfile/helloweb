@@ -1,0 +1,2 @@
+FROM jboss/wildfly
+ADD https://github.com/arun-gupta/docker-for-java/raw/master/chapter2/webapp.war /opt/jboss/wildfly/standalone/deployments/webapp.war

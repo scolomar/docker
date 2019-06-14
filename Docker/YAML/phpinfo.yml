@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  php:
+    image: secobau/php:apache
+    networks:
+      - frontend
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: "0.06"
+          memory: 60M
+    ports:
+      - "80:80"
+networks:
+  frontend:

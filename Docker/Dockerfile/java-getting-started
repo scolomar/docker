@@ -1,0 +1,14 @@
+FROM alpine/git AS clone
+WORKDIR /app
+RUN git clone https://github.com/heroku/java-getting-started.git
+
+FROM maven:alpine AS build
+WORKDIR /app
+COPY --from=clone /app/java-getting-started /app 
+RUN mvn install && mv target/java-getting-started-*.jar target/java-getting-started.jar
+
+FROM openjdk:jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/java-getting-started.jar /app
+ENTRYPOINT ["java","-jar"]
+CMD ["java-getting-started.jar"]

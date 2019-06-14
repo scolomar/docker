@@ -1,0 +1,7 @@
+FROM ubuntu
+RUN apt-get -y update&&apt-get -y install zbar-tools&&apt-get autoremove&&apt-get clean&&rm -rf /var/lib/apt/lists/*
+WORKDIR /var/local/qrloop
+ADD  https://raw.githubusercontent.com/secobau/openshift/master/Files/qrdecoder.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/qrdecoder.sh"]
+#docker build -t secobau/qrdecoder-loop .
+#docker push secobau/qrdecoder-loop

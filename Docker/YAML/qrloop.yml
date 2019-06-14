@@ -1,0 +1,42 @@
+version: "3.3"
+services:
+ nginx:
+  image: secobau/nginx-autoindex
+  ports:
+   - "80:80"
+  volumes:
+   - qrloop:/usr/share/nginx/html
+  deploy:
+   replicas: 2
+   resources:
+    limits:
+     cpus: "0.06"
+     memory: 60M
+   restart_policy:
+    condition: any
+ encoder:
+  image: secobau/qrencoder-loop
+  volumes:
+   - qrloop:/var/local/qrloop
+  deploy:
+   replicas: 1
+   resources:
+    limits:
+     cpus: "0.06"
+     memory: 60M
+   restart_policy:
+    condition: any
+ decoder:
+  image: secobau/qrdecoder-loop
+  volumes:
+   - qrloop:/var/local/qrloop
+  deploy:
+   replicas: 1
+   resources:
+    limits:
+     cpus: "0.06"
+     memory: 60M
+   restart_policy:
+    condition: any
+volumes:
+ qrloop:

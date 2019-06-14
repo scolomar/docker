@@ -1,0 +1,14 @@
+FROM alpine/git AS clone
+WORKDIR /app
+RUN git clone https://github.com/arun-gupta/docker-java-sample 
+
+FROM maven:alpine AS build
+WORKDIR /app
+COPY --from=clone /app/docker-java-sample /app 
+RUN mvn install && mv target/helloworld*.jar target/docker-java-sample.jar
+
+FROM openjdk:jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/docker-java-sample.jar /app
+ENTRYPOINT ["java","-jar"]
+CMD ["docker-java-sample.jar"]

@@ -1,0 +1,7 @@
+FROM ubuntu
+RUN apt-get -y update&&apt-get -y install qrencode&&apt-get autoremove&&apt-get clean&&rm -rf /var/lib/apt/lists/*
+WORKDIR /var/local/qrloop
+ADD https://raw.githubusercontent.com/secobau/openshift/master/Files/qrencoder.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/qrencoder.sh"]
+#docker build -t secobau/qrencoder-loop .
+#docker push secobau/qrencoder-loop
