@@ -21,7 +21,6 @@ to create a new image that will not use volumes.
    ```bash
       docker container stop -t 60 mydb_builder
       docker container commit -m "Image with prebuilt database" mydb_builder oracle/database-snapshot:19.3.0-ee
-      docker container rm mydb_builder
    ```
 1. The image is now ready to be used in your testing environment:
    ```bash
