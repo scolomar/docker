@@ -9,42 +9,8 @@
    ```bash
       docker-images/OracleDatabase/SingleInstance/samples/customscripts/
    ```
-1. Now you can run your database with the following stack configuration file:
-   ```yaml
-      version: '3.3'
-      services:
-        mydb_test_01:
-          image: oracle/database:19.3.0-ee
-          environment:
-            - ORACLE_PWD=mypass
-            - ORACLE_PDB=CUSTOMSCRIPTS
-          volumes:
-            - mydb_test_01:/opt/oracle/oradata
-          ports:
-            - 1521
-            - 5500
-          configs:
-            - source: mydb_config
-              target: /opt/oracle/scripts/setup/mydb_setup.sql
-        mydb_test_02:
-          image: oracle/database:19.3.0-ee
-          environment:
-            - ORACLE_PWD=mypass
-            - ORACLE_PDB=CUSTOMSCRIPTS
-          volumes:
-            - mydb_test_02:/opt/oracle/oradata
-          ports:
-            - 1521
-            - 5500
-          configs:
-            - source: mydb_config
-              target: /opt/oracle/scripts/setup/mydb_setup.sql
-      configs:
-        mydb_config:
-          file: /home/oracle/mydb_setup.sql
-      volumes:
-        mydb_test_01:
-        mydb_test_02:
+1. Now we can run the container to set up the test environment:
+   ```bash
+      docker container run --name mydb_01 -v mydb_01_volume:/opt/oracle/oradata -v ~/docker-images/OracleDatabase/SingleInstance/samples/customscripts:/opt/oracle/scripts/setup/:ro -e ORACLE_SID=ORCLSCRIPT -e ORACLE_PDB=CUSTOMSCRIPTS -p 1521 -p 5500 oracle/database-snapshot:19.3.0-ee
    ```
-        
-      
+   
