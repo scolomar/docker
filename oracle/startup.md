@@ -9,7 +9,7 @@
    ```bash
       docker-images/OracleDatabase/SingleInstance/samples/customscripts/
    ```
-1. Now we can run the container to set up the test environment:
+1. Now we can run the database to connect the testing application:
    ```bash
       docker container run --name mydb_01 -v mydb_01_volume:/opt/oracle/oradata -v ~/docker-images/OracleDatabase/SingleInstance/samples/customscripts:/opt/oracle/scripts/setup/:ro -e ORACLE_SID=ORCLSCRIPT -e ORACLE_PDB=CUSTOMSCRIPTS -p 1521 -p 5500 oracle/database-snapshot:19.3.0-ee
    ```
