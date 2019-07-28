@@ -46,6 +46,7 @@
           image: oracle/database:19.3.0-ee
           environment:
             - ORACLE_PWD=mypass
+            - ORACLE_PDB=CUSTOMSCRIPTS
           volumes:
             - mydb_test_01:/opt/oracle/oradata
           ports:
@@ -58,6 +59,7 @@
           image: oracle/database:19.3.0-ee
           environment:
             - ORACLE_PWD=mypass
+            - ORACLE_PDB=CUSTOMSCRIPTS
           volumes:
             - mydb_test_02:/opt/oracle/oradata
           ports:
