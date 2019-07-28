@@ -3,7 +3,7 @@ Our purpose is to use Docker images for Oracle database in our testing environme
 
 We want to test different configurations of our application and for that purpose we will need a base image of our database that will be instanciated on each test.
 
-We propose two solutions for this problem:
+We propose two different solutions for this problem:
 * Set up a configuration script that would run every time the empty database image is started.
 This would populate the database with the necessary data to run our application test.
 * Instanciate the empty database and then connect our application to it.
