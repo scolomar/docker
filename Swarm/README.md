@@ -5,3 +5,4 @@
 * AWS Cloud
 * Google Cloud
 * Azure Cloud
+* DigitalOcean Cloud
