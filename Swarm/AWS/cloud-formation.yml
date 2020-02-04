@@ -565,6 +565,6 @@ Resources:
       DefaultActions: 
         - TargetGroupArn: !Ref TargetGroupWorker2
           Type: forward
-      LoadBalancerArn: !Ref LoadBalancerWorker1
+      LoadBalancerArn: !Ref LoadBalancerWorker2
       Port: 80
       Protocol: HTTP
