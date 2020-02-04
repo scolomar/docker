@@ -122,7 +122,7 @@ Parameters:
   InstanceManagerInstanceType:
     Type: String
     Description: >
-      Select Amazon EC2 instance type for the UCP Manager instances.
+      Select Amazon EC2 instance type for the Swarm Manager instances.
     Default: t3a.nano
     ConstraintDescription: >
       Choose an instance type.
@@ -141,7 +141,7 @@ Parameters:
   InstanceWorkerInstanceType:
     Type: String
     Description: >
-      Select Amazon EC2 instance type for the UCP Worker instances.
+      Select Amazon EC2 instance type for the Swarm Worker instances.
     Default: t3a.micro
     ConstraintDescription: >
       Choose an instance type.
@@ -160,7 +160,7 @@ Parameters:
   InstanceManagerImageId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Description: >
-      Select AMI to use for the UCP Manager instances. 
+      Select AMI to use for the Swarm Manager instances. 
       When it's left blank, the default AMI for your AWS region will be used. 
       When setting an AMI, it must be available in your current region.
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
@@ -168,7 +168,7 @@ Parameters:
   InstanceWorkerImageId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Description: >
-      Select AMI to use for the UCP Worker instances. 
+      Select AMI to use for the Swarm Worker instances. 
       When it's left blank, the default AMI for your AWS region will be used. 
       When setting an AMI, it must be available in your current region.
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
@@ -405,7 +405,7 @@ Resources:
         "Fn::Base64":
           !Sub |
             #!/bin/sh
-            # UCP LEADER
+            # Swarm LEADER
             sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/leader.sh && ./docker/Swarm/AWS/leader.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
@@ -421,7 +421,7 @@ Resources:
         "Fn::Base64":
           !Sub |
             #!/bin/sh
-            # UCP MANAGER
+            # Swarm MANAGER
             sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/manager.sh && ./docker/Swarm/AWS/manager.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
@@ -437,7 +437,7 @@ Resources:
         "Fn::Base64":
           !Sub |
             #!/bin/sh
-            # UCP MANAGER
+            # Swarm MANAGER
             sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/manager.sh && ./docker/Swarm/AWS/manager.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
@@ -453,7 +453,7 @@ Resources:
         "Fn::Base64":
           !Sub |
             #!/bin/sh
-            # UCP WORKER
+            # Swarm WORKER
             sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/worker.sh && ./docker/Swarm/AWS/worker.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
@@ -469,7 +469,7 @@ Resources:
         "Fn::Base64":
           !Sub |
             #!/bin/sh
-            # UCP WORKER
+            # Swarm WORKER
             sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/worker.sh && ./docker/Swarm/AWS/worker.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
@@ -485,7 +485,7 @@ Resources:
         "Fn::Base64":
           !Sub |
             #!/bin/sh
-            # UCP WORKER
+            # Swarm WORKER
             sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/worker.sh && ./docker/Swarm/AWS/worker.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
