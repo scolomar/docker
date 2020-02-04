@@ -1,0 +1,4 @@
+cat /token_manager
+cat /token_worker
+cat /token_ucp
+cd && git clone https://github.com/secobau/ucp.git && sudo docker stack deploy -c ucp/aws/php.yml php && sudo docker stack deploy -c ucp/aws/dockercoins.yml dockercoins
