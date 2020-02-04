@@ -532,6 +532,17 @@ Resources:
       LoadBalancerArn: !Ref LoadBalancerWorker1
       Port: 80
       Protocol: HTTP
+ 
+  LoadBalancerWorker2:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties: 
+      SecurityGroups:
+        - !Ref SecurityGroupWorker
+        - !GetAtt VPC.DefaultSecurityGroup
+      Subnets: 
+        - !Ref SubnetPublic1
+        - !Ref SubnetPublic2
+        - !Ref SubnetPublic3
         
   TargetGroupWorker2:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
