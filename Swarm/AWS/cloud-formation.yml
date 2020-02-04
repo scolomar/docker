@@ -21,7 +21,6 @@ Metadata:
           - SubnetCidrBlockPublic1
           - SubnetCidrBlockPublic2
           - SubnetCidrBlockPublic3
-          - SecurityGroupCidrIpManager
           - SecurityGroupCidrIpWorker
       -
         Label:
@@ -49,8 +48,6 @@ Metadata:
         default: Public Subnet 2 CIDR
       SubnetCidrBlockPublic3:
         default: Public Subnet 3 CIDR
-      SecurityGroupCidrIpManager:
-        default: Allowed CIDR for ALB UCP Manager Access
       SecurityGroupCidrIpWorker:
         default: Allowed CIDR for ALB UCP Worker Access
       VPCCidrBlock:
@@ -108,19 +105,11 @@ Parameters:
       All resources located on this subnet are provided an IP within this address block. 
     Default: 192.168.6.0/24
     
-  SecurityGroupCidrIpManager:
-    Type: String
-    Description: >
-      Allowed CIDR block for external web access to the UCP Manager  Load Balancer. 
-      It defines the block of IPs that can access the UCP Manager Load Balancer and, consequently, the UCP Management dashboard. 
-      Set it to 0.0.0.0/0 to make it accessible from anywhere.
-    Default: 0.0.0.0/0
-    
   SecurityGroupCidrIpWorker:
     Type: String
     Description: >
-      Allowed CIDR block for external web access to the UCP Worker  Load Balancer. 
-      It defines the block of IPs that can access the UCP Worker Load Balancer and, consequently, the application servers. 
+      Allowed CIDR block for external web access to the Swarm Worker Load Balancer. 
+      It defines the block of IPs that can access the Swarm Worker Load Balancer and, consequently, the application servers. 
       Set it to 0.0.0.0/0 to make it accessible from anywhere.
     Default: 0.0.0.0/0
     
@@ -438,7 +427,7 @@ Resources:
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
       ImageId: !Ref InstanceManagerImageId
-      InstanceType: t3a.micro
+      InstanceType: !Ref InstanceManagerInstanceType
       SubnetId: !Ref SubnetPrivate3
       UserData:
         "Fn::Base64":
@@ -486,7 +475,7 @@ Resources:
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
       ImageId: !Ref InstanceWorkerImageId
-      InstanceType: t3a.micro
+      InstanceType: !Ref InstanceWorkerInstanceType
       SubnetId: !Ref SubnetPrivate3
       UserData:
         "Fn::Base64":
