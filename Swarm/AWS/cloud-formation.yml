@@ -2,7 +2,7 @@
 
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description: This template creates a new VPC and deploys Docker UCP.
+Description: This template creates a new VPC and deploys Docker Swarm.
 
 #============================================================
 # UI Definition
@@ -24,13 +24,13 @@ Metadata:
           - SecurityGroupCidrIpWorker
       -
         Label:
-          default: UCP Manager Configuration
+          default: Swarm Manager Configuration
         Parameters:
           - InstanceManagerInstanceType
           - InstanceManagerImageId
       -
         Label:
-          default: UCP Worker Configuration
+          default: Swarm Worker Configuration
         Parameteres:
           - InstanceWorkerInstanceType
           - InstanceWorkerImageId
@@ -49,17 +49,17 @@ Metadata:
       SubnetCidrBlockPublic3:
         default: Public Subnet 3 CIDR
       SecurityGroupCidrIpWorker:
-        default: Allowed CIDR for ALB UCP Worker Access
+        default: Allowed CIDR for ALB Swarm Worker Access
       VPCCidrBlock:
         default: VPC CIDR
       InstanceManagerInstanceType:
-        default: UCP Manager Instance Size
+        default: Swarm Manager Instance Size
       InstanceWorkerInstanceType:
-        default: UCP Worker Instance Size
+        default: Swarm Worker Instance Size
       InstanceManagerImageId:
-        default: AMI to use for UCP Manager Instances
+        default: AMI to use for Swarm Manager Instances
       InstanceWorkerImageId:
-        default: AMI to use for UCP Worker Instances 
+        default: AMI to use for Swarm Worker Instances 
                 
 Parameters:
 
