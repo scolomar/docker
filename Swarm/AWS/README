@@ -1,3 +1,4 @@
+# FIRST CREATE STACK WITH CLOUDFORMATION (IN INSTALL FOLDER)
 # FROM CLOUD9 INSTANCE
 export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/swarm.sh && ./docker/Swarm/AWS/install/swarm.sh && rm -rf docker
 # FROM SWARM MANAGER INSTANCE
