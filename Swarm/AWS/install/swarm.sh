@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 pwd=$( dirname $( readlink -f $0 ) ) ;
 
 test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
