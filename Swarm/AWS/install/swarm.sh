@@ -1,6 +1,6 @@
 #!/bin/bash
 
-test -n "$stack" || exit 1 ;
+test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
 
 function send_list_command {
  local command="$1" ;
