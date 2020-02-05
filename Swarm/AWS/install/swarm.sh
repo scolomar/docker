@@ -27,18 +27,18 @@ for target in $targets ; do
 done ;
 token_manager=" $output ";
 
-command=" sudo $token_manager " ;
-targets=" InstanceManager2 InstanceManager3 " ;
-for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
-done ;
-
 command=" sudo docker swarm join-token worker | grep token " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
  send_list_command "$command" "$target" "$stack" ;
 done ;
 token_worker=" $output ";
+
+command=" sudo $token_manager " ;
+targets=" InstanceManager2 InstanceManager3 " ;
+for target in $targets ; do
+ send_command "$command" "$target" "$stack" ;
+done ;
 
 command=" sudo $token_worker " ;
 targets=" InstanceWorker1 InstanceWorker2 InstanceWorker3 " ;
