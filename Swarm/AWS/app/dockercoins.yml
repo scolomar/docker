@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+  rng:
+    image: dockercoins/rng:v0.4
+    deploy:
+      mode: global
+      placement:
+        constraints:
+        - node.role == worker
+
+  hasher:
+    image: dockercoins/hasher:v0.2
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+
+  webui:
+    image: dockercoins/webui:v0.2
+    ports:
+    - "8888:80"
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+
+  redis:
+    image: redis
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+
+  worker:
+    image: dockercoins/worker:v0.2
+    deploy:
+      replicas: 3 #Change to 21 to improve performance in 7x
+      placement:
+        constraints:
+        - node.role == worker
