@@ -4,7 +4,7 @@ pwd=$( dirname $( readlink -f $0 ) ) ;
 
 test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
 
-source $pwd/docker/Swarm/AWS/common/functions.sh
+source $pwd/../common/functions.sh
 
 command=" sudo docker swarm join-token manager | grep token " ;
 targets=" InstanceManager1 " ;
