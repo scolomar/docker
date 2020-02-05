@@ -1,3 +1,4 @@
-export stack=$stack ;
-git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/swarm.sh && ./docker/Swarm/AWS/install/swarm.sh && rm -rf docker
-git clone https://github.com/secobau/ucp.git && sudo docker stack deploy -c ucp/aws/php.yml php && sudo docker stack deploy -c ucp/aws/dockercoins.yml dockercoins
+# FROM CLOUD9 INSTANCE
+export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/swarm.sh && ./docker/Swarm/AWS/install/swarm.sh && rm -rf docker
+# FROM SWARM MANAGER INSTANCE
+cd && git clone https://github.com/secobau/ucp.git && sudo docker stack deploy -c ucp/aws/php.yml php && sudo docker stack deploy -c ucp/aws/dockercoins.yml dockercoins
