@@ -1,0 +1,11 @@
+version: "3"
+services:
+ php:
+  image: secobau/php:apache
+  ports:
+   - "8080:80"
+  deploy:
+   replicas: 3
+   placement:
+    constraints:
+     - node.role == worker
