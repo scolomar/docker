@@ -422,7 +422,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # Swarm MANAGER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/manager.sh && ./docker/Swarm/AWS/install/manager.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/node.sh && ./docker/Swarm/AWS/install/node.sh && rm -rf docker
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -438,7 +438,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # Swarm MANAGER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/manager.sh && ./docker/Swarm/AWS/install/manager.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/node.sh && ./docker/Swarm/AWS/install/node.sh && rm -rf docker
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -454,7 +454,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # Swarm WORKER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/worker.sh && ./docker/Swarm/AWS/install/worker.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/node.sh && ./docker/Swarm/AWS/install/node.sh && rm -rf docker
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -470,7 +470,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # Swarm WORKER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/worker.sh && ./docker/Swarm/AWS/install/worker.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/node.sh && ./docker/Swarm/AWS/install/node.sh && rm -rf docker
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -486,7 +486,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # Swarm WORKER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/worker.sh && ./docker/Swarm/AWS/install/worker.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/Swarm/AWS/install/node.sh && ./docker/Swarm/AWS/install/node.sh && rm -rf docker
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
