@@ -8,6 +8,12 @@ test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
 
 source $pwd/../common/functions.sh
 
+command=' sudo docker container run --detach centos ping 8.8.8.8 ' ;
+targets=" InstanceManager1 " ;
+for target in $targets ; do
+ send_command "$command" "$target" "$stack" ;
+done ;
+
 command=' cd \&\& git clone https://github.com/secobau/docker.git ' ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
