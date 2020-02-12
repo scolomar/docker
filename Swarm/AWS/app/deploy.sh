@@ -8,25 +8,19 @@ test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
 
 source $pwd/../common/functions.sh
 
-command=' sudo docker container run --detach centos ping 8.8.8.8 ' ;
+command=' git clone https://github.com/secobau/docker.git docker-clone' ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
  send_command "$command" "$target" "$stack" ;
 done ;
 
-command=' cd \&\& git clone https://github.com/secobau/docker.git ' ;
+command=' sudo docker stack deploy -c docker-clone/Swarm/AWS/app/php.yml php ' ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
  send_command "$command" "$target" "$stack" ;
 done ;
 
-command=' cd \&\& sudo docker stack deploy -c docker/Swarm/AWS/app/php.yml php ' ;
-targets=" InstanceManager1 " ;
-for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
-done ;
-
-command=' cd \&\& sudo docker stack deploy -c docker/Swarm/AWS/app/dockercoins.yml dockercoins ' ;
+command=' sudo docker stack deploy -c docker-clone/Swarm/AWS/app/dockercoins.yml dockercoins ' ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
  send_command "$command" "$target" "$stack" ;
