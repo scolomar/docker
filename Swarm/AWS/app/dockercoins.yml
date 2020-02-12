@@ -3,7 +3,7 @@ version: "3"
 services:
 
   rng:
-    image: secobau/dockercoins-rng:release-1.1
+    image: secobau/dockercoins:rng-1.0
     deploy:
       mode: global
       placement:
@@ -11,14 +11,14 @@ services:
         - node.role == worker
 
   hasher:
-    image: secobau/dockercoins-hasher:release-1.1
+    image: secobau/dockercoins:hasher-1.2
     deploy:
       placement:
         constraints:
         - node.role == worker
 
   webui:
-    image: secobau/dockercoins-webui:release-1.1
+    image: secobau/dockercoins:webui-1.0
     ports:
     - "8888:80"
     deploy:
@@ -34,7 +34,7 @@ services:
         - node.role == worker
 
   worker:
-    image: secobau/dockercoins-worker:release-1.1
+    image: secobau/dockercoins:worker-1.0
     deploy:
       replicas: 3 #Change to 21 to improve performance in 7x
       placement:
