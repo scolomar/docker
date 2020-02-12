@@ -8,30 +8,30 @@ services:
       mode: global
       placement:
         constraints:
-        - node.role == worker
+          - node.role == worker
 
   hasher:
     image: secobau/dockercoins:hasher-1.2
     deploy:
       placement:
         constraints:
-        - node.role == worker
+          - node.role == worker
 
   webui:
     image: secobau/dockercoins:webui-1.0
     ports:
-    - "8888:80"
+      - "8888:80"
     deploy:
       placement:
         constraints:
-        - node.role == worker
+          - node.role == worker
 
   redis:
     image: redis
     deploy:
       placement:
         constraints:
-        - node.role == worker
+          - node.role == worker
 
   worker:
     image: secobau/dockercoins:worker-1.0
@@ -39,4 +39,4 @@ services:
       replicas: 3 #Change to 51+ to improve performance
       placement:
         constraints:
-        - node.role == worker
+          - node.role == worker
