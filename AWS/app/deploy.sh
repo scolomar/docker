@@ -14,6 +14,12 @@ for target in $targets ; do
  send_command "$command" "$target" "$stack" ;
 done ;
 
+command=" find docker-secobau " ;
+targets=" InstanceManager1 " ;
+for target in $targets ; do
+ send_command "$command" "$target" "$stack" ;
+done ;
+
 command=" sudo docker stack deploy --compose-file docker-secobau/YAML/php.yml php " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
