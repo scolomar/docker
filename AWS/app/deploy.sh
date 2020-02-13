@@ -29,5 +29,5 @@ done ;
 command=" sudo rm --recursive --force docker-secobau " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- echo send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$target" "$stack" ;
 done ;
