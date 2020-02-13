@@ -1,0 +1,8 @@
+# FIRST CREATE STACK WITH CLOUDFORMATION (IN INSTALL FOLDER)
+./install/UCP/cloud-formation.yml
+./install/Swarm/cloud-formation.yml
+
+# THEN FROM CLOUD9 INSTANCE
+export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/swarm.sh && ./docker/AWS/install/swarm.sh ; rm -rf docker
+export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/app/deploy.sh && ./docker/AWS/app/deploy.sh ; rm -rf docker
+export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/app/remove.sh && ./docker/AWS/app/remove.sh ; rm -rf docker

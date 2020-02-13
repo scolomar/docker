@@ -413,7 +413,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # UCP LEADER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/UCP/AWS/install/leader.sh && ./docker/UCP/AWS/install/leader.sh
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/UCP/leader.sh && ./docker/AWS/install/UCP/leader.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
             
@@ -429,7 +429,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # UCP MANAGER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/UCP/AWS/install/node.sh && ./docker/UCP/AWS/install/node.sh
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/node.sh && ./docker/AWS/install/node.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -445,7 +445,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # UCP MANAGER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/UCP/AWS/install/node.sh && ./docker/UCP/AWS/install/node.sh
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/node.sh && ./docker/AWS/install/node.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -461,7 +461,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # UCP WORKER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/UCP/AWS/install/node.sh && ./docker/UCP/AWS/install/node.sh
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/node.sh && ./docker/AWS/install/node.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -477,7 +477,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # UCP WORKER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/UCP/AWS/install/node.sh && ./docker/UCP/AWS/install/node.sh
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/node.sh && ./docker/AWS/install/node.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
@@ -493,7 +493,7 @@ Resources:
           !Sub |
             #!/bin/sh
             # UCP WORKER
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/UCP/AWS/install/node.sh && ./docker/UCP/AWS/install/node.sh
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/node.sh && ./docker/AWS/install/node.sh
             # AWS SYSTEMS MANAGER
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
 
