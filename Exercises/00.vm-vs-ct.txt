@@ -1,0 +1,8 @@
+https://www.docker.com/sites/default/files/VM%402x.png
+https://www.docker.com/sites/default/files/Container%402x.png
+https://docs.docker.com/glossary/?term=namespace
+https://docs.docker.com/glossary/?term=cgroups
+https://docs.docker.com/glossary/?term=virtual%20machine
+https://docs.docker.com/glossary/?term=image
+https://docs.docker.com/glossary/?term=container
+https://docs.docker.com/glossary/?term=Docker

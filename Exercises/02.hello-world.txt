@@ -1,0 +1,38 @@
+docker run hello-world
+docker run -it ubuntu bash
+docker ps
+docker ps -a
+docker run --memory 100M --cpu-shares 1024 -it ubuntu bash
+docker ps -a
+docker run --name ejemplo -d -it ubuntu bash
+docker ps -a
+docker attach ejemplo
+ls;exit
+docker ps -a
+docker start ejemplo
+docker attach ejemplo
+docker exec -it ejemplo bash
+docker logs ejemplo
+docker kill ejemplo
+docker rm ejemplo
+docker rm $(docker ps -qa)
+docker ps -a
+docker run --rm -it alpine sh
+docker ps -a
+docker run --rm -it alpine echo Hola
+docker ps -a
+docker run --rm -it alpine sh
+touch fichero;ls
+docker run --rm -it alpine sh
+touch fichero;ls
+docker run --name ejemplo -it alpine sh
+touch fichero;ls
+docker ps -a
+docker commit ejemplo alpine:fichero
+docker images
+docker rm ejemplo
+docker run --rm -it h
+ls
+docker run --rm -ti httpd bash
+httpd;ps -eLfww
+pstree -p $(pidof docker-containerd-shim)

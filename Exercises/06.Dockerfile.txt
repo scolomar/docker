@@ -1,0 +1,11 @@
+# elinks
+#
+# VERSION	1.0
+
+FROM centos
+MAINTAINER Sebastian Colomar <sebastian.colomar@gmail.com>
+
+LABEL Description="This image is used to use a text browser client to check HTTP web servers"
+RUN yum -y update
+RUN yum -y install elinks
+ENTRYPOINT ["/usr/bin/elinks"] 

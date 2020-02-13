@@ -1,0 +1,28 @@
+#login as root
+ssh-keygen
+cat .ssh/id_rsa.pub
+mkdir /home/debian/.ssh
+cp .ssh/id_rsa /home/debian/.ssh/
+cp .ssh/id_rsa.pub /home/debian/.ssh/authorized_keys
+chown -R debian. /home/debian/
+for x in $lista;do ssh $x mkdir /home/debian/.ssh;scp /root/.ssh/id_rsa.pub $x:/home/debian/.ssh/authorized_keys;done
+exit
+#login as debian
+git clone https://github.com/secobau/docker
+cd docker
+source 01.debian-install.txt
+#login as debian
+cd docker
+f=01.debian-install.txt;for x in $lista;do scp $f $x:;ssh $x "source $f";done
+docker swarm init --advertise-addr $ip
+for x in $workers;do ssh $x "docker swarm join --token $token $ip:2377";done
+docker swarm join-token manager
+for x in $managers;do ssh $x "docker swarm join --token $token2 $ip:2377";done
+for x in $(docker node ls|grep Reachable|awk '{print $1}');do docker node update --availability drain $x;done
+for x in $(docker node ls|grep Leader|awk '{print $1}');do docker node update --availability drain $x;done
+docker swarm leave --force
+git clone https://github.com/dockersamples/example-voting-app
+cd example-voting-app/
+docker stack deploy -c docker-stack.yml example-voting-app
+
+

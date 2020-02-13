@@ -1,0 +1,3 @@
+mkdir jboss-app
+mkdir jboss-app/wildfly
+mkdir jboss-app/stack

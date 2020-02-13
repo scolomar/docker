@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+   registry:
+     deploy:
+       replicas: 1
+       restart_policy:
+         condition: on-failure
+     image: registry:2
+     configs:
+       - htpasswd
+       - key
+       - cert
+     ports:
+       - "5000:5000"
+configs:
+   htpasswd:
+     file: ./htpasswd
+   key:
+     file: ./key.pem
+   cert:
+     file: ./cert.pem
