@@ -1,4 +1,4 @@
-# FIRST CREATE STACK WITH CLOUDFORMATION (IN INSTALL FOLDER)
+# FIRST CREATE STACK WITH CLOUDFORMATION
 ./install/UCP/cloud-formation.yml
 ./install/Swarm/cloud-formation.yml
 
