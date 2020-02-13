@@ -3,6 +3,7 @@
 ./install/Swarm/cloud-formation.yml
 
 # THEN FROM CLOUD9 INSTANCE
-export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/swarm.sh && ./docker/AWS/install/swarm.sh ; rm -rf docker
+export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/UCP/cluster.sh && ./docker/AWS/install/UCP/cluster.sh ; rm -rf docker
+export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/Swarm/cluster.sh && ./docker/AWS/install/Swarm/cluster.sh ; rm -rf docker
 export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/app/deploy.sh && ./docker/AWS/app/deploy.sh ; rm -rf docker
 export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/app/remove.sh && ./docker/AWS/app/remove.sh ; rm -rf docker
