@@ -13,6 +13,7 @@ services:
   hasher:
     image: secobau/dockercoins:hasher-1.2
     deploy:
+      mode: global
       placement:
         constraints:
           - node.role == worker
@@ -22,6 +23,7 @@ services:
     ports:
       - "8888:80"
     deploy:
+      mode: global
       placement:
         constraints:
           - node.role == worker
