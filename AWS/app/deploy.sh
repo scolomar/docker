@@ -14,13 +14,13 @@ for target in $targets ; do
  send_command "$command" "$target" "$stack" ;
 done ;
 
-command=" sudo docker stack deploy --compose-file docker-secobau/AWS/app/php.yml php " ;
+command=" sudo docker stack deploy --compose-file docker-secobau/YAML/php.yml php " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
  send_command "$command" "$target" "$stack" ;
 done ;
 
-command=" sudo docker stack deploy --compose-file docker-secobau/AWS/app/dockercoins.yml dockercoins " ;
+command=" sudo docker stack deploy --compose-file docker-secobau/YAML/dockercoins.yml dockercoins " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
  send_command "$command" "$target" "$stack" ;
