@@ -19,7 +19,7 @@ services:
           - node.role == worker
 
   webui:
-    image: secobau/dockercoins:webui-1.2
+    image: secobau/dockercoins:webui-1.1
     ports:
       - "8888:80"
     deploy:
