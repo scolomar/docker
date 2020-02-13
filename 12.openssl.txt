@@ -1,3 +1,0 @@
-openssl rand -base64 1024|tr -d '/=+'
-openssl req -newkey rsa -nodes -keyout key.pem -x509 -days 365 -out cert.pem
-openssl x509 -text -noout -in cert.pem
