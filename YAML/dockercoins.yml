@@ -11,7 +11,7 @@ services:
           - node.role == worker
 
   hasher:
-    image: secobau/dockercoins:hasher-1.2
+    image: secobau/dockercoins:hasher-1.3
     deploy:
       mode: global
       placement:
