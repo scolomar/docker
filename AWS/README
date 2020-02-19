@@ -1,9 +1,23 @@
-# FIRST CREATE STACK WITH CLOUDFORMATION
+# FIRST CREATE STACK IN AWS WITH THE FOLLOWING CLOUDFORMATION CONFIGURATION FILE
+
+# IF YOU WANT TO INSTALL UCP CLUSTER
 ./install/UCP/cloud-formation.yml
+
+# IF YOU WANT TO INSTALL SWARM CLUSTER
 ./install/Swarm/cloud-formation.yml
 
-# THEN FROM CLOUD9 INSTANCE
+# THEN FROM CLOUD9 INSTANCE RUN THE FOLLOWING COMMAND
+
+# IF YOU WANT TO INSTALL UCP CLUSTER
 export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/UCP/cluster.sh && ./docker/AWS/install/UCP/cluster.sh ; rm -rf docker
+
+# IF YOU WANT TO INSTALL SWARM CLUSTER
 export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/Swarm/cluster.sh && ./docker/AWS/install/Swarm/cluster.sh ; rm -rf docker
+
+# NOW FROM CLOUD9 INSTANCE AGAIN RUN THE FOLLOWING COMMAND TO DEPLOY THE APP EXAMPLES
 export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/app/deploy.sh && ./docker/AWS/app/deploy.sh ; rm -rf docker
+
+# FROM CLOUD9 INSTANCE RUN THE FOLLOWING COMMAND TO REMOVE THE APP EXAMPLES BUT KEEP THE CLUSTER
 export stack=$stack && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/app/remove.sh && ./docker/AWS/app/remove.sh ; rm -rf docker
+
+# FINALLY DELETE THE STACK IN AWS CLOUDFORMATION WHEN FINISHED
