@@ -38,7 +38,7 @@ services:
   worker:
     image: secobau/dockercoins:worker-1.0
     deploy:
-      replicas: 11 #Change to 51+ to improve performance
+      replicas: 3 #Change to 51+ to improve performance
       placement:
         constraints:
           - node.role == worker
