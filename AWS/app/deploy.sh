@@ -29,7 +29,7 @@ done ;
 command=" sudo docker stack deploy --compose-file docker-secobau/YAML/dockercoins.yml dockercoins " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- echo send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$target" "$stack" ;
 done ;
 
 command=" sudo rm --recursive --force docker-secobau " ;
