@@ -8,7 +8,7 @@ test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
 
 source $pwd/../../common/functions.sh
 
-command=" sudo docker swarm init " ;
+command=" sudo docker swarm init | grep token " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
  send_list_command "$command" "$target" "$stack" ;
