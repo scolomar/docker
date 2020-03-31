@@ -8,13 +8,17 @@ test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
 
 source $pwd/../../common/functions.sh
 
-
-ip=$( ip route | awk /default/'{ print $9 }' )
-echo $ip k8smaster | sudo tee -a /etc/hosts
+######################################
+ip=$( ip route | awk /default/'{ print $9 }' ) \
+&& echo $ip k8smaster | sudo tee -a /etc/hosts
 sudo kubeadm init --control-plane-endpoint=k8smaster --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=all | tee --append kubernetes.out
 
-
-sudo kubeadm init --control-plane-endpoint "LOAD_BALANCER_DNS:LOAD_BALANCER_PORT" --upload-certs
+LOAD_BALANCER_DNS=proxy-LoadB-17607TYBTXJ5J-2daa40a4632ae813.elb.ap-south-1.amazonaws.com
+LOAD_BALANCER_DNS=kube-apiserver.sebastian-colomar.com
+LOAD_BALANCER_PORT=6443
+nc -w10 -v $LOAD_BALANCER_DNS $LOAD_BALANCER_PORT
+sudo kubeadm --v=5 init --control-plane-endpoint "$LOAD_BALANCER_DNS:$LOAD_BALANCER_PORT" --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=all --upload-certs 
+#########################################
 
 
 command=" \
