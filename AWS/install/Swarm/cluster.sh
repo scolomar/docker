@@ -8,24 +8,6 @@ test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 ;
 
 source $pwd/../../common/functions.sh
 
-command=" \
- sudo yum update -y \
- && sudo amazon-linux-extras install docker -y \
- && sudo systemctl enable docker \
- && sudo systemctl start docker \
- " ;
-targets=" \
- InstanceManager1 \
- InstanceManager2 \
- InstanceManager3 \
- InstanceWorker1 \
- InstanceWorker2 \
- InstanceWorker3 \
- " ;
-for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
-done ;
-
 command=" sudo docker swarm init | grep token --max-count 1 " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
