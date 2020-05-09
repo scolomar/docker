@@ -1,8 +1,8 @@
+#!/bin/bash
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
-#!/bin/bash
 #########################################################################
 #set -x									;
 pwd=$( dirname $( readlink -f $0 ) )					;
@@ -22,7 +22,7 @@ command="								\
 	repo=/etc/yum.repos.d/kubernetes.repo				;
 	test -f $repo && rm -f $repo					;
 	echo								\
-		[kubernetes]						\
+		'[kubernetes]'						\
 			| sudo tee --append $repo			\
 									;
 	echo								\
@@ -30,7 +30,7 @@ command="								\
 			| sudo tee --append $repo			\
 									;
 	echo								\
-		baseurl=$yum/repos/kubernetes-el7-\$basearch		\
+		baseurl=$yum/repos/kubernetes-el7-'$basearch'		\
 			| sudo tee --append $repo			\
 									;
 	echo								\
@@ -88,7 +88,7 @@ do									\
 done									;
 #########################################################################
 command="								\
-	echo "$ip $kube"						\
+	echo $ip $kube							\
 		| sudo tee --append /etc/hosts				\
 									;
 "									;
@@ -106,7 +106,7 @@ done									;
 command="								\
 	sudo kubeadm init						\
 		--upload-certs						\
-		--control-plane-endpoint="$kube"			\
+		--control-plane-endpoint=\"$kube\"			\
 		--pod-network-cidr=192.168.0.0/16			\
 		--ignore-preflight-errors=all				\
 			| tee $HOME/kubernetes.log-install		\
@@ -115,8 +115,8 @@ command="								\
 	sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config		;
 	sudo chown $(id -u):$(id -g) $HOME/.kube/config			;
 	echo								\
-		"source <(kubectl completion bash)"			\
-			| tee --append $HOME/.bashrc			\
+		'source <(kubectl completion bash)'			\
+			| tee --append \$HOME/.bashrc			\
 									;
 	kubectl apply --filename					\
 		$calico/calico.yaml					\
@@ -144,8 +144,8 @@ done									;
 command="								\
 	grep								\
 		--max-count 1						\
-		"kubeadm join"						\
-		$HOME/kubernetes.log-install				\
+		'kubeadm join'						\
+		\$HOME/kubernetes.log-install				\
 									;
 "									;
 targets="InstanceManager1"						;
@@ -160,7 +160,7 @@ command="								\
 	grep								\
 		--max-count 1						\
 		discovery-token-ca-cert-hash				\
-		$HOME/kubernetes.log-install				\
+		\$HOME/kubernetes.log-install				\
 									;
 "									;
 targets="InstanceManager1"						;
@@ -175,7 +175,7 @@ command="								\
 	grep								\
 		--max-count 1						\
 		certificate-key						\
-		$HOME/kubernetes.log-install				\
+		\$HOME/kubernetes.log-install				\
 									;
 "									;
 targets="InstanceManager1"						;
@@ -193,12 +193,12 @@ command="								\
 		$token_certificate					\
 		--ignore-preflight-errors=all				\
 									;
-	mkdir -p $HOME/.kube						;
-	sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config		;
-	sudo chown $(id -u):$(id -g) $HOME/.kube/config			;
+	mkdir -p \$HOME/.kube						;
+	sudo cp /etc/kubernetes/admin.conf \$HOME/.kube/config		;
+	sudo chown \$(id -u):\$(id -g) \$HOME/.kube/config		;
 	echo								\
-		"source <(kubectl completion bash)"			\
-			| tee --append $HOME/.bashrc			\
+		'source <(kubectl completion bash)'			\
+			| tee --append \$HOME/.bashrc			\
 									;
 "									;
 targets="								\
