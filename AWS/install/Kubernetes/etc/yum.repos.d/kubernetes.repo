@@ -1,0 +1,8 @@
+[kubernetes]
+name=Kubernetes
+baseurl=/repos/kubernetes-el7-$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=/doc/yum-key.gpg  /doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
