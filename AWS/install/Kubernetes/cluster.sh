@@ -14,46 +14,12 @@ test -z "$stack"							\
 									;
 #########################################################################
 calico=https://docs.projectcalico.org/v3.14/manifests			;
-yum=https://packages.cloud.google.com/yum				;
 ip=10.168.1.100								;
 kube=kube-apiserver.sebastian-colomar.com				;
 #########################################################################
 command="								\
 	repo=/etc/yum.repos.d/kubernetes.repo				;
 	test -f $repo && rm -f $repo					;
-	echo								\
-		'[kubernetes]'						\
-			| sudo tee --append $repo			\
-									;
-	echo								\
-		name=Kubernetes						\
-			| sudo tee --append $repo			\
-									;
-	echo								\
-		baseurl=$yum/repos/kubernetes-el7-'$basearch'		\
-			| sudo tee --append $repo			\
-									;
-	echo								\
-		enabled=1						\
-			| sudo tee --append $repo			\
-									;
-	echo								\
-		gpgcheck=1						\
-			| sudo tee --append $repo			\
-									;
-	echo								\
-		repo_gpgcheck=1						\
-			| sudo tee --append $repo			\
-									;
-	echo								\
-		gpgkey=$yum/doc/yum-key.gpg				\
-		$yum/doc/rpm-package-key.gpg				\
-			| sudo tee --append $repo			\
-									;
-	echo								\
-		exclude=kubelet kubeadm kubectl				\
-			| sudo tee --append $repo			\
-									;
 	sudo yum install						\
 		-y							\
 		--disableexcludes=kubernetes				\
