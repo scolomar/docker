@@ -46,6 +46,7 @@ sudo									\
 	$token_discovery                                        	\
 	--ignore-preflight-errors					\
 		all							\
+	2>&1								\
 	|								\
 		sudo tee $log						\
 									;
