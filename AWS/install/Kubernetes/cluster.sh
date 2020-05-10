@@ -97,22 +97,13 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-#	while true							;
-#	do								\
-		output="$(						\
-			send_list_command "$command" "$target" "$stack"	\
-		)"							\
+	output="$(							\
+		send_list_command "$command" "$target" "$stack"		\
+	)"								\
 									;
-		echo							\
-			"$output"					\
+	echo								\
+		"$output"						\
 									;
-#		|							\
-#			grep						\
-#				Ready					\
-#		&&							\
-#			break						\
-#									;
-#	done								;
 done									;
 #########################################################################
 command="								\
