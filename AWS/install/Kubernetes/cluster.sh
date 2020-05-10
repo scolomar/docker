@@ -77,9 +77,11 @@ done									;
 #########################################################################
 command="								\
 	kubectl get node						\
-		2> /dev/null						\
 	|								\
 		grep Ready						\
+			--quiet						\
+		&&							\
+			echo Ready					\
 "									;
 targets="InstanceManager1"						;
 for target in $targets							;
@@ -87,6 +89,7 @@ do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
+echo $output
 #########################################################################
 command="								\
 	grep								\
