@@ -69,7 +69,9 @@ done									;
 #########################################################################
 command="								\
 	kubectl get node						\
-		| grep Ready						\
+		2> /dev/null						\
+	|								\
+		grep Ready						\
 "									;
 targets="InstanceManager1"						;
 for target in $targets							;
@@ -178,7 +180,9 @@ done									;
 #########################################################################
 command="								\
 	kubectl get node						\
-		| grep Ready						\
+		2> /dev/null						\
+	|								\
+		grep Ready						\
 "									;
 targets="								\
 	InstanceManager2						\
@@ -205,7 +209,9 @@ done									;
 #########################################################################
 command="								\
 	kubectl get node						\
-		| grep Ready						\
+		2> /dev/null						\
+	|								\
+		grep Ready						\
 "									;
 targets="								\
 	InstanceManager2						\
