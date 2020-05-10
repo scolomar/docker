@@ -101,7 +101,12 @@ do									\
 									;
 		send_list_command "$command" "$target" "$stack"		\
 									;
-		test "$output" = ready					\
+sleep 9
+		echo							\
+			"$output"					
+		|							\
+			grep						\
+				Ready					\
 		&&							\
 			break						\
 									;
