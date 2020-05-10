@@ -155,11 +155,11 @@ command="								\
 	&&								\
 	export log=$log							\
 	&&								\
-	export token_certificate=$token_certificate			\
+	export token_certificate="$token_certificate"			\
 	&&								\
-	export token_discovery=$token_discovery				\
+	export token_discovery="$token_discovery"				\
 	&&								\
-	export token_token=$token_token					\
+	export token_token="$token_token"					\
 	&&								\
 	curl -o /$file $remote						\
 	&&								\
