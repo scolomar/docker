@@ -21,15 +21,13 @@ do									\
 	break								\
 									;
 done									;	
-echo $HOME
-echo $(ls -l $HOME/.kube 2>&1					)	
 #########################################################################
 while true								;
 do									\
 	sleep								\
 		3							\
 									;
-sudo --user $USER --shell \
+sudo --user $USER --login \
 	kubectl get node						\
 	|								\
 		grep Ready						\
@@ -37,7 +35,7 @@ sudo --user $USER --shell \
 		break							\
 									;
 done									;
-echo $( kubectl get node 2>&1 )
+echo $( sudo --user $USER --shell kubectl get node 2>&1 )
 #########################################################################
 echo ready								;
 #########################################################################

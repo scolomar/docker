@@ -48,7 +48,7 @@ echo									\
 		tee --append $HOME/.bashrc				\
 									;
 #########################################################################
-sudo --user ssm-user --shell \
+sudo --user ssm-user --login \
 kubectl apply								\
 	--filename							\
 		$calico/calico.yaml					\
