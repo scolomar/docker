@@ -5,6 +5,8 @@
 #########################################################################
 export debug=$debug							;
 set +x && test "$debug" = true && set -x				;
+echo PWD=$PWD
+echo USER=$USER
 #########################################################################
 docker=raw.githubusercontent.com/secobau/docker				;
 folder=master/AWS/install/Kubernetes/etc/yum.repos.d			;
