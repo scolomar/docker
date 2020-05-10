@@ -13,9 +13,10 @@ token_certificate="$( echo $token_certificate | base64 -d )"         	;
 token_discovery="$( echo $token_discovery | base64 -d )"         	;
 token_token="$( echo $token_token | base64 -d )"         		;
 echo debug=$debug							;
-echo log=log								;
+echo log=$log								;
 #########################################################################
 set +x && test "$debug" = true && set -x				;
+set -x
 #########################################################################
 ip=10.168.1.100                                                         ;
 kube=kube-apiserver.sebastian-colomar.com                               ;
