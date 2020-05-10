@@ -29,6 +29,7 @@ command="								\
 	export debug=$debug						\
 	&&								\
 	curl -o /$file $remote						\
+		--silent \
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -58,6 +59,7 @@ command="								\
 	export log=$log							\
 	&&								\
 	curl -o /$file $remote						\
+		--silent \
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -82,7 +84,7 @@ command="								\
 	export log=$log							\
 	&&								\
 	curl -o /$file $remote						\
-		2> /dev/null \
+		--silent \
 	&&								\
 	chmod +x /$file							\
 	&&								\
