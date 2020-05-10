@@ -96,7 +96,9 @@ for target in $targets							;
 do									\
 	while true							;
 	do								\
-		send_list_command "$command" "$target" "$stack"		\
+		output="$(						\
+			send_list_command "$command" "$target" "$stack"	\
+		)"							\
 									;
 		echo							\
 			"$output"					\
