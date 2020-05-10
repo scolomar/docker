@@ -29,7 +29,7 @@ command="								\
 	export debug=$debug						\
 	&&								\
 	curl -o /$file $remote						\
-		--silent \
+		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -59,7 +59,7 @@ command="								\
 	export log=$log							\
 	&&								\
 	curl -o /$file $remote						\
-		--silent \
+		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -84,7 +84,7 @@ command="								\
 	export log=$log							\
 	&&								\
 	curl -o /$file $remote						\
-		--silent \
+		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -164,9 +164,10 @@ command="								\
 	&&								\
 	export token_token=$token_token					\
 	&&								\
-	wget $remote							\
+	curl -o /$file $remote						\
+		--silent						\
 	&&								\
-	chmod +x $file							\
+	chmod +x /$file							\
 	&&								\
 	./$file								\
 	|								\
@@ -193,9 +194,10 @@ command="								\
 	&&								\
 	export token_token=$token_token					\
 	&&								\
-	wget $remote							\
+	curl -o /$file $remote						\
+		--silent						\
 	&&								\
-	chmod +x $file							\
+	chmod +x /$file							\
 	&&								\
 	./$file								\
 	|								\
