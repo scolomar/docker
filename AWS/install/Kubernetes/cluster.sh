@@ -70,7 +70,6 @@ done									;
 command="								\
 	kubectl get node						\
 		| grep Ready						\
-									;
 "									;
 targets="InstanceManager1"						;
 for target in $targets							;
@@ -85,7 +84,6 @@ command="								\
 			1						\
 		certificate-key						\
 		$log							\
-									;
 "									;
 targets="InstanceManager1"						;
 for target in $targets							;
@@ -101,7 +99,6 @@ command="								\
 			1						\
 		discovery-token-ca-cert-hash				\
 		$log							\
-									;
 "									;
 targets="InstanceManager1"						;
 for target in $targets							;
@@ -117,7 +114,6 @@ command="								\
 			1						\
 		kubeadm.*join						\
 		$log							\
-									;
 "									;
 targets="InstanceManager1"						;
 for target in $targets							;
@@ -143,7 +139,6 @@ command="								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
-									;
 "									;
 targets="								\
 	InstanceManager2						\
@@ -169,7 +164,6 @@ command="								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
-									;
 "									;
 targets="								\
 	InstanceWorker1							\
@@ -185,7 +179,6 @@ done									;
 command="								\
 	kubectl get node						\
 		| grep Ready						\
-									;
 "									;
 targets="								\
 	InstanceManager2						\
@@ -199,7 +192,6 @@ done									;
 #########################################################################
 command="								\
 	sudo sed --in-place /$kube/d /etc/hosts				\
-									;
 "									;
 targets="								\
 	InstanceManager2						\
@@ -214,7 +206,6 @@ done									;
 command="								\
 	kubectl get node						\
 		| grep Ready						\
-									;
 "									;
 targets="								\
 	InstanceManager2						\
