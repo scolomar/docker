@@ -103,7 +103,7 @@ do									\
 									;
 sleep 9
 		echo							\
-			"$output"					
+			"$output"					\
 		|							\
 			grep						\
 				Ready					\
