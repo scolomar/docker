@@ -37,6 +37,8 @@ sudo kubeadm init							\
 		sudo tee $log						\
 									;
 #########################################################################
+echo id=$( id )
+
 mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
 sudo chown $(id -u):$(id -g) $HOME/.kube/config				;
