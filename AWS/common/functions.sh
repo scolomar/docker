@@ -19,7 +19,6 @@ function send_list_command {
     --query "CommandInvocations[].CommandPlugins[].Output" \
     --details \
     --output text \
-    2> /dev/null \
   ) ;
   echo $output | grep [a-zA-Z0-9] --quiet && break ;
  done ;
