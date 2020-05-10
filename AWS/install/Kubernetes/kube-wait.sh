@@ -22,7 +22,8 @@ done									;
 while true								;
 do									\
 	su --login $USER --command "					\
-		kubectl get node					\
+			kubectl get node				\
+		"							\
 		|							\
 			grep						\
 				Ready					\
@@ -32,7 +33,6 @@ do									\
 						NotReady		\
 				&&					\
 				break					\
-	"								\
 									;
 done									;
 #########################################################################
