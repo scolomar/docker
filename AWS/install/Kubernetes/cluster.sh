@@ -29,7 +29,6 @@ command="								\
 	export debug=$debug						\
 	&&								\
 	curl -o /$file $remote						\
-		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -59,7 +58,6 @@ command="								\
 	export log=$log							\
 	&&								\
 	curl -o /$file $remote						\
-		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -84,7 +82,6 @@ command="								\
 	export log=$log							\
 	&&								\
 	curl -o /$file $remote						\
-		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -165,11 +162,10 @@ command="								\
 	export token_token=$token_token					\
 	&&								\
 	curl -o /$file $remote						\
-		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
-	./$file								\
+	/$file								\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -195,11 +191,10 @@ command="								\
 	export token_token=$token_token					\
 	&&								\
 	curl -o /$file $remote						\
-		--silent						\
 	&&								\
 	chmod +x /$file							\
 	&&								\
-	./$file								\
+	/$file								\
 	|								\
 		sudo tee /$file.log					\
 "									;
