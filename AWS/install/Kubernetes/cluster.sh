@@ -28,13 +28,11 @@ remote=https://$docker/$folder/$file					;
 command="								\
 	export debug=$debug						\
 	&&								\
-	wget $remote							\
+	curl -o /$file $remote						\
 	&&								\
-	chmod +x $file							\
+	chmod +x /$file							\
 	&&								\
-	./$file								\
-	&&								\
-	id \
+	/$file								\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -59,13 +57,11 @@ command="								\
 	&&								\
 	export log=$log							\
 	&&								\
-	wget $remote							\
+	curl -o /$file $remote						\
 	&&								\
-	chmod +x $file							\
+	chmod +x /$file							\
 	&&								\
-	./$file								\
-	&&								\
-	id \
+	/$file								\
 	|								\
 		sudo tee /$file.log					\
 "									;
