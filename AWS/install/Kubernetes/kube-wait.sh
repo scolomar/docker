@@ -21,14 +21,10 @@ done									;
 #########################################################################
 while true								;
 do									\
-	sleep								\
-		3							\
-									;
 	sudo --user $USER --login					\
 		kubectl get node					\
 		|							\
 			grep Ready					\
-&& sleep 9 && echo Ready \
 			&&						\
 			break						\
 									;
