@@ -97,21 +97,21 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-	while true							;
-	do								\
+#	while true							;
+#	do								\
 		output="$(						\
 			send_list_command "$command" "$target" "$stack"	\
 		)"							\
 									;
 		echo							\
 			"$output"					\
-		|							\
-			grep						\
-				Ready					\
-		&&							\
-			break						\
+#		|							\
+#			grep						\
+#				Ready					\
+#		&&							\
+#			break						\
 									;
-	done								;
+#	done								;
 done									;
 #########################################################################
 command="								\
