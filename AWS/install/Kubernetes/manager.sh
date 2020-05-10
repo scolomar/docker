@@ -12,6 +12,11 @@ export token_token=$token_token                                         ;
 token_certificate="$( echo -n $token_certificate | base64 -d )"         ;
 token_discovery="$( echo -n $token_certificate | base64 -d )"         	;
 token_token="$( echo -n $token_certificate | base64 -d )"         	;
+echo debug=$debug							;
+echo log=log								;
+echo token_certificate=$token_certificate                             ;
+echo token_discovery=$token_discovery                                 ;
+echo token_token=$token_token                                         ;
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
@@ -46,6 +51,8 @@ HOME=/home/$USER							;
 mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
 sudo chown $USER:$USER $HOME/.kube/config				;
+echo sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
+echo sudo chown $USER:$USER $HOME/.kube/config				;
 #########################################################################
 echo									\
 	'source <(kubectl completion bash)'				\
