@@ -103,7 +103,7 @@ do									\
 			break						\
 									;
 		sleep							\
-			3						\
+			9						\
 									;
 	done								;
 done									;
