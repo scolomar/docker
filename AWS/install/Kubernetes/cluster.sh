@@ -4,12 +4,12 @@
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
 export debug=$debug							;
+export stack=$stack							;
+#########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 pwd=$( dirname $( readlink -f $0 ) )					;
 source $pwd/../../common/functions.sh					;
-#########################################################################
-export stack=$stack							;
 #########################################################################
 test -z "$stack"							\
 	&& echo PLEASE DEFINE THE VALUE FOR stack			\
@@ -85,8 +85,13 @@ command="								\
 targets="InstanceManager1"						;
 for target in $targets							;
 do									\
+while true								;
+do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
+	test "$output" = Ready && break
+	sleep 1
+done
 done									;
 echo $output
 #########################################################################

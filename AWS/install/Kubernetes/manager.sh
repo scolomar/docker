@@ -4,12 +4,14 @@
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
 export debug=$debug							;
-set +x && test "$debug" = true && set -x				;
-#########################################################################
 export log=$log								;
 export token_certificate=$token_certificate                             ;
 export token_discovery=$token_discovery                                 ;
 export token_token=$token_token                                         ;
+#########################################################################
+su ssm-user								;
+#########################################################################
+set +x && test "$debug" = true && set -x				;
 #########################################################################
 ip=10.168.1.100                                                         ;
 kube=kube-apiserver.sebastian-colomar.com                               ;
