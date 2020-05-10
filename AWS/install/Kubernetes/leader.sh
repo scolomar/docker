@@ -6,8 +6,6 @@
 export debug=$debug							;
 export log=$log								;
 #########################################################################
-su ssm-user								;
-#########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 calico=https://docs.projectcalico.org/v3.14/manifests			;
@@ -36,21 +34,24 @@ sudo kubeadm init							\
 	--ignore-preflight-errors					\
 		all							\
 	|								\
-		sudo tee $log						\
+		sudo tee --append $log						\
 									;
 #########################################################################
+USER=ssm-user								;
+HOME=/home/$USER
 mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
-sudo chown $(id -u):$(id -g) $HOME/.kube/config				;
-echo sudo chown $(id -u):$(id -g) $HOME/.kube/config				;
+sudo chown $USER:$USER $HOME/.kube/config				;
 echo									\
 	'source <(kubectl completion bash)'				\
 	|								\
 		tee --append $HOME/.bashrc				\
 									;
 #########################################################################
+sudo --user ssm-user --shell \
 kubectl apply								\
 	--filename							\
 		$calico/calico.yaml					\
+	|  sudo tee --append $log \
 									;
 #########################################################################

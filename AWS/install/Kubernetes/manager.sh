@@ -9,8 +9,6 @@ export token_certificate=$token_certificate                             ;
 export token_discovery=$token_discovery                                 ;
 export token_token=$token_token                                         ;
 #########################################################################
-su ssm-user								;
-#########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 ip=10.168.1.100                                                         ;
@@ -29,7 +27,6 @@ do									\
                                                                         ;
 done									;	
 #########################################################################
-mkdir -p $HOME/.kube							;
 sudo									\
 	$token_token                                            	\
 	$token_discovery                                        	\
@@ -40,8 +37,11 @@ sudo									\
 		sudo tee $log						\
 									;
 #########################################################################
+USER=ssm-user
+HOME=/home/$USER
+mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
-sudo chown $(id -u):$(id -g) $HOME/.kube/config				;
+sudo chown $USER:$USER $HOME/.kube/config				;
 #########################################################################
 echo									\
 	'source <(kubectl completion bash)'				\
