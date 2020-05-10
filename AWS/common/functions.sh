@@ -13,7 +13,7 @@ function send_list_command {
    --output text \
  ) ;
  while true ; do
-  output=$( \
+  local output=$( \
    aws ssm list-command-invocations \
     --command-id $CommandId \
     --query "CommandInvocations[].CommandPlugins[].Output" \
