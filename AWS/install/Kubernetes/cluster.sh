@@ -82,6 +82,7 @@ command="								\
 	export log=$log							\
 	&&								\
 	curl -o /$file $remote						\
+		2> /dev/null \
 	&&								\
 	chmod +x /$file							\
 	&&								\
