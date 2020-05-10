@@ -34,9 +34,7 @@ command="								\
 	&&								\
 	./$file								\
 	&&								\
-	echo PWD=$PWD							\
-	&&								\
-	echo USER=$USER							\
+	echo USER=$USER PWD=$PWD							\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -67,9 +65,7 @@ command="								\
 	&&								\
 	./$file								\
 	&&								\
-	echo PWD=$PWD							\
-	&&								\
-	echo USER=$USER							\
+	echo USER=$USER PWD=$PWD							\
 	|								\
 		sudo tee /$file.log					\
 "									;
