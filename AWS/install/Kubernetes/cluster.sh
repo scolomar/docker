@@ -30,6 +30,7 @@ command="								\
 	chmod +x /$file							\
 	&&								\
 	/$file								\
+		2>&1							\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -59,6 +60,7 @@ command="								\
 	chmod +x /$file							\
 	&&								\
 	/$file								\
+		2>&1							\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -83,6 +85,7 @@ command="								\
 	chmod +x /$file							\
 	&&								\
 	/$file								\
+		2>&1							\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -107,7 +110,9 @@ command="								\
 targets="InstanceManager1"						;
 for target in $targets							;
 do									\
-	send_list_command "$command" "$target" "$stack"			\
+	output="$(							\
+		send_list_command "$command" "$target" "$stack"		\
+	)"								\
 									;
 done									;
 token_certificate=$(							\
@@ -130,7 +135,9 @@ command="								\
 targets="InstanceManager1"						;
 for target in $targets							;
 do									\
-	send_list_command "$command" "$target" "$stack"			\
+	output="$(							\
+		send_list_command "$command" "$target" "$stack"		\
+	)"								\
 									;
 done									;
 token_discovery=$(							\
@@ -153,7 +160,9 @@ command="								\
 targets="InstanceManager1"						;
 for target in $targets							;
 do									\
-	send_list_command "$command" "$target" "$stack"			\
+	output="$(							\
+		send_list_command "$command" "$target" "$stack"		\
+	)"								\
 									;
 done									;
 token_token=$(								\
@@ -184,6 +193,7 @@ command="								\
 	chmod +x /$file							\
 	&&								\
 	/$file								\
+		2>&1							\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -213,6 +223,7 @@ command="								\
 	chmod +x /$file							\
 	&&								\
 	/$file								\
+		2>&1							\
 	|								\
 		sudo tee /$file.log					\
 "									;
