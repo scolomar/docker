@@ -74,26 +74,39 @@ do									\
 									;
 done									;
 #########################################################################
+file=kube-wait.sh							;
+remote=https://$docker/$folder/$file					;
 command="								\
-	kubectl get node						\
+	export debug=$debug						\
+	&&								\
+	export log=$log							\
+	&&								\
+	curl -o /$file $remote						\
+	&&								\
+	chmod +x /$file							\
+	&&								\
+	/$file								\
 	|								\
-		grep Ready						\
-			--quiet						\
-		&&							\
-			echo Ready					\
+		sudo tee /$file.log					\
 "									;
-targets="InstanceManager1"						;
+targets="								\
+	InstanceManager1						\
+"									;
 for target in $targets							;
 do									\
-while true								;
-do									\
-	send_list_command "$command" "$target" "$stack"			\
+	while true							;
+	do								\
+		send_list_command "$command" "$target" "$stack"		\
 									;
-	test "$output" = Ready && break
-	sleep 1
-done
+		test "$output" = ready					\
+		&&							\
+			break						\
+									;
+		sleep							\
+			3						\
+									;
+	done								;
 done									;
-echo $output
 #########################################################################
 command="								\
 	grep								\
@@ -198,51 +211,6 @@ targets="								\
 for target in $targets							;
 do									\
 	send_command "$command" "$target" "$stack"			\
-									;
-done									;
-#########################################################################
-command="								\
-	kubectl get node						\
-		2> /dev/null						\
-	|								\
-		grep Ready						\
-"									;
-targets="								\
-	InstanceManager2						\
-	InstanceManager3						\
-"									;
-for target in $targets							;
-do									\
-	send_list_command "$command" "$target" "$stack"			\
-									;
-done									;
-#########################################################################
-command="								\
-	sudo sed --in-place /$kube/d /etc/hosts				\
-"									;
-targets="								\
-	InstanceManager2						\
-	InstanceManager3						\
-"									;
-for target in $targets							;
-do									\
-	send_command "$command" "$target" "$stack"			\
-									;
-done									;
-#########################################################################
-command="								\
-	kubectl get node						\
-		2> /dev/null						\
-	|								\
-		grep Ready						\
-"									;
-targets="								\
-	InstanceManager2						\
-	InstanceManager3						\
-"									;
-for target in $targets							;
-do									\
-	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
 #########################################################################
