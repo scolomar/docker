@@ -12,11 +12,8 @@ export token_token=$token_token                                         ;
 token_certificate="$( echo $token_certificate | base64 -d )"         	;
 token_discovery="$( echo $token_discovery | base64 -d )"         	;
 token_token="$( echo $token_token | base64 -d )"         		;
-echo debug=$debug							;
-echo log=$log								;
 #########################################################################
 set +x && test "$debug" = true && set -x				;
-set -x
 #########################################################################
 ip=10.168.1.100                                                         ;
 kube=kube-apiserver.sebastian-colomar.com                               ;
@@ -34,6 +31,15 @@ do									\
                                                                         ;
 done									;	
 #########################################################################
+echo sudo									\
+	$token_token                                            	\
+	$token_discovery                                        	\
+	$token_certificate                                      	\
+	--ignore-preflight-errors					\
+		all							\
+	|								\
+		sudo tee $log						\
+									;
 sudo									\
 	$token_token                                            	\
 	$token_discovery                                        	\
@@ -47,10 +53,8 @@ sudo									\
 USER=ssm-user								;
 HOME=/home/$USER							;
 mkdir -p $HOME/.kube							;
-sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
+sudo cp -v /etc/kubernetes/admin.conf $HOME/.kube/config			;
 sudo chown $USER:$USER $HOME/.kube/config				;
-echo sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
-echo sudo chown $USER:$USER $HOME/.kube/config				;
 #########################################################################
 echo									\
 	'source <(kubectl completion bash)'				\
