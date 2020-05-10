@@ -24,9 +24,14 @@ do									\
 	sudo --user $USER --login					\
 		kubectl get node					\
 		|							\
-			grep Ready					\
-			&&						\
-			break						\
+			grep						\
+				Ready					\
+			|						\
+				grep					\
+					--invert-match			\
+						NotReady		\
+				&&					\
+				break					\
 									;
 done									;
 #########################################################################
