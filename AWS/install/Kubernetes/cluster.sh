@@ -96,14 +96,14 @@ for target in $targets							;
 do									\
 	while true							;
 	do								\
+		sleep							\
+			9						\
+									;
 		send_list_command "$command" "$target" "$stack"		\
 									;
 		test "$output" = ready					\
 		&&							\
 			break						\
-									;
-		sleep							\
-			9						\
 									;
 	done								;
 done									;

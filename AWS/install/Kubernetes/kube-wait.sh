@@ -11,31 +11,31 @@ set +x && test "$debug" = true && set -x				;
 #########################################################################
 while true								;
 do									\
+	sleep								\
+		3							\
+									;
 	test								\
 		-f							\
 			$HOME/.kube/config				\
 	&&								\
 	break								\
 									;
-ls -l $HOME/.kube 2>&1						
-	sleep								\
-		3							\
-									;
 done									;	
+echo $(ls -l $HOME/.kube 2>&1					)	
 #########################################################################
 while true								;
 do									\
+	sleep								\
+		3							\
+									;
 	kubectl get node						\
 	|								\
 		grep Ready						\
 		&&							\
 		break							\
 									;
-kubectl get node 2>&1
-	sleep								\
-		3							\
-									;
 done									;
+echo $( kubectl get node 2>&1 )
 #########################################################################
 echo ready								;
 #########################################################################
