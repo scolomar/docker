@@ -16,9 +16,6 @@ test -z "$stack"							\
 	&& exit 1							\
 									;
 #########################################################################
-calico=https://docs.projectcalico.org/v3.14/manifests			;
-kube=kube-apiserver.sebastian-colomar.com				;
-#########################################################################
 docker=raw.githubusercontent.com/secobau/docker				;
 folder=master/AWS/install/Kubernetes					;
 log=/etc/kubernetes/kubernetes-install.log                              ;

@@ -9,9 +9,27 @@ export token_certificate=$token_certificate                             ;
 export token_discovery=$token_discovery                                 ;
 export token_token=$token_token                                         ;
 #########################################################################
-token_certificate="$( echo $token_certificate | base64 -d )"         	;
-token_discovery="$( echo $token_discovery | base64 -d )"         	;
-token_token="$( echo $token_token | base64 -d )"         		;
+token_certificate="$(							\
+	echo								\
+		$token_certificate					\
+	|								\
+		base64							\
+			--decode					\
+)"							         	;
+token_discovery="$(							\
+	echo								\
+		$token_discovery					\
+	|								\
+		base64							\
+			--decode					\
+)"							         	;
+token_token="$(								\
+	echo								\
+		$token_token						\
+	|								\
+		base64							\
+			--decode					\
+)"							         	;
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
@@ -31,21 +49,13 @@ do									\
                                                                         ;
 done									;	
 #########################################################################
-echo sudo									\
-	$token_token                                            	\
-	$token_discovery                                        	\
-	$token_certificate                                      	\
-	--ignore-preflight-errors					\
-		all							\
-	|								\
-		sudo tee $log						\
-									;
 sudo									\
 	$token_token                                            	\
 	$token_discovery                                        	\
 	$token_certificate                                      	\
 	--ignore-preflight-errors					\
 		all							\
+	2>&1								\
 	|								\
 		sudo tee $log						\
 									;
@@ -53,7 +63,7 @@ sudo									\
 USER=ssm-user								;
 HOME=/home/$USER							;
 mkdir -p $HOME/.kube							;
-sudo cp -v /etc/kubernetes/admin.conf $HOME/.kube/config			;
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
 sudo chown $USER:$USER $HOME/.kube/config				;
 #########################################################################
 echo									\

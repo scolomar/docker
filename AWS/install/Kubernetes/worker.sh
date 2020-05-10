@@ -8,8 +8,20 @@ export log=$log								;
 export token_discovery=$token_discovery                                 ;
 export token_token=$token_token                                         ;
 #########################################################################
-token_discovery="$( echo $token_discovery | base64 -d )"             	;
-token_token="$( echo $token_token | base64 -d )"             		;
+token_discovery="$(							\
+	echo								\
+		$token_discovery					\
+	|								\
+		base64							\
+			--decode					\
+)"							         	;
+token_token="$(								\
+	echo								\
+		$token_token						\
+	|								\
+		base64							\
+			--decode					\
+)"							         	;
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
