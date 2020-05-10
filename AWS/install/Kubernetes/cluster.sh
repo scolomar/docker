@@ -113,7 +113,7 @@ do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
-token_certificate=$( echo -n $output | base64 )				;
+token_certificate=$( echo -n $output | base64 --wrap 0 )		;
 #########################################################################
 command="								\
 	grep								\
@@ -128,7 +128,7 @@ do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
-token_discovery=$( echo -n $output | base64 )				;
+token_discovery=$( echo -n $output | base64 --wrap 0 )			;
 #########################################################################
 command="								\
 	grep								\
@@ -143,7 +143,7 @@ do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
-token_token=$( echo -n $output | base64 )				;
+token_token=$( echo -n $output | base64 --wrap 0 )			;
 #########################################################################
 file=manager.sh								;
 remote=https://$docker/$folder/$file					;
