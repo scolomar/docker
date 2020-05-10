@@ -98,9 +98,6 @@ do									\
 		send_list_command "$command" "$target" "$stack"		\
 	)"								\
 									;
-	echo								\
-		"$output"						\
-									;
 done									;
 #########################################################################
 command="								\
@@ -116,7 +113,7 @@ do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
-token_certificate="$output"						;
+token_certificate=$( echo -n $output | base64 )				;
 #########################################################################
 command="								\
 	grep								\
@@ -131,7 +128,7 @@ do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
-token_discovery="$output"						;
+token_discovery=$( echo -n $output | base64 )				;
 #########################################################################
 command="								\
 	grep								\
@@ -146,7 +143,7 @@ do									\
 	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
-token_token="$output"							;
+token_token=$( echo -n $output | base64 )				;
 #########################################################################
 file=manager.sh								;
 remote=https://$docker/$folder/$file					;
@@ -155,11 +152,11 @@ command="								\
 	&&								\
 	export log=$log							\
 	&&								\
-	export token_certificate="$token_certificate"			\
+	export token_certificate=$token_certificate			\
 	&&								\
-	export token_discovery="$token_discovery"				\
+	export token_discovery=$token_discovery				\
 	&&								\
-	export token_token="$token_token"					\
+	export token_token=$token_token					\
 	&&								\
 	curl -o /$file $remote						\
 	&&								\

@@ -9,6 +9,10 @@ export token_certificate=$token_certificate                             ;
 export token_discovery=$token_discovery                                 ;
 export token_token=$token_token                                         ;
 #########################################################################
+token_certificate="$( echo -n $token_certificate | base64 -d )"         ;
+token_discovery="$( echo -n $token_certificate | base64 -d )"         	;
+token_token="$( echo -n $token_certificate | base64 -d )"         	;
+#########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 ip=10.168.1.100                                                         ;
