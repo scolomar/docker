@@ -27,11 +27,15 @@ log=/etc/kubernetes/kubernetes-install.log                              ;
 file=kube-install.sh							;
 remote=https://$docker/$folder/$file					;
 command="								\
+	export debug=$debug						\
+	&&								\
 	wget $remote							\
 	&&								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
+	|								\
+		sudo tee /$file.log					\
 "									;
 targets="								\
 	InstanceManager1						\
@@ -50,6 +54,8 @@ done									;
 file=leader.sh								;
 remote=https://$docker/$folder/$file					;
 command="								\
+	export debug=$debug						\
+	&&								\
 	export log=$log							\
 	&&								\
 	wget $remote							\
@@ -57,6 +63,8 @@ command="								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
+	|								\
+		sudo tee /$file.log					\
 "									;
 targets="								\
 	InstanceManager1						\
@@ -128,6 +136,8 @@ token_token="$output"							;
 file=manager.sh								;
 remote=https://$docker/$folder/$file					;
 command="								\
+	export debug=$debug						\
+	&&								\
 	export log=$log							\
 	&&								\
 	export token_certificate=$token_certificate			\
@@ -141,6 +151,8 @@ command="								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
+	|								\
+		sudo tee /$file.log					\
 "									;
 targets="								\
 	InstanceManager2						\
@@ -155,6 +167,8 @@ done									;
 file=worker.sh								;
 remote=https://$docker/$folder/$file					;
 command="								\
+	export debug=$debug						\
+	&&								\
 	export log=$log							\
 	&&								\
 	export token_discovery=$token_discovery				\
@@ -166,6 +180,8 @@ command="								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
+	|								\
+		sudo tee /$file.log					\
 "									;
 targets="								\
 	InstanceWorker1							\
