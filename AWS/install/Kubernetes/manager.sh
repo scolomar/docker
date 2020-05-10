@@ -7,11 +7,14 @@ export debug=$debug							;
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 export log=$log								;
+export token_certificate=$token_certificate                             ;
+export token_discovery=$token_discovery                                 ;
+export token_token=$token_token                                         ;
 #########################################################################
-calico=https://docs.projectcalico.org/v3.14/manifests			;
-cidr=192.168.0.0/16							;
 ip=10.168.1.100                                                         ;
 kube=kube-apiserver.sebastian-colomar.com                               ;
+#########################################################################
+echo $ip $kube | sudo tee --append /etc/hosts                           ;
 #########################################################################
 while true								;
 do									\
@@ -24,30 +27,23 @@ do									\
                                                                         ;
 done									;	
 #########################################################################
-echo $ip $kube | sudo tee --append /etc/hosts                           ;
-sudo kubeadm init							\
-	--upload-certs							\
-	--control-plane-endpoint					\
-		"$kube"							\
-	--pod-network-cidr						\
-		$cidr							\
+mkdir -p $HOME/.kube							;
+sudo									\
+	$token_token                                            	\
+	$token_discovery                                        	\
+	$token_certificate                                      	\
 	--ignore-preflight-errors					\
 		all							\
 	|								\
 		sudo tee $log						\
 									;
 #########################################################################
-mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
 sudo chown $(id -u):$(id -g) $HOME/.kube/config				;
+#########################################################################
 echo									\
 	'source <(kubectl completion bash)'				\
 	|								\
 		tee --append $HOME/.bashrc				\
-									;
-#########################################################################
-kubectl apply								\
-	--filename							\
-		$calico/calico.yaml					\
 									;
 #########################################################################
