@@ -20,7 +20,7 @@ function send_list_command {
     --details \
     --output text \
   ) ;
-  echo $output | grep [a-zA-Z0-9] --quiet && break ;
+  echo $output 2> /dev/null | grep [a-zA-Z0-9] --quiet && break ;
  done ;
  echo $output;
 }
