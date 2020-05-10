@@ -17,7 +17,6 @@ test -z "$stack"							\
 									;
 #########################################################################
 calico=https://docs.projectcalico.org/v3.14/manifests			;
-ip=10.168.1.100								;
 kube=kube-apiserver.sebastian-colomar.com				;
 #########################################################################
 docker=raw.githubusercontent.com/secobau/docker				;
