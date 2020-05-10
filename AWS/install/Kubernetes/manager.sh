@@ -37,8 +37,8 @@ sudo									\
 		sudo tee $log						\
 									;
 #########################################################################
-USER=ssm-user
-HOME=/home/$USER
+USER=ssm-user								;
+HOME=/home/$USER							;
 mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
 sudo chown $USER:$USER $HOME/.kube/config				;

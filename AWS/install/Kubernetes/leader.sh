@@ -34,11 +34,11 @@ sudo kubeadm init							\
 	--ignore-preflight-errors					\
 		all							\
 	|								\
-		sudo tee --append $log						\
+		sudo tee --append $log					\
 									;
 #########################################################################
 USER=ssm-user								;
-HOME=/home/$USER
+HOME=/home/$USER							;
 mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
 sudo chown $USER:$USER $HOME/.kube/config				;
@@ -48,10 +48,11 @@ echo									\
 		tee --append $HOME/.bashrc				\
 									;
 #########################################################################
-sudo --user ssm-user --login \
-kubectl apply								\
-	--filename							\
-		$calico/calico.yaml					\
-	|  sudo tee --append $log \
+sudo --user ssm-user --shell						\
+	kubectl apply							\
+		--filename						\
+			$calico/calico.yaml				\
+	|								\
+		sudo tee --append $log					\
 									;
 #########################################################################

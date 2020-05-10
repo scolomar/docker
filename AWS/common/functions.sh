@@ -22,6 +22,7 @@ function send_list_command {
   ) ;
   echo $output | grep [a-zA-Z0-9] --quiet && break ;
  done ;
+ echo $output;
 }
  
 function send_command {
