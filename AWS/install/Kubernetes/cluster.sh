@@ -33,6 +33,10 @@ command="								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
+	&&								\
+	echo PWD=$PWD							\
+	&&								\
+	echo USER=$USER							\
 	|								\
 		sudo tee /$file.log					\
 "									;
@@ -62,6 +66,10 @@ command="								\
 	chmod +x $file							\
 	&&								\
 	./$file								\
+	&&								\
+	echo PWD=$PWD							\
+	&&								\
+	echo USER=$USER							\
 	|								\
 		sudo tee /$file.log					\
 "									;
