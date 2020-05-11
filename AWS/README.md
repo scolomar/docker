@@ -49,7 +49,7 @@ aws cloudformation create-stack								\
 		$template								\
 	--capabilities									\
 		$caps									\
-											;	
+											;
 
 
 ```
