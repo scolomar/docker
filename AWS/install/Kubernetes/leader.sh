@@ -50,13 +50,13 @@ echo									\
 		tee --append $HOME/.bashrc				\
 									;
 #########################################################################
-su --login $USER --command "						\
-	kubectl apply							\
-		--filename						\
-			$calico/calico.yaml				\
+sudo kubectl apply							\
+	--filename							\
+		$calico/calico.yaml					\
+	--kubeconfig							\
+		/etc/kubernetes/admin.conf				\
 	2>&1								\
 	|								\
 		sudo tee --append $log					\
-"									\
 									;
 #########################################################################
