@@ -29,7 +29,7 @@ The EC2 machines do not have any open port accessible from outside.
 We will use AWS Systems Manager to connect and maintain the EC2 machines without the need of any bastion or breaking the isolation.
 
 Here follow the links to the CloudFormation templates that define the infrastructure (you can choose to use HTTP, HTTPS or a mix of both):
-* https://github.com/secobau/docker/tree/master/AWS/install/AMI
+* https://github.com/secobau/docker/tree/master/AWS/install/AMI/CloudFormation
 
 After you have successfully deployed the infrastructure in AWS you will create a Cloud9 instance to access your infrastructure with AWS Systems Manager.
 
