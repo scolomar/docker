@@ -35,26 +35,33 @@ Metadata:
           - IpProtocolListenerKubeManager
           - IpProtocolListenerWorker1
           - IpProtocolListenerWorker2
+          - IpProtocolListenerWorker3
           - PortListenerKubeManager
           - PortListenerWorker1
           - PortListenerWorker2
+          - PortListenerWorker3
           - PortTargetGroupKubeManager
           - PortTargetGroupWorker1
           - PortTargetGroupWorker2
+          - PortTargetGroupWorker3
           - PrivateIpAddressInstanceManager1
           - PrivateIpAddressInstanceManager2
           - PrivateIpAddressInstanceManager3
           - ProtocolListenerKubeManager
           - ProtocolListenerWorker1
           - ProtocolListenerWorker2
+          - ProtocolListenerWorker3
           - ProtocolTargetGroupKubeManager
           - ProtocolTargetGroupWorker1
           - ProtocolTargetGroupWorker2
+          - ProtocolTargetGroupWorker3
           - RecordSetNameKube
           - RecordSetName1
           - RecordSetName2
+          - RecordSetName3
           - SecurityGroupCidrIpWorker1
           - SecurityGroupCidrIpWorker2
+          - SecurityGroupCidrIpWorker3
           - SubnetCidrBlockPrivate1
           - SubnetCidrBlockPrivate2
           - SubnetCidrBlockPrivate3
@@ -88,6 +95,8 @@ Metadata:
         default: The IP protocol for Listener Worker 1
       IpProtocolListenerWorker2:
         default: The IP protocol for Listener Worker 2
+      IpProtocolListenerWorker3:
+        default: The IP protocol for Listener Worker 3
       KeyName:
         default: The name of the key pair
       PortListenerKubeManager:
@@ -96,12 +105,16 @@ Metadata:
         default: The listening port for Listener Worker 1
       PortListenerWorker2:
         default: The listening port for Listener Worker 2
+      PortListenerWorker3:
+        default: The listening port for Listener Worker 3
       PortTargetGroupKubeManager:
         default: The internal listening port for Target Group Manager Kubernetes API Server
       PortTargetGroupWorker1:
         default: The internal listening port for Target Group Worker 1
       PortTargetGroupWorker2:
         default: The internal listening port for Target Group Worker 2
+      PortTargetGroupWorker3:
+        default: The internal listening port for Target Group Worker 3
       PrivateIpAddressInstanceManager1:
         default: The private IP address for Manager 1
       PrivateIpAddressInstanceManager2:
@@ -114,22 +127,30 @@ Metadata:
         default: The protocol for Listener Worker 1
       ProtocolListenerWorker2:
         default: The protocol for Listener Worker 2
+      ProtocolListenerWorker3:
+        default: The protocol for Listener Worker 3
       ProtocolTargetGroupKubeManager:
         default: The internal protocol for Target Group Manager Kubernetes API Server
       ProtocolTargetGroupWorker1:
         default: The internal protocol for Target Group Worker 1
       ProtocolTargetGroupWorker2:
         default: The internal protocol for Target Group Worker 2
+      ProtocolTargetGroupWorker3:
+        default: The internal protocol for Target Group Worker 3
       RecordSetNameKube:
         default: The name of the Record Set for Kubernetes API Server
       RecordSetName1:
         default: The name of the Record Set for service 1
       RecordSetName2:
         default: The name of the Record Set for service 2
+      RecordSetName3:
+        default: The name of the Record Set for service 3
       SecurityGroupCidrIpWorker1:
         default: Allowed CIDR for ALB 1 Cluster Worker Access
       SecurityGroupCidrIpWorker2:
         default: Allowed CIDR for ALB 2 Cluster Worker Access
+      SecurityGroupCidrIpWorker3:
+        default: Allowed CIDR for ALB 3 Cluster Worker Access
       SubnetCidrBlockPrivate1:
         default: Private Subnet 1 CIDR
       SubnetCidrBlockPrivate2:
@@ -231,6 +252,12 @@ Parameters:
       The IP protocol for Listener Worker 2.
     Type: String
     
+  IpProtocolListenerWorker3:
+    Default: tcp
+    Description: >
+      The IP protocol for Listener Worker 3.
+    Type: String
+    
   KeyName:
     Default: proxy2aws
     Description: >
@@ -255,6 +282,12 @@ Parameters:
       The listening port for Listener Worker 2.
     Type: Number
     
+  PortListenerWorker3:
+    Default: 443
+    Description: >
+      The listening port for Listener Worker 3.
+    Type: Number
+    
   ProtocolListenerKubeManager:
     Default: TCP
     Description: >
@@ -273,6 +306,12 @@ Parameters:
       The protocol for Listener Worker 2.
     Type: String
     
+  ProtocolListenerWorker3:
+    Default: HTTPS
+    Description: >
+      The protocol for Listener Worker 3.
+    Type: String
+    
   PortTargetGroupKubeManager:
     Default: 6443
     Description: >
@@ -289,6 +328,12 @@ Parameters:
     Default: 30002
     Description: >
       The internal listening port for Target Group Worker 2.
+    Type: Number
+    
+  PortTargetGroupWorker3:
+    Default: 30003
+    Description: >
+      The internal listening port for Target Group Worker 3.
     Type: Number
     
   PrivateIpAddressInstanceManager1:
@@ -327,6 +372,12 @@ Parameters:
       The internal protocol for Target Group Worker 2.
     Type: String
     
+  ProtocolTargetGroupWorker3:
+    Default: HTTP
+    Description: >
+      The internal protocol for Target Group Worker 3.
+    Type: String
+    
   RecordSetNameKube:
     Default: kube-apiserver
     Description: >
@@ -345,6 +396,12 @@ Parameters:
       The name of the Record Set for service 2.
     Type: String
     
+  RecordSetName3:
+    Default: service-3
+    Description: >
+      The name of the Record Set for service 3.
+    Type: String
+    
   SecurityGroupCidrIpWorker1:
     Default: 0.0.0.0/0
     Description: >
@@ -358,6 +415,14 @@ Parameters:
     Description: >
       Allowed CIDR block for external web access to the Cluster Worker 2 Load Balancer. 
       It defines the block of IPs that can access the Cluster Worker Load Balancer 2 and, consequently, the application servers. 
+      Set it to 0.0.0.0/0 to make it accessible from anywhere.
+    Type: String
+    
+  SecurityGroupCidrIpWorker3:
+    Default: 0.0.0.0/0
+    Description: >
+      Allowed CIDR block for external web access to the Cluster Worker 3 Load Balancer. 
+      It defines the block of IPs that can access the Cluster Worker Load Balancer 3 and, consequently, the application servers. 
       Set it to 0.0.0.0/0 to make it accessible from anywhere.
     Type: String
     
@@ -573,6 +638,18 @@ Resources:
       Protocol: !Ref ProtocolListenerWorker2
     Type: AWS::ElasticLoadBalancingV2::Listener
  
+  ListenerWorker3:
+    Properties: 
+      Certificates:
+        - CertificateArn: !Sub 'arn:aws:acm:${AWS::Region}:${AWS::AccountId}:certificate/${Identifier}'
+      DefaultActions: 
+        - TargetGroupArn: !Ref TargetGroupWorker3
+          Type: forward
+      LoadBalancerArn: !Ref LoadBalancerWorker3
+      Port: !Ref PortListenerWorker3
+      Protocol: !Ref ProtocolListenerWorker3
+    Type: AWS::ElasticLoadBalancingV2::Listener
+ 
   LoadBalancerKubeManager:
     Properties: 
       Scheme: internal
@@ -599,6 +676,17 @@ Resources:
       SecurityGroups:
         - !GetAtt VPC.DefaultSecurityGroup
         - !Ref SecurityGroupWorker2
+      Subnets: 
+        - !Ref SubnetPublic1
+        - !Ref SubnetPublic2
+        - !Ref SubnetPublic3
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+        
+  LoadBalancerWorker3:
+    Properties: 
+      SecurityGroups:
+        - !GetAtt VPC.DefaultSecurityGroup
+        - !Ref SecurityGroupWorker3
       Subnets: 
         - !Ref SubnetPublic1
         - !Ref SubnetPublic2
@@ -653,6 +741,16 @@ Resources:
         HostedZoneId: !GetAtt LoadBalancerWorker2.CanonicalHostedZoneID
       HostedZoneName: !Sub '${HostedZoneName}.'
       Name: !Sub '${RecordSetName2}.${HostedZoneName}'
+      Type: A
+    Type: AWS::Route53::RecordSet
+      
+  RecordSet3:
+    Properties: 
+      AliasTarget: 
+        DNSName: !GetAtt LoadBalancerWorker3.DNSName
+        HostedZoneId: !GetAtt LoadBalancerWorker3.CanonicalHostedZoneID
+      HostedZoneName: !Sub '${HostedZoneName}.'
+      Name: !Sub '${RecordSetName3}.${HostedZoneName}'
       Type: A
     Type: AWS::Route53::RecordSet
       
@@ -781,6 +879,18 @@ Resources:
       VpcId: !Ref VPC
     Type: AWS::EC2::SecurityGroup
       
+  SecurityGroupWorker3:
+    Properties:
+      GroupDescription: Allow access to the applications running on the cluster of workers for Service 3
+      SecurityGroupIngress:
+      - 
+        CidrIp: !Ref SecurityGroupCidrIpWorker3
+        FromPort: !Ref PortListenerWorker3
+        IpProtocol: !Ref IpProtocolListenerWorker3
+        ToPort: !Ref PortListenerWorker3
+      VpcId: !Ref VPC
+    Type: AWS::EC2::SecurityGroup
+      
   SubnetPrivate1:
     Properties:
       AvailabilityZone:
@@ -905,6 +1015,18 @@ Resources:
     Properties: 
       Port: !Ref PortTargetGroupWorker2
       Protocol: !Ref ProtocolTargetGroupWorker2
+      Targets: 
+        -   Id: !Ref InstanceWorker1
+        -   Id: !Ref InstanceWorker2
+        -   Id: !Ref InstanceWorker3
+      TargetType: instance
+      VpcId: !Ref VPC
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+
+  TargetGroupWorker3:
+    Properties: 
+      Port: !Ref PortTargetGroupWorker3
+      Protocol: !Ref ProtocolTargetGroupWorker3
       Targets: 
         -   Id: !Ref InstanceWorker1
         -   Id: !Ref InstanceWorker2
