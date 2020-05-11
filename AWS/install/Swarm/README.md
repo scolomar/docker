@@ -5,13 +5,18 @@ Run the following commands to deploy a Swarm cluster consisting of three manager
 # SET THE VARIABLE NAME OF THE STACK CREATED IN CLOUDFORMATION
 stack=mystack	 						;
 
+# OTHER VARIABLES
+raw=raw.githubusercontent.com					;
+folder=secobau/docker/master/AWS/install/Swarm			;
+file=cluster.sh							;
+
 # TO CREATE THE CLUSTER
-rm -rf docker 							;
 export stack=$stack                                    		\
-  && git clone https://github.com/secobau/docker.git   		\
-  && chmod +x docker/AWS/install/Swarm/cluster.sh 		\
-  && ./docker/AWS/install/Swarm/cluster.sh        		\
-  && rm -rf docker 						;
+  && curl -O https://$raw/$folder/$file				\
+  && chmod +x $file						\
+  && nohup ./$file &						\
+  && rm --force $file 						\
+  								;
 
 
 ```
