@@ -43,13 +43,13 @@ caps=CAPABILITY_IAM									;
 template=https://docker-aws.s3.ap-south-1.amazonaws.com/cloudformation-https.yaml	;
 
 aws cloudformation create-stack								\
-	--stack-name									\
-		$stack									\
-	--template-url									\
-		$template								\
-	--capabilities									\
-		$caps									\
-											;
+ 	--stack-name									\
+ 		$stack									\
+ 	--template-url									\
+ 		$template								\
+ 	--capabilities									\
+ 		$caps									\
+ 											;
 
 
 ```
