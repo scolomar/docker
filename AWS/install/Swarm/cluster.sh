@@ -16,14 +16,20 @@ source $pwd/../../common/functions.sh
 command=" sudo docker swarm init | grep token --max-count 1 " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_list_command "$command" "$target" "$stack" ;
+	output="$(							\
+		send_list_command "$command" "$target" "$stack"		\
+	)"								\
+									;
 done ;
 token_worker=" $output ";
 
 command=" sudo docker swarm join-token manager | grep token " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_list_command "$command" "$target" "$stack" ;
+	output="$(							\
+		send_list_command "$command" "$target" "$stack"		\
+	)"								\
+									;
 done ;
 token_manager=" $output ";
 
