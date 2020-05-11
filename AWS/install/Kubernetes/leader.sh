@@ -38,18 +38,6 @@ sudo kubeadm init							\
 		sudo tee --append $log					\
 									;
 #########################################################################
-userID=1001								;
-USER=ssm-user								;
-HOME=/home/$USER							;
-mkdir -p $HOME/.kube							;
-sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
-sudo chown $userID:$userID $HOME/.kube/config				;
-echo									\
-	'source <(kubectl completion bash)'				\
-	|								\
-		tee --append $HOME/.bashrc				\
-									;
-#########################################################################
 sudo kubectl apply							\
 	--filename							\
 		$calico/calico.yaml					\
@@ -58,5 +46,17 @@ sudo kubectl apply							\
 	2>&1								\
 	|								\
 		sudo tee --append $log					\
+									;
+#########################################################################
+userID=1001								;
+USER=ssm-user								;
+HOME=/home/$USER							;
+mkdir -p $HOME/.kube							;
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
+sudo chown -R $userID:$userID $HOME					;
+echo									\
+	'source <(kubectl completion bash)'				\
+	|								\
+		tee --append $HOME/.bashrc				\
 									;
 #########################################################################
