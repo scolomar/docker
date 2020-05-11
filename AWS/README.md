@@ -46,7 +46,8 @@ aws cloudformation create-stack								\
  	--capabilities									\
  		$caps									\
  	--parameters									\
- 		InstanceManagerInstanceType=t3a.small					\
+ 		ParameterKey=InstanceManagerInstanceType				\
+		,ParameterValue=t3a.small						\
  	--stack-name									\
  		$stack									\
  	--template-url									\
