@@ -67,10 +67,10 @@ In order to destroy you infrastructure you can run the following command from yo
 
 export stack=mystack									;
 
-aws cloudformation delete-stack 							\
-	--stack-name 									\
-		$stack 									\
-											;
+aws cloudformation delete-stack                                                         \
+        --stack-name                                                                    \
+                $stack                                                                  \
+                                                                                        ;
 
 
 ```
