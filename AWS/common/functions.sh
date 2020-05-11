@@ -1,3 +1,7 @@
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
 function send_list_command {
  local command="$1" ;
  local target="$2" ;
