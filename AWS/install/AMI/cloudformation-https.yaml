@@ -334,13 +334,13 @@ Parameters:
     Type: String
     
   RecordSetName1:
-    Default: aws2cloud
+    Default: service-1
     Description: >
       The name of the Record Set for service 1.
     Type: String
     
   RecordSetName2:
-    Default: aws2prem
+    Default: service-2
     Description: >
       The name of the Record Set for service 2.
     Type: String
