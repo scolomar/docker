@@ -22,3 +22,4 @@ export stack=$stack                                    		\
 ```
 
 Now you are ready to deploy your application.
+
