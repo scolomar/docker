@@ -60,11 +60,12 @@ sudo									\
 		sudo tee $log						\
 									;
 #########################################################################
+userID=1001								;
 USER=ssm-user								;
 HOME=/home/$USER							;
 mkdir -p $HOME/.kube							;
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
-sudo chown $USER:$USER $HOME/.kube/config				;
+sudo chown $userID:$userID $HOME/.kube/config				;
 #########################################################################
 echo									\
 	'source <(kubectl completion bash)'				\
