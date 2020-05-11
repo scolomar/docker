@@ -61,3 +61,16 @@ You might need the following documentation if you want to connect to the machine
 Once you have created a cluster of machines with Docker installed then you need to choose an orchestrator. Please follow the links below to set up the orchestrator of your choice: 
 * Kubernetes: https://github.com/secobau/docker/tree/master/AWS/install/Kubernetes
 * Swarm: https://github.com/secobau/docker/tree/master/AWS/install/Swarm
+
+In order to destroy you infrastructure you can run the following command from your Cloud9 instance:
+```bash
+
+export stack=mystack									;
+
+aws cloudformation delete-stack 							\
+	--stack-name 									\
+		$stack 									\
+											;
+
+
+```
