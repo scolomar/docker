@@ -31,9 +31,30 @@ We will use AWS Systems Manager to connect and maintain the EC2 machines without
 Here follow the links to the CloudFormation templates that define the infrastructure (you can choose to use HTTP, HTTPS or a mix of both):
 * https://github.com/secobau/docker/tree/master/AWS/install/AMI/CloudFormation
 
-After you have successfully deployed the infrastructure in AWS you will create a Cloud9 instance to access your infrastructure with AWS Systems Manager.
+In order to deploy the infrastructure in AWS you can use a Cloud9 instance running the following commands:
 
-You might need the following information if you want to connect to the machines via SSH (but it is not necessary in principle):
+```bash
+
+#export debug=false									;
+export debug=true									;
+export stack=mystack									;
+
+caps=CAPABILITY_IAM									;
+template=https://docker-aws.s3.ap-south-1.amazonaws.com/cloudformation-https.yaml	;
+
+aws cloudformation create-stack								\
+	--stack-name									\
+		$stack									\
+	--template-url									\
+		$template								\
+	--capabilities									\
+		$caps									\
+											;	
+
+
+```
+
+You might need the following documentation if you want to connect to the machines via SSH (but it is not necessary in principle):
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html#install-plugin-linux
 
