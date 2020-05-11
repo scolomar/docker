@@ -5,13 +5,18 @@ Run the following commands to deploy a Kubernetes cluster consisting of three ma
 # SET THE VARIABLE NAME OF THE STACK CREATED IN CLOUDFORMATION
 stack=mystack	 						;
 
+# OTHER VARIABLES
+raw=raw.githubusercontent.com					;
+folder=secobau/docker/master/AWS/install/Kubernetes		;
+file=cluster.sh							;
+
 # TO CREATE THE CLUSTER
-rm -rf docker 							;
 export stack=$stack                                    		\
-  && git clone https://github.com/secobau/docker.git   		\
-  && chmod +x docker/AWS/install/Kubernetes/cluster.sh 		\
-  && ./docker/AWS/install/Kubernetes/cluster.sh        		\
-  && rm -rf docker 						;
+  && curl -O https://$raw/$folder/$file				\
+  && chmod +x $file						\
+  && nohup ./$file &						\
+  && rm --force $file 						\
+  								;
 
 
 ```
