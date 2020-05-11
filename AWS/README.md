@@ -37,11 +37,6 @@ You might need the following information if you want to connect to the machines 
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html#install-plugin-linux
 
-
-```
-
-Once you have created a cluster of machines with Docker installed then you need to choose an orchestrator.
-
-Please follow the links below depending on the orchestrator of your choice: 
+Once you have created a cluster of machines with Docker installed then you need to choose an orchestrator. Please follow the links below depending on the orchestrator of your choice: 
 * Swarm: https://github.com/secobau/proxy2aws/tree/master/Swarm
 * Kubernetes: https://github.com/secobau/proxy2aws/tree/master/Kubernetes
