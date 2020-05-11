@@ -14,9 +14,7 @@ file=cluster.sh                                                 ;
 export stack=$stack                                             \
   && curl -O https://$raw/$folder/$file                         \
   && chmod +x $file                                             \
-  && nohup ./$file &                                            \
-  && rm --force $file                                           \
-                                                                ;
+  && nohup ./$file &                                            
 
 
 ```
