@@ -47,15 +47,12 @@ aws cloudformation create-stack 							\
 		ParameterKey=InstanceManagerInstanceType 				\
 		,									\
 			ParameterValue=t3a.small 					\
-		,									\
 		ParameterKey=RecordSetName1 						\
 		,									\
 			ParameterValue=service-1 					\
-		,									\
 		ParameterKey=RecordSetName2 						\
 		,									\
 			ParameterValue=service-2 					\
-		,									\
 		ParameterKey=RecordSetName3 						\
 		,									\
 			ParameterValue=service-3 					\
