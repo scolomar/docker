@@ -324,30 +324,6 @@ Parameters:
       The listening port for Listener Worker 3 - QA.
     Type: Number
     
-  ProtocolListenerKubeManager:
-    Default: TCP
-    Description: >
-      The protocol for Listener Manager Kubernetes API Server.
-    Type: String
-    
-  ProtocolListenerWorker1:
-    Default: HTTPS
-    Description: >
-      The protocol for Listener Worker 1.
-    Type: String
-    
-  ProtocolListenerWorker2:
-    Default: HTTPS
-    Description: >
-      The protocol for Listener Worker 2.
-    Type: String
-    
-  ProtocolListenerWorker3:
-    Default: HTTPS
-    Description: >
-      The protocol for Listener Worker 3.
-    Type: String
-    
   PortTargetGroupKubeManager:
     Default: 6443
     Description: >
@@ -406,6 +382,30 @@ Parameters:
     Default: 10.168.5.100
     Description: >
       The private IP address for Manager 3.
+    Type: String
+    
+  ProtocolListenerKubeManager:
+    Default: TCP
+    Description: >
+      The protocol for Listener Manager Kubernetes API Server.
+    Type: String
+    
+  ProtocolListenerWorker1:
+    Default: HTTPS
+    Description: >
+      The protocol for Listener Worker 1.
+    Type: String
+    
+  ProtocolListenerWorker2:
+    Default: HTTPS
+    Description: >
+      The protocol for Listener Worker 2.
+    Type: String
+    
+  ProtocolListenerWorker3:
+    Default: HTTPS
+    Description: >
+      The protocol for Listener Worker 3.
     Type: String
     
   ProtocolTargetGroupKubeManager:
