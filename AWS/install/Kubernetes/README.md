@@ -3,11 +3,12 @@ Run the following commands to deploy a Kubernetes cluster consisting of three ma
 ```BASH
 
 # SET THE VARIABLE NAME OF THE STACK CREATED IN CLOUDFORMATION
-stack=mystack	 						;
+#debug=true							;
+#stack=docker	 						;
 
 # TO CREATE THE CLUSTER
 rm -rf docker 							;
-export stack=$stack                                    		\
+export debug=$debug stack=$stack                                \
   && git clone https://github.com/secobau/docker.git   		\
   && chmod +x docker/AWS/install/Kubernetes/cluster.sh 		\
   && ./docker/AWS/install/Kubernetes/cluster.sh        		\
