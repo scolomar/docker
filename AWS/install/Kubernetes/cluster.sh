@@ -94,6 +94,7 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
+	echo "Waiting for $target to complete ..."			\
 	output="$(							\
 		send_list_command "$command" "$target" "$stack"		\
 	)"								\
@@ -110,6 +111,7 @@ command="								\
 targets="InstanceManager1"						;
 for target in $targets							;
 do									\
+	echo "Waiting for $target to complete ..."			\
 	output="$(							\
 		send_list_command "$command" "$target" "$stack"		\
 	)"								\
@@ -135,6 +137,7 @@ command="								\
 targets="InstanceManager1"						;
 for target in $targets							;
 do									\
+	echo "Waiting for $target to complete ..."			\
 	output="$(							\
 		send_list_command "$command" "$target" "$stack"		\
 	)"								\
@@ -160,6 +163,7 @@ command="								\
 targets="InstanceManager1"						;
 for target in $targets							;
 do									\
+	echo "Waiting for $target to complete ..."			\
 	output="$(							\
 		send_list_command "$command" "$target" "$stack"		\
 	)"								\
