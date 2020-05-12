@@ -40,17 +40,30 @@ In order to deploy the infrastructure in AWS you can use a Cloud9 instance runni
 caps=CAPABILITY_IAM                                                                     ;
 template=https://docker-aws.s3.ap-south-1.amazonaws.com/cloudformation-https.yaml       ;
 
-aws cloudformation create-stack	                                                        \
-        --capabilities 									\
- 		$caps 									\
- 	--parameters 									\
- 		ParameterKey=InstanceManagerInstanceType 				\
- 		,ParameterValue=t3a.small 						\
- 	--stack-name 									\
- 		$stack 									\
- 	--template-url 									\
- 		$template 								\
- 											;
+aws cloudformation create-stack 							\
+	--capabilities 									\
+		$caps 									\
+	--parameters 									\
+		ParameterKey=InstanceManagerInstanceType 				\
+		,									\
+			ParameterValue=t3a.small 					\
+		,									\
+		ParameterKey=RecordSetName1 						\
+		,									\
+			ParameterValue=service-1 					\
+		,									\
+		ParameterKey=RecordSetName2 						\
+		,									\
+			ParameterValue=service-2 					\
+		,									\
+		ParameterKey=RecordSetName3 						\
+		,									\
+			ParameterValue=service-3 					\
+	--stack-name 									\
+		$stack 									\
+	--template-url 						 			\
+		$template 								\
+											;
 
 
 ```
