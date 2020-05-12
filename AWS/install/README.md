@@ -22,7 +22,7 @@ aws acm list-certificates --output text 		;
 
 The template will create 6 EC2 machines spread on 3 different Availability Zones with Docker-CE installed, 3 Private and Public Subnets, 3 NAT Gateways, 3 Security Groups, 3 Application Load Balancers and the necessary Routes, Roles and attachments to ensure the isolation of the EC2 machines and the security and resilience of the whole infrastructure.
 
-The reason to have 3 Application Load Balancers is to make it available for 3 different internet service applications. The access from internet to the applications will be through the ALB onto the standard ports (HTTP/HTTPS).
+The reason to have 3 Application Load Balancers is to make it available to 3 different internet service applications. The access from internet to the applications will be through the ALB standard ports (HTTP/HTTPS).
 
 The EC2 machines do not have any open port accessible from outside.
 
@@ -35,27 +35,26 @@ In order to deploy the infrastructure in AWS you can use a Cloud9 instance runni
 
 ```bash
 
-#export debug=false									;
-export debug=true									;
-export stack=mystack									;
+#stack=docker    	                                                                ;
 
-caps=CAPABILITY_IAM									;
-template=https://docker-aws.s3.ap-south-1.amazonaws.com/cloudformation-https.yaml	;
+caps=CAPABILITY_IAM                                                                     ;
+template=https://docker-aws.s3.ap-south-1.amazonaws.com/cloudformation-https.yaml       ;
 
-aws cloudformation create-stack								\
- 	--capabilities									\
- 		$caps									\
- 	--parameters									\
- 		ParameterKey=InstanceManagerInstanceType				\
-		,ParameterValue=t3a.small						\
- 	--stack-name									\
- 		$stack									\
- 	--template-url									\
- 		$template								\
+aws cloudformation create-stack	                                                        \
+        --capabilities 									\
+ 		$caps 									\
+ 	--parameters 									\
+ 		ParameterKey=InstanceManagerInstanceType 				\
+ 		,ParameterValue=t3a.small 						\
+ 	--stack-name 									\
+ 		$stack 									\
+ 	--template-url 									\
+ 		$template 								\
  											;
 
 
 ```
+
 
 You might need the following documentation if you want to connect to the machines via SSH (but it is not necessary in principle):
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html
@@ -67,8 +66,6 @@ Once you have created a cluster of machines with Docker installed then you need 
 
 In order to destroy you infrastructure you can run the following command from your Cloud9 instance:
 ```bash
-
-export stack=mystack									;
 
 aws cloudformation delete-stack                                                         \
         --stack-name                                                                    \
