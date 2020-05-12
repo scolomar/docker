@@ -11,6 +11,7 @@ source $pwd/../../common/functions.sh
 command=" sudo docker swarm join-token manager | grep token " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
+	echo "Waiting for $target to complete ..."			;
  send_list_command "$command" "$target" "$stack" ;
 done ;
 token_manager=" $output ";
@@ -18,6 +19,7 @@ token_manager=" $output ";
 command=" sudo docker swarm join-token worker | grep token " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
+	echo "Waiting for $target to complete ..."			;
  send_list_command "$command" "$target" "$stack" ;
 done ;
 token_worker=" $output ";
@@ -37,6 +39,7 @@ done ;
 command=" cat /token_ucp " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
+	echo "Waiting for $target to complete ..."			;
  send_list_command "$command" "$target" "$stack" ;
 done ;
 echo " UCP Credentials: " ;
