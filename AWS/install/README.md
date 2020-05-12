@@ -56,13 +56,13 @@ aws cloudformation create-stack	                                                
 ```
 
 
-You might need the following documentation if you want to connect to the machines via SSH (but it is not necessary in principle):
-* https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html
-* https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html#install-plugin-linux
-
 Once you have created a cluster of machines with Docker installed then you need to choose an orchestrator. Please follow the links below to set up the orchestrator of your choice: 
 * Kubernetes: https://github.com/secobau/docker/tree/master/AWS/install/Kubernetes
 * Swarm: https://github.com/secobau/docker/tree/master/AWS/install/Swarm
+
+You might need the following documentation if you want to connect to the machines via SSH (but it is not necessary in principle):
+* https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html
+* https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html#install-plugin-linux
 
 In order to destroy you infrastructure you can run the following command from your Cloud9 instance:
 ```bash
