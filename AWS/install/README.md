@@ -46,6 +46,8 @@ aws cloudformation create-stack 							\
 	--parameters 									\
 		ParameterKey=InstanceManagerInstanceType				\
 			,ParameterValue=t3a.small 					\
+		ParameterKey=InstanceWorkerInstanceType					\
+			,ParameterValue=t3a.nano 					\
 		ParameterKey=RecordSetName1						\
 			,ParameterValue=service-1 					\
 		ParameterKey=RecordSetName2						\
