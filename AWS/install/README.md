@@ -45,17 +45,13 @@ aws cloudformation create-stack 							\
 		$caps 									\
 	--parameters 									\
 		ParameterKey=InstanceManagerInstanceType 				\
-		,									\
-			ParameterValue=t3a.small 					\
+			, ParameterValue=t3a.small 					\
 		ParameterKey=RecordSetName1 						\
-		,									\
-			ParameterValue=service-1 					\
+			, ParameterValue=service-1 					\
 		ParameterKey=RecordSetName2 						\
-		,									\
-			ParameterValue=service-2 					\
+			, ParameterValue=service-2 					\
 		ParameterKey=RecordSetName3 						\
-		,									\
-			ParameterValue=service-3 					\
+			, ParameterValue=service-3 					\
 	--stack-name 									\
 		$stack 									\
 	--template-url 						 			\
