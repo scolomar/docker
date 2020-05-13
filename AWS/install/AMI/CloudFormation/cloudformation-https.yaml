@@ -673,7 +673,12 @@ Resources:
       Certificates:
         - CertificateArn: !Sub 'arn:aws:acm:${AWS::Region}:${AWS::AccountId}:certificate/${Identifier}'
       DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupWorker1A
+        - ForwardConfig:
+            TargetGroups:
+            - TargetGroupArn: !Ref TargetGroupWorker1A
+              Weight: 1
+            - TargetGroupArn: !Ref TargetGroupWorker1B
+              Weight: 0
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker1
       Port: !Ref PortListenerWorker1
@@ -685,7 +690,12 @@ Resources:
       Certificates:
         - CertificateArn: !Sub 'arn:aws:acm:${AWS::Region}:${AWS::AccountId}:certificate/${Identifier}'
       DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupWorker1B
+        - ForwardConfig:
+            TargetGroups:
+            - TargetGroupArn: !Ref TargetGroupWorker1A
+              Weight: 0
+            - TargetGroupArn: !Ref TargetGroupWorker1B
+              Weight: 1
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker1
       Port: !Ref PortListenerWorker1QA
@@ -697,7 +707,12 @@ Resources:
       Certificates:
         - CertificateArn: !Sub 'arn:aws:acm:${AWS::Region}:${AWS::AccountId}:certificate/${Identifier}'
       DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupWorker2A
+        - ForwardConfig:
+            TargetGroups:
+            - TargetGroupArn: !Ref TargetGroupWorker2A
+              Weight: 1
+            - TargetGroupArn: !Ref TargetGroupWorker2B
+              Weight: 0
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker2
       Port: !Ref PortListenerWorker2
@@ -709,7 +724,12 @@ Resources:
       Certificates:
         - CertificateArn: !Sub 'arn:aws:acm:${AWS::Region}:${AWS::AccountId}:certificate/${Identifier}'
       DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupWorker2B
+        - ForwardConfig:
+            TargetGroups:
+            - TargetGroupArn: !Ref TargetGroupWorker2A
+              Weight: 0
+            - TargetGroupArn: !Ref TargetGroupWorker2B
+              Weight: 1
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker2
       Port: !Ref PortListenerWorker2QA
@@ -721,7 +741,12 @@ Resources:
       Certificates:
         - CertificateArn: !Sub 'arn:aws:acm:${AWS::Region}:${AWS::AccountId}:certificate/${Identifier}'
       DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupWorker3A
+        - ForwardConfig:
+            TargetGroups:
+            - TargetGroupArn: !Ref TargetGroupWorker3A
+              Weight: 1
+            - TargetGroupArn: !Ref TargetGroupWorker3B
+              Weight: 0
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker3
       Port: !Ref PortListenerWorker3
@@ -733,7 +758,12 @@ Resources:
       Certificates:
         - CertificateArn: !Sub 'arn:aws:acm:${AWS::Region}:${AWS::AccountId}:certificate/${Identifier}'
       DefaultActions: 
-        - TargetGroupArn: !Ref TargetGroupWorker3B
+        - ForwardConfig:
+            TargetGroups:
+            - TargetGroupArn: !Ref TargetGroupWorker3A
+              Weight: 0
+            - TargetGroupArn: !Ref TargetGroupWorker3B
+              Weight: 1
           Type: forward
       LoadBalancerArn: !Ref LoadBalancerWorker3
       Port: !Ref PortListenerWorker3QA

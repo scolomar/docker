@@ -68,6 +68,18 @@ Once you have created a cluster of machines with Docker installed then you need 
 * Kubernetes: https://github.com/secobau/docker/tree/master/AWS/install/Kubernetes
 * Swarm: https://github.com/secobau/docker/tree/master/AWS/install/Swarm
 
+With the predefined configuration in the CloudFormation file you can install up to 3 different external services that will be listening on standard port HTTPS of the 3 external Application Load Balancers:
+* https://service-1.sebastian-colomar.com
+* https://service-2.sebastian-colomar.com
+* https://service-3.sebastian-colomar.com
+
+There is also added support for QA and Blue/Green deployments so that you can connect to port 8443 to check the result of the Blue deployment:
+* https://service-1.sebastian-colomar.com:8443
+* https://service-2.sebastian-colomar.com:8443
+* https://service-3.sebastian-colomar.com:8443
+
+You can modify the weight of the load balancing so as to point to the Green or to the Blue deployment as necessary.
+
 You might need the following documentation if you want to connect to the machines via SSH (but it is not necessary in principle):
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html#install-plugin-linux
