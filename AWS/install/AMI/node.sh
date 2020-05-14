@@ -11,4 +11,9 @@ sudo yum update -y							;
 sudo amazon-linux-extras install docker -y				;
 sudo systemctl enable docker						;
 sudo systemctl start docker						;
+while true								;
+do 									\
+  sudo service docker status | grep running -q && break			;
+  sleep 10								;
+done									;
 #########################################################################
