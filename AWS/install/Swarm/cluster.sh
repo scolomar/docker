@@ -3,8 +3,8 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
-export debug=$debug							;
-export stack=$stack							;
+export debug								;
+export stack								;
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
