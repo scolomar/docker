@@ -18,7 +18,6 @@ set +x && test "$debug" = true && set -x				;
 #########################################################################
 test $mode = Kubernetes && size=small || size=nano			;
 caps=CAPABILITY_IAM                                                     ;
-s3domain=docker-aws.s3.ap-south-1.amazonaws.com				;
 template=https://$s3domain/cloudformation-https.yaml       		;
 CommandId=$(								\
   aws cloudformation create-stack 					\
