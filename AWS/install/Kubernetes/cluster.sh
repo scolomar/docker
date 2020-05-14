@@ -207,7 +207,7 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-	send_command "$command" "$target" "$stack"			\
+	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
 #########################################################################
@@ -238,7 +238,7 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-	send_command "$command" "$target" "$stack"			\
+	send_list_command "$command" "$target" "$stack"			\
 									;
 done									;
 #########################################################################
