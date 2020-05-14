@@ -44,7 +44,7 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-	send_command "$command" "$target" "$stack"			\
+	send_command "$command" "$stack" "$target"			\
 									;
 done									;
 #########################################################################
@@ -69,7 +69,7 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-	send_command "$command" "$target" "$stack"			\
+	send_command "$command" "$stack" "$target"			\
 									;
 done									;
 #########################################################################
@@ -96,7 +96,7 @@ for target in $targets							;
 do									\
 	echo "Waiting for $target to complete ..."			;
 	output="$(							\
-		send_list_command "$command" "$target" "$stack"		\
+		send_list_command "$command" "$stack" "$target"		\
 	)"								\
 									;
 done									;
@@ -113,7 +113,7 @@ for target in $targets							;
 do									\
 	echo "Waiting for $target to complete ..."			;
 	output="$(							\
-		send_list_command "$command" "$target" "$stack"		\
+		send_list_command "$command" "$stack" "$target"		\
 	)"								\
 									;
 done									;
@@ -139,7 +139,7 @@ for target in $targets							;
 do									\
 	echo "Waiting for $target to complete ..."			;
 	output="$(							\
-		send_list_command "$command" "$target" "$stack"		\
+		send_list_command "$command" "$stack" "$target"		\
 	)"								\
 									;
 done									;
@@ -165,7 +165,7 @@ for target in $targets							;
 do									\
 	echo "Waiting for $target to complete ..."			;
 	output="$(							\
-		send_list_command "$command" "$target" "$stack"		\
+		send_list_command "$command" "$stack" "$target"		\
 	)"								\
 									;
 done									;
@@ -207,7 +207,7 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-	send_list_command "$command" "$target" "$stack"			\
+	send_list_command "$command" "$stack" "$target"			\
 									;
 done									;
 #########################################################################
@@ -238,7 +238,7 @@ targets="								\
 "									;
 for target in $targets							;
 do									\
-	send_list_command "$command" "$target" "$stack"			\
+	send_list_command "$command" "$stack" "$target"			\
 									;
 done									;
 #########################################################################

@@ -11,11 +11,11 @@ source $pwd/../common/functions.sh
 command=' sudo docker stack rm php ' ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$stack" "$target" ;
 done ;
 
 command=' sudo docker stack rm dockercoins ' ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$stack" "$target" ;
 done ;

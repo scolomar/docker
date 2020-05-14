@@ -11,29 +11,29 @@ source $pwd/../common/functions.sh
 command=" git clone https://github.com/secobau/docker.git docker-secobau " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$stack" "$target" ;
 done ;
 
 command=" find docker-secobau " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$stack" "$target" ;
 done ;
 
 command=" sudo docker stack deploy --compose-file docker-secobau/YAML/php.yml php " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$stack" "$target" ;
 done ;
 
 command=" sudo docker stack deploy --compose-file docker-secobau/YAML/dockercoins.yml dockercoins " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$stack" "$target" ;
 done ;
 
 command=" sudo rm --recursive --force docker-secobau " ;
 targets=" InstanceManager1 " ;
 for target in $targets ; do
- send_command "$command" "$target" "$stack" ;
+ send_command "$command" "$stack" "$target" ;
 done ;

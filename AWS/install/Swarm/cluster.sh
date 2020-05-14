@@ -19,7 +19,7 @@ for target in $targets 							;
 do									\
   echo "Waiting for $target to complete ..."				;
   output="$(								\
-    send_list_command "$command" "$target" "$stack"			\
+    send_list_command "$command" "$stack" "$target"			\
   )"									;
   echo $output								;
 done 									;
@@ -30,7 +30,7 @@ for target in $targets 							;
 do									\
   echo "Waiting for $target to complete ..."				;
   output="$(								\
-    send_list_command "$command" "$target" "$stack"			\
+    send_list_command "$command" "$stack" "$target"			\
   )"									;
 done 									;
 token_worker=" $output "						;
@@ -41,7 +41,7 @@ for target in $targets 							;
 do									\
   echo "Waiting for $target to complete ..."				;
   output="$(								\
-    send_list_command "$command" "$target" "$stack"			\
+    send_list_command "$command" "$stack" "$target"			\
   )"									;
   echo $output								;
 done 									;
@@ -53,7 +53,7 @@ for target in $targets 							;
 do									\
   echo "Waiting for $target to complete ..."				;
   output="$(								\
-    send_list_command "$command" "$target" "$stack"			\
+    send_list_command "$command" "$stack" "$target"			\
   )"									;
   echo $output								;
 done 									;
@@ -64,7 +64,7 @@ for target in $targets 							;
 do 									\
   echo "Waiting for $target to complete ..."				;
   output="$(								\
-    send_list_command "$command" "$target" "$stack"			\
+    send_list_command "$command" "$stack" "$target"			\
   )"									;
   echo $output								;
 done									;
@@ -75,7 +75,7 @@ for target in $targets 							;
 do									\
   echo "Waiting for $target to complete ..."				;
   output="$(								\
-    send_list_command "$command" "$target" "$stack"			\
+    send_list_command "$command" "$stack" "$target"			\
   )"									;
   echo $output								;
 done 									;
@@ -86,7 +86,7 @@ for target in $targets 							;
 do 									\
   echo "Waiting for $target to complete ..."				;
   output="$(								\
-    send_list_command "$command" "$target" "$stack"			\
+    send_list_command "$command" "$stack" "$target"			\
   )"									;
   echo $output								;
 done 									;
