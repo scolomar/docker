@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -8,6 +8,8 @@ export log=$log								;
 export token_certificate=$token_certificate                             ;
 export token_discovery=$token_discovery                                 ;
 export token_token=$token_token                                         ;
+#########################################################################
+set +x && test "$debug" = true && set -x				;
 #########################################################################
 token_certificate="$(							\
 	echo								\
@@ -30,8 +32,6 @@ token_token="$(								\
 		base64							\
 			--decode					\
 )"							         	;
-#########################################################################
-set +x && test "$debug" = true && set -x				;
 #########################################################################
 ip=10.168.1.100                                                         ;
 kube=kube-apiserver.sebastian-colomar.com                               ;

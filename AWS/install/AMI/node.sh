@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
