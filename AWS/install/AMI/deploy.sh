@@ -19,41 +19,37 @@ set +x && test "$debug" = true && set -x				;
 test $mode = Kubernetes && size=small || size=nano			;
 caps=CAPABILITY_IAM                                                     ;
 template=https://$s3domain/cloudformation-https.yaml       		;
-CommandId=$(								\
-  aws cloudformation create-stack 					\
-    --capabilities 							\
-      $caps 								\
-    --parameters 							\
-      ParameterKey=InstanceManagerInstanceType,ParameterValue=t3a.$size \
-      ParameterKey=InstanceWorkerInstanceType,ParameterValue=t3a.nano 	\
-      ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName	\
-      ParameterKey=Identifier,ParameterValue=$Identifier		\
-      ParameterKey=RecordSetName1,ParameterValue=$RecordSetName1	\
-      ParameterKey=RecordSetName2,ParameterValue=$RecordSetName2	\
-      ParameterKey=RecordSetName3,ParameterValue=$RecordSetName3	\
-    --query 								\
-      "Command.CommandId" 						\
-    --stack-name 							\
-      $stack 								\
-    --template-url 						 	\
-      $template 							\
-    --output 								\
-      text 								\
-)									;
+aws cloudformation create-stack 					\
+  --capabilities 							\
+    $caps 								\
+  --parameters 								\
+    ParameterKey=InstanceManagerInstanceType,ParameterValue=t3a.$size 	\
+    ParameterKey=InstanceWorkerInstanceType,ParameterValue=t3a.nano 	\
+    ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
+    ParameterKey=Identifier,ParameterValue=$Identifier			\
+    ParameterKey=RecordSetName1,ParameterValue=$RecordSetName1		\
+    ParameterKey=RecordSetName2,ParameterValue=$RecordSetName2		\
+    ParameterKey=RecordSetName3,ParameterValue=$RecordSetName3		\
+  --stack-name 								\
+    $stack 								\
+  --template-url 						 	\
+    $template 								\
+  --output 								\
+    text 								\
+									;
 #########################################################################
 while true 								;
 do 									\
   output=$( 								\
-    aws ssm list-command-invocations 					\
-      --command-id 							\
-        $CommandId 							\
+    aws cloudformation describe-stacks 					\
       --query 								\
-        "CommandInvocations[].CommandPlugins[].Output" 			\
-      --details 							\
+        "Stacks[].StackStatus" 						\
       --output 								\
         text 								\
+      --stack-name 							\
+        $stack 								\
   ) 									;
-  echo $output | grep [a-zA-Z0-9] --quiet && break 			;
+  echo $output | grep CREATE_COMPLETE && break 				;
   sleep 								\
     10									;
 done									;
