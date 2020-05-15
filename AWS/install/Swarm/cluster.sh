@@ -15,7 +15,7 @@ file=functions.sh                                                       ;
 pwd=$PWD && mkdir --parents $path && cd $path                           ;
 curl -O https://$domain/$path/$file                                     ;
 source ./$file                                                          ;
-cd $PWD && rm --recursive --force $path                                 ;
+cd $pwd && rm --recursive --force $path                                 ;
 #########################################################################
 command=" sudo service docker status | grep running --quiet && echo OK ";
 targets=" InstanceManager1 " 						;

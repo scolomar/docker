@@ -31,7 +31,7 @@ function exec_remote_file {						\
   curl -O https://$domain/$path/$file                                   ;
   chmod +x ./$file                                                      ;
   ./$file                                                               ;
-  cd $PWD && rm --recursive --force $path                               ;
+  cd $pwd && rm --recursive --force $path                               ;
 }									;
 #########################################################################
 function send_list_command {						\
