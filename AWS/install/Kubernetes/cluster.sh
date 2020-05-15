@@ -12,13 +12,6 @@ domain=raw.githubusercontent.com                                        ;
 export=" export debug=$debug "						;
 log=/etc/kubernetes/kubernetes-install.log                              ;
 #########################################################################
-file=functions.sh                                                       ;
-path=secobau/docker/master/AWS/common                                   ;
-pwd=$PWD && mkdir --parents $path && cd $path                           ;
-curl -O https://$domain/$path/$file                                     ;
-source ./$file                                                          ;
-cd $pwd && rm --recursive --force $path                                 ;
-#########################################################################
 path=secobau/docker/master/AWS/install/Kubernetes			;
 #########################################################################
 file=kube-install.sh							;
@@ -30,7 +23,7 @@ targets="								\
 	InstanceWorker2							\
 	InstanceWorker3							\
 "									;
-exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
+send_remote_file $domain "$export" $file $path $stack "$targets";
 #########################################################################
 export=" $export							\
   && export log=$log							\
@@ -39,13 +32,13 @@ file=leader.sh								;
 targets="								\
 	InstanceManager1						\
 "									;
-exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
+send_remote_file $domain "$export" $file $path $stack "$targets";
 #########################################################################
 file=kube-wait.sh							;
 targets="								\
 	InstanceManager1						\
 "									;
-exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
+send_remote_file $domain "$export" $file $path $stack "$targets";
 #########################################################################
 command="								\
 	grep								\
@@ -137,7 +130,7 @@ targets="								\
 	InstanceWorker2							\
 	InstanceWorker3							\
 "									;
-exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
+send_remote_file $domain "$export" $file $path $stack "$targets";
 #########################################################################
 export=" $export							\
   &&									\
@@ -148,5 +141,5 @@ targets="								\
 	InstanceManager2						\
 	InstanceManager3						\
 "									;
-exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
+send_remote_file $domain "$export" $file $path $stack "$targets";
 #########################################################################
