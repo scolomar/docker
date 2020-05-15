@@ -5,16 +5,6 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-export debug=$debug							;
-export HostedZoneName=$HostedZoneName					;
-export Identifier=$Identifier						;
-export mode=$mode							;
-export RecordSetName1=$RecordSetName1					;
-export RecordSetName2=$RecordSetName2					;
-export RecordSetName3=$RecordSetName3					;
-export s3domain=$s3domain						;
-export stack=$stack							;
-#########################################################################
 test $mode = Kubernetes && size=small || size=nano			;
 caps=CAPABILITY_IAM                                                     ;
 template=https://$s3domain/cloudformation-https.yaml       		;
