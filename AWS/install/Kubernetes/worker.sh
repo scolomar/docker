@@ -3,12 +3,12 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
+set +x && test "$debug" = true && set -x				;
+#########################################################################
 export debug=$debug							;
 export log=$log								;
 export token_discovery=$token_discovery                                 ;
 export token_token=$token_token                                         ;
-#########################################################################
-set +x && test "$debug" = true && set -x				;
 #########################################################################
 token_discovery="$(							\
 	echo								\
