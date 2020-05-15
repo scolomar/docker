@@ -5,8 +5,6 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-domain=raw.githubusercontent.com                                        ;
-#########################################################################
 command=" sudo service docker status | grep running --quiet && echo OK ";
 targets=" InstanceManager1 " 						;
 for target in $targets 							;
