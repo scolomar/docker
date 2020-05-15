@@ -3,10 +3,10 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
+set +x && test "$debug" = true && set -x				;
+#########################################################################
 export debug=$debug							;
 export log=$log								;
-#########################################################################
-set +x && test "$debug" = true && set -x				;
 #########################################################################
 calico=https://docs.projectcalico.org/v3.14/manifests			;
 cidr=192.168.0.0/16							;
