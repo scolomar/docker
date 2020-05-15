@@ -50,8 +50,8 @@ do 									\
         $stack 								\
   ) 									;
   echo $output | grep CREATE_COMPLETE && break 				;
-  sleep 								\
-    10									;
+  sleep 10 								\
+    									;
 done									;
 echo $output								;
 #########################################################################
