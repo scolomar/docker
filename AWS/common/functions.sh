@@ -4,11 +4,14 @@
 #########################################################################
 function exec_remote_file_targets {					\
   local domain=$1							;
-  local file=$2								;
-  local path=$3								;
-  local stack=$4							;
-  local targets="$5"							;
+  local export="$2"							;
+  local file=$3								;
+  local path=$4								;
+  local stack=$5							;
+  local targets="$6"							;
   local command="							\
+    $export								\
+    &&									\
     curl -O https://$domain/$path/$file					\
     &&									\
     chmod +x ./$file							\
