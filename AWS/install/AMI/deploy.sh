@@ -6,7 +6,6 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 export debug=$debug							;
-export deploy=$deploy							;
 export s3domain=$s3domain						;
 export HostedZoneName=$HostedZoneName					;
 export Identifier=$Identifier						;
