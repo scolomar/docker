@@ -9,6 +9,7 @@ export debug=$debug							;
 export stack=$stack							;
 #########################################################################
 domain=raw.githubusercontent.com                                        ;
+export=" export debug=$debug "						;
 log=/etc/kubernetes/kubernetes-install.log                              ;
 #########################################################################
 file=functions.sh                                                       ;
@@ -21,18 +22,6 @@ cd $pwd && rm --recursive --force $path                                 ;
 path=secobau/docker/master/AWS/install/Kubernetes			;
 #########################################################################
 file=kube-install.sh							;
-command="								\
-	export debug=$debug						\
-	&&								\
-	curl -o /$file https://$domain/$path/$file			\
-	&&								\
-	chmod +x /$file							\
-	&&								\
-	/$file								\
-		2>&1							\
-	|								\
-		sudo tee /$file.log					\
-"									;
 targets="								\
 	InstanceManager1						\
 	InstanceManager2						\
@@ -41,62 +30,22 @@ targets="								\
 	InstanceWorker2							\
 	InstanceWorker3							\
 "									;
-for target in $targets							;
-do									\
-	send_command "$command" "$stack" "$target"			\
-									;
-done									;
+exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
 #########################################################################
-file=leader.sh								;
-command="								\
-	export debug=$debug						\
-	&&								\
-	export log=$log							\
-	&&								\
-	curl -o /$file https://$domain/$path/$file			\
-	&&								\
-	chmod +x /$file							\
-	&&								\
-	/$file								\
-		2>&1							\
-	|								\
-		sudo tee /$file.log					\
+export=" $export							\
+  && export log=$log							\
 "									;
+file=leader.sh								;
 targets="								\
 	InstanceManager1						\
 "									;
-for target in $targets							;
-do									\
-	send_command "$command" "$stack" "$target"			\
-									;
-done									;
+exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
 #########################################################################
 file=kube-wait.sh							;
-command="								\
-	export debug=$debug						\
-	&&								\
-	export log=$log							\
-	&&								\
-	curl -o /$file https://$domain/$path/$file			\
-	&&								\
-	chmod +x /$file							\
-	&&								\
-	/$file								\
-		2>&1							\
-	|								\
-		sudo tee /$file.log					\
-"									;
 targets="								\
 	InstanceManager1						\
 "									;
-for target in $targets							;
-do									\
-	echo "Waiting for $target to complete ..."			;
-	output="$(							\
-		send_list_command "$command" "$stack" "$target"		\
-	)"								\
-									;
-done									;
+exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
 #########################################################################
 command="								\
 	grep								\
@@ -176,64 +125,28 @@ token_token=$(								\
 					0				\
 )									;
 #########################################################################
-file=manager.sh								;
-command="								\
-	export debug=$debug						\
-	&&								\
-	export log=$log							\
-	&&								\
-	export token_certificate=$token_certificate			\
-	&&								\
-	export token_discovery=$token_discovery				\
-	&&								\
-	export token_token=$token_token					\
-	&&								\
-	curl -o /$file https://$domain/$path/$file			\
-	&&								\
-	chmod +x /$file							\
-	&&								\
-	/$file								\
-		2>&1							\
-	|								\
-		sudo tee /$file.log					\
-"									;
-targets="								\
-	InstanceManager2						\
-	InstanceManager3						\
-"									;
-for target in $targets							;
-do									\
-	send_list_command "$command" "$stack" "$target"			\
-									;
-done									;
-#########################################################################
 file=worker.sh								;
-command="								\
-	export debug=$debug						\
-	&&								\
-	export log=$log							\
-	&&								\
-	export token_discovery=$token_discovery				\
-	&&								\
-	export token_token=$token_token					\
-	&&								\
-	curl -o /$file https://$domain/$path/$file			\
-	&&								\
-	chmod +x /$file							\
-	&&								\
-	/$file								\
-		2>&1							\
-	|								\
-		sudo tee /$file.log					\
+export=" $export							\
+  &&									\
+  export token_discovery=$token_discovery				\
+  &&									\
+  export token_token=$token_token					\
 "									;
 targets="								\
 	InstanceWorker1							\
 	InstanceWorker2							\
 	InstanceWorker3							\
 "									;
-for target in $targets							;
-do									\
-	send_list_command "$command" "$stack" "$target"			\
-									;
-done									;
+exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
+#########################################################################
+export=" $export							\
+  &&									\
+  export token_certificate=$token_certificate				\
+"									;
+file=manager.sh								;
+targets="								\
+	InstanceManager2						\
+	InstanceManager3						\
+"									;
+exec_remote_file_targets $domain "$export" $file $path $stack "$targets";
 #########################################################################
