@@ -3,29 +3,28 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
+set +x && test "$debug" = true && set -x				;
+#########################################################################
 export debug=$debug							;
 export stack=$stack							;
 #########################################################################
-set +x && test "$debug" = true && set -x				;
-#########################################################################
-pwd=$( dirname $( readlink -f $0 ) )					;
-source $pwd/../../common/functions.sh					;
-#########################################################################
-test -z "$stack"							\
-	&& echo PLEASE DEFINE THE VALUE FOR stack			\
-	&& exit 1							\
-									;
-#########################################################################
-docker=raw.githubusercontent.com/secobau/docker				;
-folder=master/AWS/install/Kubernetes					;
+domain=raw.githubusercontent.com                                        ;
 log=/etc/kubernetes/kubernetes-install.log                              ;
 #########################################################################
+file=functions.sh                                                       ;
+path=secobau/docker/master/AWS/common                                   ;
+pwd=$PWD && mkdir --parents $path && cd $path                           ;
+curl -O https://$domain/$path/$file                                     ;
+source ./$file                                                          ;
+cd $pwd && rm --recursive --force $path                                 ;
+#########################################################################
+path=secobau/docker/master/AWS/install/Kubernetes			;
+#########################################################################
 file=kube-install.sh							;
-remote=https://$docker/$folder/$file					;
 command="								\
 	export debug=$debug						\
 	&&								\
-	curl -o /$file $remote						\
+	curl -o /$file https://$domain/$path/$file			\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -49,13 +48,12 @@ do									\
 done									;
 #########################################################################
 file=leader.sh								;
-remote=https://$docker/$folder/$file					;
 command="								\
 	export debug=$debug						\
 	&&								\
 	export log=$log							\
 	&&								\
-	curl -o /$file $remote						\
+	curl -o /$file https://$domain/$path/$file			\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -74,13 +72,12 @@ do									\
 done									;
 #########################################################################
 file=kube-wait.sh							;
-remote=https://$docker/$folder/$file					;
 command="								\
 	export debug=$debug						\
 	&&								\
 	export log=$log							\
 	&&								\
-	curl -o /$file $remote						\
+	curl -o /$file https://$domain/$path/$file			\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -180,7 +177,6 @@ token_token=$(								\
 )									;
 #########################################################################
 file=manager.sh								;
-remote=https://$docker/$folder/$file					;
 command="								\
 	export debug=$debug						\
 	&&								\
@@ -192,7 +188,7 @@ command="								\
 	&&								\
 	export token_token=$token_token					\
 	&&								\
-	curl -o /$file $remote						\
+	curl -o /$file https://$domain/$path/$file			\
 	&&								\
 	chmod +x /$file							\
 	&&								\
@@ -212,7 +208,6 @@ do									\
 done									;
 #########################################################################
 file=worker.sh								;
-remote=https://$docker/$folder/$file					;
 command="								\
 	export debug=$debug						\
 	&&								\
@@ -222,7 +217,7 @@ command="								\
 	&&								\
 	export token_token=$token_token					\
 	&&								\
-	curl -o /$file $remote						\
+	curl -o /$file https://$domain/$path/$file			\
 	&&								\
 	chmod +x /$file							\
 	&&								\
