@@ -3,17 +3,21 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
+set +x && test "$debug" = true && set -x				;
+#########################################################################
 export debug=$debug							;
 export stack=$stack							;
 #########################################################################
-set +x && test "$debug" = true && set -x				;
+domain=raw.githubusercontent.com                                        ;
 #########################################################################
-test -z "$stack" && echo PLEASE DEFINE THE VALUE FOR stack && exit 1 	;
+path=secobau/docker/master/AWS/common                                   ;
+file=functions.sh                                                       ;
+pwd=$PWD && mkdir --parents $path && cd $path                           ;
+curl -O https://$domain/$path/$file                                     ;
+source ./$file                                                          ;
+cd $PWD && rm --recursive --force $path                                 ;
 #########################################################################
-pwd=$( dirname $( readlink -f $0 ) ) 					;
-source $pwd/../../common/functions.sh					;
-#########################################################################
-command=" sudo service docker status | grep running -q && echo OK "	;
+command=" sudo service docker status | grep running --quiet && echo OK ";
 targets=" InstanceManager1 " 						;
 for target in $targets 							;
 do									\
