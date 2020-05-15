@@ -3,6 +3,8 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
+set +x && test "$debug" = true && set -x				;
+#########################################################################
 export debug=$debug							;
 export deploy=$deploy							;
 export s3domain=$s3domain						;
@@ -13,8 +15,6 @@ export RecordSetName1=$RecordSetName1					;
 export RecordSetName2=$RecordSetName2					;
 export RecordSetName3=$RecordSetName3					;
 export stack=$stack							;
-#########################################################################
-set +x && test "$debug" = true && set -x				;
 #########################################################################
 test $mode = Kubernetes && size=small || size=nano			;
 caps=CAPABILITY_IAM                                                     ;
