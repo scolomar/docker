@@ -3,17 +3,20 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
-export debug=$debug							;
-#########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-docker=raw.githubusercontent.com/secobau/docker				;
-folder=master/AWS/install/Kubernetes/etc/yum.repos.d			;
+export debug=$debug							;
+#########################################################################
+domain=raw.githubusercontent.com                                        ;
 file=kubernetes.repo							;
 repos=etc/yum.repos.d							;
 #########################################################################
-remote=https://$docker/$folder/$file					;
-wget $remote && sudo mv $file /$repos					;
+path=secobau/docker/master/AWS/install/Kubernetes/$repos		;
+pwd=$PWD && mkdir --parents $path && cd $path                           ;
+curl -O https://$domain/$path/$file                                     ;
+sudo mv $file /$repos							;
+cd $pwd && rm --recursive --force $path                                 ;
+#########################################################################
 sudo yum install							\
 	--assumeyes							\
 	--disableexcludes=kubernetes					\

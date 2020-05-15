@@ -12,16 +12,18 @@ function exec_remote_file_targets {					\
   local command="							\
     $export								\
     &&									\
-    curl -o /$file https://$domain/$path/$file                      	\
+    local pwd=$PWD && mkdir --parents $path && cd $path                 \
+    &&									\
+    curl -O https://$domain/$path/$file                                 \
     &&                                                              	\
-    chmod +x /$file                                                 	\
+    chmod +x ./$file                                                 	\
     &&                                                              	\
-    /$file                                                          	\
+    ./$file                                                          	\
       2>&1                                                    		\
     |                                                               	\
       sudo tee /$file.log                                     		\
       &&								\
-      rm --force /$file							\
+      cd $pwd && rm --recursive --force $path                           \
   "									;
   for target in $targets                                                ;
   do                                                                    \
