@@ -5,11 +5,8 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-export debug=$debug							;
-export log=$log								;
-export token_certificate=$token_certificate                             ;
-export token_discovery=$token_discovery                                 ;
-export token_token=$token_token                                         ;
+ip=10.168.1.100                                                         ;
+kube=kube-apiserver.$HostedZoneName					;
 #########################################################################
 token_certificate="$(							\
 	echo								\
@@ -32,9 +29,6 @@ token_token="$(								\
 		base64							\
 			--decode					\
 )"							         	;
-#########################################################################
-ip=10.168.1.100                                                         ;
-kube=kube-apiserver.sebastian-colomar.com                               ;
 #########################################################################
 echo $ip $kube | sudo tee --append /etc/hosts                           ;
 #########################################################################
