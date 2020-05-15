@@ -5,9 +5,22 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test $mode = Kubernetes && size=small || size=nano			;
+test -n "$debug" || exit 100						;
+test -n "$HostedZoneName" || exit 100                                   ;
+test -n "$Identifier" || exit 100                                       ;
+test -n "$mode" || exit 100                                             ;
+test -n "$RecordSetName1" || exit 100                                   ;
+test -n "$RecordSetName2" || exit 100                                   ;
+test -n "$RecordSetName3" || exit 100                                   ;
+test -n "$stack" || exit 100                                            ;
+#########################################################################
 caps=CAPABILITY_IAM                                                     ;
+s3domain=docker-aws.s3.ap-south-1.amazonaws.com				;
+#########################################################################
 template=https://$s3domain/cloudformation-https.yaml       		;
+#########################################################################
+test $mode = Kubernetes && size=small || size=nano			;
+#########################################################################
 aws cloudformation create-stack 					\
   --capabilities 							\
     $caps 								\
