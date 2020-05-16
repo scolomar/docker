@@ -52,7 +52,7 @@ do 									\
         $stack 								\
   ) 									;
   echo $output | grep CREATE_COMPLETE && break 				;
-  sleep 10 								;
+  sleep 100 								;
 done									;
 echo $output								;
 #########################################################################
