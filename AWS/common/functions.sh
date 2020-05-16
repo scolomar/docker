@@ -97,11 +97,8 @@ function send_wait_targets {						\
   local targets="$3"							;
   for target in $targets                                                ;
   do                                                                    \
-    local output="							\
-      $( 								\
         send_list_command "$command" $stack $target                   	\
-      )									\
-    "									;
+    									;
   done                                                                  ;
 }									;
 #########################################################################
@@ -112,6 +109,10 @@ function service_wait_targets {						\
   command="                                                             \
     sudo service $service status 2> /dev/null | grep running		\
   "                                                                     ;
-  send_wait_targets "$command" $stack "$targets"                        ;
+  local output="							\
+    $(									\
+      send_wait_targets "$command" $stack "$targets"                    \
+    )									\
+  "									;
 }									;
 #########################################################################
