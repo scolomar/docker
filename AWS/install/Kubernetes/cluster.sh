@@ -5,8 +5,14 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
+test -n "$debug"		|| exit 100				;
+test -n "$stack"		|| exit 100				;
+test -n "$HostedZoneName"	|| exit 100				;
+#########################################################################
 domain=raw.githubusercontent.com                                        ;
-export=" export debug=$debug "						;
+export=" 								\
+  export debug=$debug 							\
+"									;
 log=/etc/kubernetes/kubernetes-install.log                              ;
 path=secobau/docker/master/AWS/install/Kubernetes			;
 #########################################################################
@@ -21,8 +27,10 @@ targets="								\
 "									;
 send_remote_file $domain "$export" $file $path $stack "$targets"	;
 #########################################################################
-export=" $export							\
-  && export log=$log							\
+export=" 								\
+  $export								\
+  && 									\
+  export log=$log							\
 "									;
 file=leader.sh								;
 targets="								\
@@ -40,22 +48,18 @@ command="								\
 		certificate-key						\
 		$log							\
 "									;
-for target in $targets							;
-do									\
-	echo "Waiting for $target to complete ..."			;
-	output="$(							\
-		send_list_command "$command" "$stack" "$target"		\
-	)"								\
-									;
-done									;
+output="								\
+  $(									\
+    send_wait_targets "$command" $stack "$targets"			\
+  )									\
+"									;	
 token_certificate=$(							\
 	echo -n $output							\
 	|								\
 		sed 's/\\/ /'						\
 		|							\
 			base64						\
-				--wrap				 	\
-					0				\
+				--wrap 0				\
 )									;
 #########################################################################
 command="								\
@@ -65,22 +69,18 @@ command="								\
 		discovery-token-ca-cert-hash				\
 		$log							\
 "									;
-for target in $targets							;
-do									\
-	echo "Waiting for $target to complete ..."			;
-	output="$(							\
-		send_list_command "$command" "$stack" "$target"		\
-	)"								\
-									;
-done									;
+output="								\
+  $(									\
+    send_wait_targets "$command" $stack "$targets"			\
+  )									\
+"									;	
 token_discovery=$(							\
 	echo -n $output							\
 	|								\
 		sed 's/\\/ /'						\
 		|							\
 			base64						\
-				--wrap				 	\
-					0				\
+				--wrap 0				\
 )									;
 #########################################################################
 command="								\
@@ -90,26 +90,23 @@ command="								\
 		kubeadm.*join						\
 		$log							\
 "									;
-for target in $targets							;
-do									\
-	echo "Waiting for $target to complete ..."			;
-	output="$(							\
-		send_list_command "$command" "$stack" "$target"		\
-	)"								\
-									;
-done									;
+output="								\
+  $(									\
+    send_wait_targets "$command" $stack "$targets"			\
+  )									\
+"									;	
 token_token=$(								\
 	echo -n $output							\
 	|								\
 		sed 's/\\/ /'						\
 		|							\
 			base64						\
-				--wrap				 	\
-					0				\
+				--wrap 0				\
 )									;
 #########################################################################
-export=" $export							\
-  &&									\
+export=" 								\
+  $export								\
+  && 									\
   export HostedZoneName=$HostedZoneName					\
   &&									\
   export token_discovery=$token_discovery				\
@@ -124,7 +121,8 @@ targets="								\
 "									;
 send_remote_file $domain "$export" $file $path $stack "$targets"	;
 #########################################################################
-export=" $export							\
+export=" 								\
+  $export								\
   &&									\
   export token_certificate=$token_certificate				\
 "									;
