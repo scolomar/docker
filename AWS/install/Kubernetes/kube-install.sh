@@ -10,10 +10,8 @@ file=kubernetes.repo							;
 repos=etc/yum.repos.d							;
 #########################################################################
 path=secobau/docker/master/AWS/install/Kubernetes/$repos		;
-pwd=$PWD && mkdir --parents $path && cd $path                           ;
 curl -O https://$domain/$path/$file                                     ;
 sudo mv $file /$repos							;
-cd $pwd && rm --recursive --force $path                                 ;
 #########################################################################
 sudo yum install							\
 	--assumeyes							\

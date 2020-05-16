@@ -17,10 +17,11 @@ function exec_remote_file {						\
   local domain=$1							;
   local file=$2								;
   local path=$3								;
-  curl -O https://$domain/$path/$file                                   ;
-  chmod +x ./$file                                                      ;
-  ./$file                                                               ;
-  rm --force ./$file		                              		;
+  local uuid=$( uuidgen )						;
+  curl -o $uuid https://$domain/$path/$file                             ;
+  chmod +x ./$uuid                                                      ;
+  ./$uuid                                                               ;
+  rm --force ./$uuid		                              		;
 }									;
 #########################################################################
 function send_command {							\
@@ -73,18 +74,18 @@ function send_remote_file {						\
   local command="							\
     $export								\
     &&									\
-    local pwd=\$PWD && mkdir --parents $path && cd $path                \
+    local uuid=$( uuidgen )						\
     &&									\
-    curl -O https://$domain/$path/$file                                 \
+    curl -o $uuid https://$domain/$path/$file                           \
     &&                                                              	\
-    chmod +x ./$file                                                 	\
+    chmod +x ./$uuid                                                 	\
     &&                                                              	\
-    ./$file                                                          	\
+    ./$uuid                                                          	\
       2>&1                                                    		\
     |                                                               	\
       sudo tee /$file.log                                     		\
       &&								\
-      cd $pwd && rm --recursive --force $path                           \
+      rm --force $uuid                           			\
   "									;
   for target in $targets                                                ;
   do                                                                    \
