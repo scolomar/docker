@@ -2,6 +2,17 @@
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
 #########################################################################
+function encode_string {						\
+  local string="$1"							;
+  echo -n $string                                                 	\
+  |     	                                                        \
+    sed 's/\\/ /'                                           		\
+    |                                                       		\
+      base64                                          			\
+        --wrap 0                                			\
+									;
+}									;
+#########################################################################
 function exec_remote_file {						\
   local domain=$1							;
   local file=$2								;
