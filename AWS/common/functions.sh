@@ -55,7 +55,7 @@ function send_list_command {						\
       aws ssm list-command-invocations 					\
         --command-id $CommandId 					\
         --query "CommandInvocations[].CommandPlugins[].Output" 		\
-        --details 							\
+        --no-details 							\
         --output text 							\
         2> /dev/null							\
     ) 									;
