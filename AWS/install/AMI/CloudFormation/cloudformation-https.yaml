@@ -1241,3 +1241,20 @@ Resources:
       VpcId: !Ref VPC
     Type: AWS::EC2::VPCGatewayAttachment
 
+#============================================================
+# Outputs
+#============================================================
+Outputs:
+
+  DomainNameService1:
+    Description: Domain name for Service 1
+    Value: !GetAtt LoadBalancerWorker1.DNSName
+
+  DomainNameService2:
+    Description: Domain name for Service 2
+    Value: !GetAtt LoadBalancerWorker2.DNSName
+
+  DomainNameService3:
+    Description: Domain name for Service 3
+    Value: !GetAtt LoadBalancerWorker3.DNSName
+  
