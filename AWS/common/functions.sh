@@ -18,7 +18,7 @@ function exec_remote_file {						\
   local file=$2								;
   local path=$3								;
   local uuid=$( uuidgen )						;
-  curl -o $uuid https://$domain/$path/$file                             ;
+  curl --output $uuid https://$domain/$path/$file                       ;
   chmod +x ./$uuid                                                      ;
   ./$uuid                                                               ;
   rm --force ./$uuid		                              		;
@@ -72,14 +72,16 @@ function send_remote_file {						\
   local command="							\
     $export								\
     &&									\
-    curl -o /$file https://$domain/$path/$file                          \
+    curl --output ./$file https://$domain/$path/$file                   \
     &&                                                              	\
-    chmod +x /$file                                                 	\
+    chmod +x ./$file                                                 	\
     &&                                                              	\
-    /$file                                                          	\
+    ./$file                                                          	\
       2>&1                                                    		\
     |                                                               	\
-      sudo tee /$file.log                                     		\
+      sudo tee ./$file.log                                     		\
+      &&                                                              	\
+      rm --force ./$file						\
   "									;
   for target in $targets                                                ;
   do                                                                    \
