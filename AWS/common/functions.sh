@@ -62,7 +62,6 @@ function send_list_command {						\
     echo $output | grep [a-zA-Z0-9] && break 				;
     sleep 10								;
   done 									;
-  echo $output								;
 }									;
 #########################################################################
 function send_remote_file {						\
