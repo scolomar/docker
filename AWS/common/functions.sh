@@ -72,22 +72,22 @@ function send_remote_file {						\
   local command="							\
     $export								\
     &&									\
-    local uuid=$( uuidgen )						\
-    &&									\
-    curl -o $uuid https://$domain/$path/$file                           \
+    curl -o /$file https://$domain/$path/$file                          \
     &&                                                              	\
-    chmod +x ./$uuid                                                 	\
+    chmod +x /$file                                                 	\
     &&                                                              	\
-    ./$uuid                                                          	\
+    /$file                                                          	\
       2>&1                                                    		\
     |                                                               	\
       sudo tee /$file.log                                     		\
-      &&								\
-      rm --force $uuid                           			\
   "									;
   for target in $targets                                                ;
   do                                                                    \
-    send_command "$command" "$stack" "$target"                          ;
+    local CommandId="							\
+      $(								\
+        send_command "$command" "$stack" "$target"			\
+      )									\
+    "									;
   done                                                                  ;
 }									;
 #########################################################################
@@ -97,7 +97,11 @@ function send_wait_targets {						\
   local targets="$3"							;
   for target in $targets                                                ;
   do                                                                    \
-    send_list_command "$command" $stack $target                   	;
+    local output="							\
+      $( 								\
+        send_list_command "$command" $stack $target                   	\
+      )									\
+    "									;
   done                                                                  ;
 }									;
 #########################################################################
