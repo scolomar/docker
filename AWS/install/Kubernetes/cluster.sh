@@ -42,9 +42,7 @@ file=kube-wait.sh							;
 send_remote_file $domain "$export" $file $path $stack "$targets"	;
 #########################################################################
 command="								\
-	grep								\
-		--max-count						\
-			1						\
+	grep --max-count 1						\
 		certificate-key						\
 		$log							\
 "									;
@@ -58,9 +56,7 @@ token_certificate=$(							\
 )									;
 #########################################################################
 command="								\
-	grep								\
-		--max-count						\
-			1						\
+	grep --max-count 1						\
 		discovery-token-ca-cert-hash				\
 		$log							\
 "									;
@@ -74,9 +70,7 @@ token_discovery=$(							\
 )									;
 #########################################################################
 command="								\
-	grep								\
-		--max-count						\
-			1						\
+	grep --max-count 1						\
 		kubeadm.*join						\
 		$log							\
 "									;
