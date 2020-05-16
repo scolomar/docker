@@ -70,12 +70,7 @@ output="								\
   )									\
 "									;	
 token_discovery=$(							\
-	echo -n $output							\
-	|								\
-		sed 's/\\/ /'						\
-		|							\
-			base64						\
-				--wrap 0				\
+  encode_string "$output"						\
 )									;
 #########################################################################
 command="								\
@@ -91,12 +86,7 @@ output="								\
   )									\
 "									;	
 token_token=$(								\
-	echo -n $output							\
-	|								\
-		sed 's/\\/ /'						\
-		|							\
-			base64						\
-				--wrap 0				\
+  encode_string "$output"						\
 )									;
 #########################################################################
 export=" 								\
