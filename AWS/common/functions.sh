@@ -83,9 +83,9 @@ function send_remote_file {						\
   "									;
   for target in $targets                                                ;
   do                                                                    \
-    local CommandId="							\
+    local output="							\
       $(								\
-        send_command "$command" "$stack" "$target"			\
+        send_list_command "$command" "$stack" "$target"			\
       )									\
     "									;
   done                                                                  ;
@@ -97,8 +97,7 @@ function send_wait_targets {						\
   local targets="$3"							;
   for target in $targets                                                ;
   do                                                                    \
-        send_list_command "$command" $stack $target                   	\
-    									;
+        send_list_command "$command" $stack $target                   	;
   done                                                                  ;
 }									;
 #########################################################################
@@ -109,10 +108,6 @@ function service_wait_targets {						\
   command="                                                             \
     sudo service $service status 2> /dev/null | grep running		\
   "                                                                     ;
-  local output="							\
-    $(									\
-      send_wait_targets "$command" $stack "$targets"                    \
-    )									\
-  "									;
+  send_wait_targets "$command" $stack "$targets"                   	; 
 }									;
 #########################################################################

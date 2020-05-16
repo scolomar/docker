@@ -17,28 +17,46 @@ service_wait_targets $service $stack "$targets"				;
 command=" 								\
   sudo docker swarm init 2> /dev/null | grep token --max-count 1 	\
 " 									;
-token_worker="$(							\
-  send_wait_targets "$command" $stack "$targets"			\
-  )"									;	
+output="								\
+  $(									\
+    send_wait_targets "$command" $stack "$targets"			\
+  )									\
+"									;	
+token_worker="$output"							;
 #########################################################################
 command=" 								\
   sudo docker swarm join-token manager 2> /dev/null | grep token 	\
 " 									;
-token_manager="$(							\
-  send_wait_targets "$command" $stack "$targets"			\
-  )"									;	
+output="								\
+  $(									\
+    send_wait_targets "$command" $stack "$targets"			\
+  )									\
+"									;	
+token_manager="$output"							;
 #########################################################################
 targets=" InstanceManager2 InstanceManager3 " 				;
 #########################################################################
 service_wait_targets $service $stack "$targets"				;
 #########################################################################
 command=" sudo $token_manager 2> /dev/null " 				;
-send_wait_targets "$command" $stack "$targets"				;
+output="								\
+  $(									\
+    send_wait_targets "$command" $stack "$targets"			\
+  )									\
+"									;	
 #########################################################################
 targets=" InstanceWorker1 InstanceWorker2 InstanceWorker3 " 		;
 #########################################################################
-service_wait_targets $service $stack "$targets"				;
+output="								\
+  $(									\
+    service_wait_targets $service $stack "$targets"			\
+  )									\
+"									;	
 #########################################################################
 command=" sudo $token_worker 2> /dev/null " 				;
-send_wait_targets "$command" $stack "$targets"				;
+output="								\
+  $(									\
+    send_wait_targets "$command" $stack "$targets"			\
+  )									\
+"									;	
 #########################################################################
