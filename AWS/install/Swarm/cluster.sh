@@ -14,7 +14,7 @@ command=" 								\
   sudo service docker version 						\
     2> /dev/null 							\
   | 									\
-    grep Version --quiet && echo OK 					\
+    grep Version && echo OK 						\
 "									;
 send_wait_targets "$command" $stack "$targets"				;
 #########################################################################
