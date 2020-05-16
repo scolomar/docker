@@ -37,7 +37,6 @@ function send_command {							\
         Key=tag:"aws:cloudformation:logical-id",Values="$target" 	\
       --query "Command.CommandId" 					\
       --output text 							\
-      2> /dev/null							\
   ) 									;
   echo $CommandId							;
 }									;
@@ -55,11 +54,10 @@ function send_list_command {						\
       aws ssm list-command-invocations 					\
         --command-id $CommandId 					\
         --query "CommandInvocations[].CommandPlugins[].Output" 		\
-        --no-details 							\
+        --details 							\
         --output text 							\
-        2> /dev/null							\
     ) 									;
-    echo $output | grep [a-zA-Z0-9] && break 				;
+    echo $output | grep -vi ERROR | grep [a-zA-Z0-9] && break 		;
     sleep 10								;
   done 									;
 }									;
