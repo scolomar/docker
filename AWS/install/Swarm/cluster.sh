@@ -10,7 +10,12 @@ test -n "$stack"	|| exit 100					;
 #########################################################################
 targets=" InstanceManager1 " 						;
 #########################################################################
-command=" sudo service docker status | grep running --quiet && echo OK ";
+command=" 								\
+  sudo service docker version 						\
+    2> /dev/null 							\
+  | 									\
+    grep Version --quiet && echo OK 					\
+"									;
 send_wait_targets "$command" $stack "$targets"				;
 #########################################################################
 command=" sudo docker swarm init | grep token --max-count 1 " 		;
