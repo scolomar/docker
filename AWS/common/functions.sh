@@ -17,11 +17,10 @@ function exec_remote_file {						\
   local domain=$1							;
   local file=$2								;
   local path=$3								;
-  local pwd=\$PWD && mkdir --parents $path && cd $path                  ;
   curl -O https://$domain/$path/$file                                   ;
   chmod +x ./$file                                                      ;
   ./$file                                                               ;
-  cd $pwd && rm --recursive --force $path                               ;
+  rm --force ./$file		                              		;
 }									;
 #########################################################################
 function send_command {							\
