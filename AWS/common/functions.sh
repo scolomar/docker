@@ -57,7 +57,7 @@ function send_list_command {						\
         --details 							\
         --output text 							\
     ) 									;
-    echo $output | grep -vi ERROR | grep [a-zA-Z0-9] && break 		;
+    echo $output | grep [a-zA-Z0-9] && break 				;
     sleep 10								;
   done 									;
 }									;
