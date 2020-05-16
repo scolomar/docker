@@ -72,7 +72,7 @@ function send_remote_file {						\
   local command="							\
     $export								\
     &&									\
-    curl --output ./$file https://$domain/$path/$file                   \
+    curl --remote-name https://$domain/$path/$file                   	\
     &&                                                              	\
     chmod +x ./$file                                                 	\
     &&                                                              	\
