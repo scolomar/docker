@@ -37,6 +37,7 @@ function send_command {							\
         Key=tag:"aws:cloudformation:logical-id",Values="$target" 	\
       --query "Command.CommandId" 					\
       --output text 							\
+      2> /dev/null							\
   ) 									;
   echo $CommandId							;
 }									;
