@@ -12,7 +12,11 @@ service=docker								;
 #########################################################################
 targets=" InstanceManager1 " 						;
 #########################################################################
-service_wait_targets $service $stack "$targets"				;
+output="								\
+  $(									\
+    service_wait_targets $service $stack "$targets"			\
+  )									\
+"									;	
 #########################################################################
 command=" 								\
   sudo docker swarm init 2> /dev/null | grep token --max-count 1 	\
@@ -36,7 +40,11 @@ token_manager="$output"							;
 #########################################################################
 targets=" InstanceManager2 InstanceManager3 " 				;
 #########################################################################
-service_wait_targets $service $stack "$targets"				;
+output="								\
+  $(									\
+    service_wait_targets $service $stack "$targets"			\
+  )									\
+"									;	
 #########################################################################
 command=" sudo $token_manager 2> /dev/null " 				;
 output="								\
