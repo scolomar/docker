@@ -81,3 +81,13 @@ function send_remote_file {						\
   done                                                                  ;
 }									;
 #########################################################################
+function send_wait_targets {						\
+  local command="$1"							;
+  local stack=$2							;
+  local targets="$3"							;
+  for target in $targets                                                ;
+  do                                                                    \
+    send_list_command "$command" $stack $target                   	;
+  done                                                                  ;
+}									;
+#########################################################################

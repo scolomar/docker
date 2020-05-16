@@ -5,81 +5,37 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-command=" sudo service docker status | grep running --quiet && echo OK ";
+test -n "$debug"	|| exit 100					;
+test -n "$stack"	|| exit 100					;
+#########################################################################
 targets=" InstanceManager1 " 						;
-for target in $targets 							;
-do									\
-  echo "Waiting for $target to complete ..."				;
-  output="$(								\
-    send_list_command "$command" "$stack" "$target"			\
-  )"									;
-  echo $output								;
-done 									;
+#########################################################################
+command=" sudo service docker status | grep running --quiet && echo OK ";
+send_wait_targets "$command" $stack "$targets"				;
 #########################################################################
 command=" sudo docker swarm init | grep token --max-count 1 " 		;
-targets=" InstanceManager1 " 						;
-for target in $targets 							;
-do									\
-  echo "Waiting for $target to complete ..."				;
-  output="$(								\
-    send_list_command "$command" "$stack" "$target"			\
-  )"									;
-done 									;
-token_worker=" $output "						;
+token_worker="$(							\
+  send_wait_targets "$command" $stack "$targets"			\
+  )"									;	
 #########################################################################
 command=" sudo docker swarm join-token manager | grep token " 		;
-targets=" InstanceManager1 " 						;
-for target in $targets 							;
-do									\
-  echo "Waiting for $target to complete ..."				;
-  output="$(								\
-    send_list_command "$command" "$stack" "$target"			\
-  )"									;
-  echo $output								;
-done 									;
-token_manager=" $output "						;
+token_manager="$(							\
+  send_wait_targets "$command" $stack "$targets"			\
+  )"									;	
+#########################################################################
+targets=" InstanceManager2 InstanceManager3 " 				;
 #########################################################################
 command=" sudo service docker status | grep running -q && echo OK "	;
-targets=" InstanceManager2 InstanceManager3 " 				;
-for target in $targets 							;
-do									\
-  echo "Waiting for $target to complete ..."				;
-  output="$(								\
-    send_list_command "$command" "$stack" "$target"			\
-  )"									;
-  echo $output								;
-done 									;
+send_wait_targets "$command" $stack "$targets"				;
 #########################################################################
 command=" sudo $token_manager " 					;
-targets=" InstanceManager2 InstanceManager3 " 				;
-for target in $targets 							;
-do 									\
-  echo "Waiting for $target to complete ..."				;
-  output="$(								\
-    send_list_command "$command" "$stack" "$target"			\
-  )"									;
-  echo $output								;
-done									;
+send_wait_targets "$command" $stack "$targets"				;
+#########################################################################
+targets=" InstanceWorker1 InstanceWorker2 InstanceWorker3 " 		;
 #########################################################################
 command=" sudo service docker status | grep running -q && echo OK "	;
-targets=" InstanceWorker1 InstanceWorker2 InstanceWorker3 " 		;
-for target in $targets 							;
-do									\
-  echo "Waiting for $target to complete ..."				;
-  output="$(								\
-    send_list_command "$command" "$stack" "$target"			\
-  )"									;
-  echo $output								;
-done 									;
+send_wait_targets "$command" $stack "$targets"				;
 #########################################################################
 command=" sudo $token_worker " 						;
-targets=" InstanceWorker1 InstanceWorker2 InstanceWorker3 " 		;
-for target in $targets 							;
-do 									\
-  echo "Waiting for $target to complete ..."				;
-  output="$(								\
-    send_list_command "$command" "$stack" "$target"			\
-  )"									;
-  echo $output								;
-done 									;
+send_wait_targets "$command" $stack "$targets"				;
 #########################################################################
