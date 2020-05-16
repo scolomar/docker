@@ -104,3 +104,13 @@ function send_wait_targets {						\
   done                                                                  ;
 }									;
 #########################################################################
+function service_wait_targets {						\
+  local service=$1							;
+  local stack=$2							;
+  local targets="$3"							;
+  command="                                                             \
+    sudo service $service status 2> /dev/null | grep running		\
+  "                                                                     ;
+  send_wait_targets "$command" $stack "$targets"                        ;
+}									;
+#########################################################################

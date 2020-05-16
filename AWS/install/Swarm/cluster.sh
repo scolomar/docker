@@ -8,15 +8,11 @@ set +x && test "$debug" = true && set -x				;
 test -n "$debug"	|| exit 100					;
 test -n "$stack"	|| exit 100					;
 #########################################################################
+service=docker								;
+#########################################################################
 targets=" InstanceManager1 " 						;
 #########################################################################
-command=" 								\
-  sudo service docker version 						\
-    2> /dev/null 							\
-  | 									\
-    grep Version && echo OK 						\
-"									;
-send_wait_targets "$command" $stack "$targets"				;
+service_wait_targets $service $stack "$targets"				;
 #########################################################################
 command=" sudo docker swarm init | grep token --max-count 1 " 		;
 token_worker="$(							\
@@ -30,16 +26,14 @@ token_manager="$(							\
 #########################################################################
 targets=" InstanceManager2 InstanceManager3 " 				;
 #########################################################################
-command=" sudo service docker status | grep running -q && echo OK "	;
-send_wait_targets "$command" $stack "$targets"				;
+service_wait_targets $service $stack "$targets"				;
 #########################################################################
 command=" sudo $token_manager " 					;
 send_wait_targets "$command" $stack "$targets"				;
 #########################################################################
 targets=" InstanceWorker1 InstanceWorker2 InstanceWorker3 " 		;
 #########################################################################
-command=" sudo service docker status | grep running -q && echo OK "	;
-send_wait_targets "$command" $stack "$targets"				;
+service_wait_targets $service $stack "$targets"				;
 #########################################################################
 command=" sudo $token_worker " 						;
 send_wait_targets "$command" $stack "$targets"				;
