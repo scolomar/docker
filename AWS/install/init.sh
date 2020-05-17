@@ -68,7 +68,7 @@ output="								\
 "									;
 #########################################################################
 file=deploy-ssm.sh      	                                        ;
-path=$username/$repository/master/Shell                                 ;
+path=$AWS/app/Shell                                 			;
 #########################################################################
 export deploy_file=deploy-config.sh                                     ;
 export deploy_path=$username/$repository/master/Shell                   ;
