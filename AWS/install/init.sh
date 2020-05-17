@@ -71,7 +71,7 @@ file=deploy-ssm.sh      	                                        ;
 path=$AWS/app/Shell                                 			;
 #########################################################################
 export deploy_file=deploy-config.sh                                     ;
-export deploy_path=$username/$repository/master/Shell                   ;
+export deploy_path=$path						;
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
@@ -79,7 +79,7 @@ output="								\
 "									;
 #########################################################################
 export deploy_file=deploy.sh						;
-export deploy_path=$username/$repository/master/$mode/Shell		;
+export deploy_path=$AWS/app/$mode/Shell					;
 output="								\
   $(									\
     exec_remote_file $domain $file $path 				; 
@@ -87,7 +87,7 @@ output="								\
 "									;
 #########################################################################
 export deploy_file=remove-config.sh                                     ;
-export deploy_path=$username/$repository/master/Shell                   ;
+export deploy_path=$path						;
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
