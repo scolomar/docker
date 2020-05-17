@@ -10,12 +10,12 @@ test -n "$debug"	|| exit 100					;
 test -n "$deploy"	|| exit 100					;
 test -n "$deploy_file"	|| exit 100					;
 test -n "$deploy_path"	|| exit 100					;
+test -n "$domain"	|| exit 100					;
 test -n "$mode"		|| exit 100					;
 test -n "$repository"	|| exit 100					;
 test -n "$stack"	|| exit 100					;
 test -n "$username"	|| exit 100					;
 #########################################################################
-domain=raw.githubusercontent.com                                        ;
 export=" 								\
   export debug=$debug 							\
 "									;

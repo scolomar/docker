@@ -8,10 +8,10 @@ set +x && test "$debug" = true && set -x 				;
 test -n "$apps"		|| exit 100					;
 test -n "$debug"        || exit 100                                     ;
 test -n "$deploy"       || exit 100                                     ;
+test -n "$domain"       || exit 100                                     ;
 test -n "$repository"	|| exit 100					;
 test -n "$username"	|| exit 100					;
 #########################################################################
-domain=raw.githubusercontent.com                                        ;
 path=$username/$repository/master/$mode/$deploy				;
 #########################################################################
 kubeconfig=" --kubeconfig /etc/kubernetes/admin.conf "			;

@@ -5,11 +5,13 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-domain=raw.githubusercontent.com                                        ;
+test -n "$AWS" 		        || exit 100                             ;        
+test -n "$domain"               || exit 100                             ;        
+#########################################################################
 file=kubernetes.repo							;
 repos=etc/yum.repos.d							;
 #########################################################################
-path=secobau/docker/master/AWS/install/Kubernetes/$repos		;
+path=$AWS/install/Kubernetes/$repos					;
 curl --remote-name https://$domain/$path/$file                          ;
 sudo mv $file /$repos							;
 #########################################################################

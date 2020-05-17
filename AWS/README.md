@@ -8,10 +8,12 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 apps=" app1 app2 app3 "                                                 ;
 apps=" aws2cloud aws2prem "						;
+AWS=secobau/docker/master/AWS						;
 debug=false                                                     	;
 debug=true                                                     		;
 deploy=latest                                                   	;
 deploy=release                                                   	;
+domain=raw.githubusercontent.com					;
 HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
@@ -32,8 +34,10 @@ username=johndoe							;
 username=secobau							;
 #########################################################################
 export apps								;
+export AWS								;
 export debug								;
 export deploy								;
+export domain								;
 export HostedZoneName							;
 export Identifier							;
 export KeyName								;
@@ -45,8 +49,7 @@ export repository							;
 export stack								;
 export username								;
 #########################################################################
-domain=raw.githubusercontent.com					;
-path=secobau/docker/master/AWS/install					;
+path=$AWS/install							;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

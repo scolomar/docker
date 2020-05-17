@@ -5,16 +5,17 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
+test -n "$AWS"			|| exit 100				;
 test -n "$debug"		|| exit 100				;
+test -n "$domain"		|| exit 100				;
 test -n "$stack"		|| exit 100				;
 test -n "$HostedZoneName"	|| exit 100				;
 #########################################################################
-domain=raw.githubusercontent.com                                        ;
 export=" 								\
   export debug=$debug 							\
 "									;
 log=/etc/kubernetes/kubernetes-install.log                              ;
-path=secobau/docker/master/AWS/install/Kubernetes			;
+path=$AWS/install/Kubernetes						;
 #########################################################################
 file=kube-install.sh							;
 targets="								\
