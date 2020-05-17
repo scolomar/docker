@@ -9,6 +9,7 @@ test -n "$apps"		|| exit 100					;
 test -n "$debug"	|| exit 100					;
 test -n "$deploy"	|| exit 100					;
 test -n "$domain"	|| exit 100					;
+test -n "$mode"		|| exit 100					;
 test -n "$repository"	|| exit 100					;
 test -n "$username"	|| exit 100					;
 #########################################################################

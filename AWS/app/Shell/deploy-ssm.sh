@@ -32,6 +32,8 @@ export=" 								\
   &&									\
   export deploy=$deploy							\
   &&									\
+  export domain=$domain							\
+  &&									\
   export mode=$mode							\
   &&									\
   export repository=$repository						\
