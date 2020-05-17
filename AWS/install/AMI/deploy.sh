@@ -8,6 +8,7 @@ set +x && test "$debug" = true && set -x				;
 test -n "$debug" 		|| exit 100				;
 test -n "$HostedZoneName" 	|| exit 100                             ;
 test -n "$Identifier" 		|| exit 100                             ;
+test -n "$KeyName" 		|| exit 100                             ;
 test -n "$mode" 		|| exit 100                             ;
 test -n "$RecordSetName1" 	|| exit 100                             ;
 test -n "$RecordSetName2" 	|| exit 100                             ;
@@ -29,6 +30,7 @@ aws cloudformation create-stack 					\
     ParameterKey=InstanceWorkerInstanceType,ParameterValue=t3a.nano 	\
     ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=Identifier,ParameterValue=$Identifier			\
+    ParameterKey=KeyName,ParameterValue=$KeyName			\
     ParameterKey=RecordSetName1,ParameterValue=$RecordSetName1		\
     ParameterKey=RecordSetName2,ParameterValue=$RecordSetName2		\
     ParameterKey=RecordSetName3,ParameterValue=$RecordSetName3		\

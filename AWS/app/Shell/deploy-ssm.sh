@@ -1,0 +1,46 @@
+#!/bin/bash -x
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
+set +x && test "$debug" = true && set -x 				;
+#########################################################################
+test -n "$apps"		|| exit 100					;
+test -n "$debug"	|| exit 100					;
+test -n "$deploy"	|| exit 100					;
+test -n "$deploy_file"	|| exit 100					;
+test -n "$deploy_path"	|| exit 100					;
+test -n "$mode"		|| exit 100					;
+test -n "$repository"	|| exit 100					;
+test -n "$stack"	|| exit 100					;
+test -n "$username"	|| exit 100					;
+#########################################################################
+domain=raw.githubusercontent.com                                        ;
+export=" 								\
+  export debug=$debug 							\
+"									;
+file=$deploy_file							;
+path=$deploy_path							;
+targets=" 								\
+  InstanceManager1 							\
+"			 						;
+#########################################################################
+export=" 								\
+  $export 								\
+  &&									\
+  export apps=$apps							\
+  &&									\
+  export deploy=$deploy							\
+  &&									\
+  export mode=$mode							\
+  &&									\
+  export repository=$repository						\
+  &&									\
+  export username=$username						\
+"									;
+output="                                                                \
+  $(                                                                    \
+    send_remote_file $domain "$export" $file $path $stack "$targets"    ;
+  )                                                                     \
+"                                                                       ;
+#########################################################################
