@@ -49,7 +49,7 @@ export repository							;
 export stack								;
 export username								;
 #########################################################################
-path=$AWS/install							;
+path=$AWS								;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;
