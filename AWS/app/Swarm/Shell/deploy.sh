@@ -27,10 +27,10 @@ path=$username/$repository/master/$mode/$deploy				;
 #########################################################################
 for app in $apps							;
 do 									\
-  for file in $app.yaml $app-BLUE.yaml					;
+  for name in $app $app-BLUE						;
   do									\
     uuid=$( uuidgen )							;
-    curl --output $uuid https://$domain/$path/$file           		;
+    curl --output $uuid https://$domain/$path/$name.yaml       		;
     sudo docker stack deploy --compose-file $uuid $app 			;
     rm --force $uuid							;
   done									;
