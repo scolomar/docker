@@ -21,7 +21,7 @@ test -n "$repository"           || exit 100                             ;
 test -n "$stack"                || exit 100                             ;       
 test -n "$username"             || exit 100                             ;       
 #########################################################################
-export apps=$apps							;
+export apps="$apps"							;
 export AWS=$AWS								;
 export debug=$debug							;
 export deploy=$deploy							;
@@ -52,17 +52,9 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=deploy.sh                                               		;
-path=$AWS/install/AMI							;
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output
+file=init.sh                                               		;
+path=$AWS/install							;
 #########################################################################
-file=cluster.sh                                               		;
-path=$AWS/install/$mode							;
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;

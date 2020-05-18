@@ -28,7 +28,7 @@ targets=" 								\
 export=" 								\
   $export 								\
   &&									\
-  export apps=$apps							\
+  export apps="$apps"							\
   &&									\
   export deploy=$deploy							\
   &&									\
