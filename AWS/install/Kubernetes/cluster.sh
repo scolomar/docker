@@ -1,4 +1,5 @@
 #!/bin/bash -x
+#	./install/Kubernetes/cluster.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -47,45 +48,39 @@ command="								\
 		certificate-key						\
 		$log							\
 "									;
-token_certificate="							\
-  $(									\
-    encode_string "							\
-      $(								\
-        send_wait_targets "$command" $stack "$targets"			\
-      )									\
-    "									;	
-  )									;
-"									;
+token_certificate=$(							\
+  encode_string "							\
+    $(									\
+      send_wait_targets "$command" $stack "$targets"			\
+    )									\
+  "									;	
+)									;
 #########################################################################
 command="								\
 	grep --max-count 1						\
 		discovery-token-ca-cert-hash				\
 		$log							\
 "									;
-token_discovery="							\
-  $(									\
-    encode_string "							\
-      $(								\
-        send_wait_targets "$command" $stack "$targets"			\
-      )									\
-    "									;	
-  )									;
-"									;
+token_discovery=$(							\
+  encode_string "							\
+    $(									\
+      send_wait_targets "$command" $stack "$targets"			\
+    )									\
+  "									;	
+)									;
 #########################################################################
 command="								\
 	grep --max-count 1						\
 		kubeadm.*join						\
 		$log							\
 "									;
-token_token="								\
-  $(									\
-    encode_string "							\
-      $(								\
-        send_wait_targets "$command" $stack "$targets"			\
-      )									\
-    "									;	
-  )									;
-"									;
+token_token=$(								\
+  encode_string "							\
+    $(									\
+      send_wait_targets "$command" $stack "$targets"			\
+    )									\
+  "									;	
+)									;
 #########################################################################
 export=" 								\
   $export								\
