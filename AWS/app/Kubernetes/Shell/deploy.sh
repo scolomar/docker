@@ -25,14 +25,14 @@ apps="                                                                  \
 kubeconfig=" --kubeconfig /etc/kubernetes/admin.conf "			;
 path=$username/$repository/master/$mode/$deploy				;
 #########################################################################
-for config in $( find /run/configs )					;
+for config in $( find /run/configs -type f )				;
 do									\
   file=$( basename $config )						;
   kubectl create configmap $file --from-file $config $kubeconfig	; 
   rm --force $config							; 
 done									;
 #########################################################################
-for secret in $( find /run/secrets )					;
+for secret in $( find /run/secrets -type f )				;
 do									\
   file=$( basename $secret )						;
   kubectl create secret generic $file --from-file $secret $kubeconfig	;	
@@ -45,7 +45,7 @@ do 									\
   do									\
     uuid=$( uuidgen )							;
     curl --output $uuid https://$domain/$path/$name.yaml       		;
-    kubectl apply --filename $uuid --kubeconfig $kubeconfig		;
+    kubectl apply --filename $uuid $kubeconfig				;
     rm --force $uuid							;
   done									;
 done									;
