@@ -5,8 +5,6 @@
 #########################################################################
 set +x && test "$debug" = true && set -x 				;
 #########################################################################
-echo apps=$apps
-test -n "$apps"		|| exit 100					;
 test -n "$apps"		|| exit 100					;
 test -n "$debug"	|| exit 100					;
 test -n "$deploy"	|| exit 100					;
@@ -15,6 +13,15 @@ test -n "$mode"		|| exit 100					;
 test -n "$repository"	|| exit 100					;
 test -n "$username"	|| exit 100					;
 #########################################################################
+apps="									\
+  $(                                                   			\
+    echo								\
+      $apps                                      			\
+    |                                                               	\
+      base64                                                  		\
+        --decode                                        		\
+  )									\
+"                                                                      	;
 path=$username/$repository/master/$mode/$deploy				;
 #########################################################################
 for app in $apps							;

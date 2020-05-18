@@ -16,6 +16,11 @@ test -n "$repository"	|| exit 100					;
 test -n "$stack"	|| exit 100					;
 test -n "$username"	|| exit 100					;
 #########################################################################
+apps="									\
+  $(									\
+    encode_string "$apps"						\	
+  )									\
+"									;
 export=" 								\
   export debug=$debug 							\
 "									;
@@ -28,7 +33,7 @@ targets=" 								\
 export=" 								\
   $export 								\
   &&									\
-  export apps="$apps"							\
+  export apps=$apps							\
   &&									\
   export deploy=$deploy							\
   &&									\
