@@ -28,17 +28,15 @@ function send_command {							\
   local command="$1" 							;
   local stack="$2" 							;
   local target="$3" 							;
-  local CommandId=$( 							\
-    aws ssm send-command 						\
-      --document-name "AWS-RunShellScript" 				\
-      --parameters commands="$command" 					\
-      --targets 							\
-        Key=tag:"aws:cloudformation:stack-name",Values="$stack" 	\
-        Key=tag:"aws:cloudformation:logical-id",Values="$target" 	\
-      --query "Command.CommandId" 					\
-      --output text 							\
-  ) 									;
-  echo $CommandId							;
+  aws ssm send-command 							\
+    --document-name "AWS-RunShellScript" 				\
+    --parameters commands="$command" 					\
+    --targets 								\
+      Key=tag:"aws:cloudformation:stack-name",Values="$stack" 		\
+      Key=tag:"aws:cloudformation:logical-id",Values="$target" 		\
+    --query "Command.CommandId" 					\
+    --output text 							\
+   									;
 }									;
 #########################################################################
 function send_list_command {						\
@@ -50,14 +48,13 @@ function send_list_command {						\
   ) 									;
   while true 								;
   do									\
-    local output=$( 							\
-      aws ssm list-command-invocations 					\
-        --command-id $CommandId 					\
-        --query "CommandInvocations[].CommandPlugins[].Output" 		\
-        --details 							\
-        --output text 							\
-    ) 									;
-    echo $output | grep [a-zA-Z0-9] && break 				;
+    aws ssm list-command-invocations 					\
+      --command-id $CommandId 						\
+      --query "CommandInvocations[].CommandPlugins[].Output" 		\
+      --details 							\
+      --output text 							\
+    | 									\
+      grep [a-zA-Z0-9] && break 					;
     sleep 10								;
   done 									;
 }									;
@@ -85,11 +82,7 @@ function send_remote_file {						\
   "									;
   for target in $targets                                                ;
   do                                                                    \
-    local output="							\
-      $(								\
-        send_list_command "$command" "$stack" "$target"			\
-      )									\
-    "									;
+    send_list_command "$command" "$stack" "$target"			;
   done                                                                  ;
 }									;
 #########################################################################
@@ -99,7 +92,7 @@ function send_wait_targets {						\
   local targets="$3"							;
   for target in $targets                                                ;
   do                                                                    \
-        send_list_command "$command" $stack $target                   	;
+    send_list_command "$command" $stack $target                   	;
   done                                                                  ;
 }									;
 #########################################################################
