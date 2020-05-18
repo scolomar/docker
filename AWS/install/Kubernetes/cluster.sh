@@ -47,42 +47,45 @@ command="								\
 		certificate-key						\
 		$log							\
 "									;
-output="								\
+token_certificate="							\
   $(									\
-    send_wait_targets "$command" $stack "$targets"			\
-  )									\
-"									;	
-token_certificate=$(							\
-  encode_string "$output"						\
-)									;
+    encode_string "							\
+      $(								\
+        send_wait_targets "$command" $stack "$targets"			\
+      )									\
+    "									;	
+  )									;
+"									;
 #########################################################################
 command="								\
 	grep --max-count 1						\
 		discovery-token-ca-cert-hash				\
 		$log							\
 "									;
-output="								\
+token_discovery="							\
   $(									\
-    send_wait_targets "$command" $stack "$targets"			\
-  )									\
-"									;	
-token_discovery=$(							\
-  encode_string "$output"						\
-)									;
+    encode_string "							\
+      $(								\
+        send_wait_targets "$command" $stack "$targets"			\
+      )									\
+    "									;	
+  )									;
+"									;
 #########################################################################
 command="								\
 	grep --max-count 1						\
 		kubeadm.*join						\
 		$log							\
 "									;
-output="								\
+token_token="								\
   $(									\
-    send_wait_targets "$command" $stack "$targets"			\
-  )									\
-"									;	
-token_token=$(								\
-  encode_string "$output"						\
-)									;
+    encode_string "							\
+      $(								\
+        send_wait_targets "$command" $stack "$targets"			\
+      )									\
+    "									;	
+  )									;
+"									;
 #########################################################################
 export=" 								\
   $export								\

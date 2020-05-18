@@ -45,19 +45,9 @@ export -f service_wait_targets						;
 #########################################################################
 file=deploy.sh                                               		;
 path=$AWS/install/AMI							;
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output
+exec_remote_file $domain $file $path					;
 #########################################################################
 file=cluster.sh                                               		;
 path=$AWS/install/$mode							;
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output
+exec_remote_file $domain $file $path					;
 #########################################################################

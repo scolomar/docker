@@ -40,10 +40,5 @@ export=" 								\
   &&									\
   export username=$username						\
 "									;
-output="                                                                \
-  $(                                                                    \
-    send_remote_file $domain "$export" $file $path $stack "$targets"    ;
-  )                                                                     \
-"                                                                       ;
-echo $output
+send_remote_file $domain "$export" $file $path $stack "$targets"    	;
 #########################################################################
