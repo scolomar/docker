@@ -31,9 +31,10 @@ export stack=$stack	 						;
 #########################################################################
 file=functions.sh                                                       ;
 path=$AWS/common                                 			;
-curl --remote-name https://$domain/$path/$file                          ;
-source ./$file                                                          ;
-rm --force ./$file							;
+uuid=$( uuidgen )							;
+curl --output $uuid https://$domain/$path/$file                         ;
+source ./$uuid                                                          ;
+rm --force ./$uuid							;
 #########################################################################
 export -f encode_string							;
 export -f exec_remote_file						;

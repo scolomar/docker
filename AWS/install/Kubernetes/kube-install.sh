@@ -12,8 +12,9 @@ file=kubernetes.repo							;
 repos=etc/yum.repos.d							;
 #########################################################################
 path=$AWS/install/Kubernetes/$repos					;
-curl --remote-name https://$domain/$path/$file                          ;
-sudo mv $file /$repos							;
+uuid=$( uuidgen )							;
+curl --output $uuid https://$domain/$path/$file                         ;
+sudo mv $uuid /$repos/$file						;
 #########################################################################
 sudo yum install							\
 	--assumeyes							\

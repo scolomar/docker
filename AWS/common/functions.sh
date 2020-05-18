@@ -66,19 +66,20 @@ function send_remote_file {						\
   local path=$4								;
   local stack=$5							;
   local targets="$6"							;
+  local uuid=$( uuidgen )						;
   local command="							\
     $export								\
     &&									\
-    curl --remote-name https://$domain/$path/$file                   	\
+    curl --output $uuid https://$domain/$path/$file             	\
     &&                                                              	\
-    chmod +x ./$file                                                 	\
+    chmod +x $uuid                                              	\
     &&                                                              	\
-    ./$file                                                          	\
+    ./$uuid                                                       	\
       2>&1                                                    		\
     |                                                               	\
-      sudo tee ./$file.log                                     		\
+      tee /root/$file.log                                    		\
       &&                                                              	\
-      rm --force ./$file						\
+      rm --force $uuid							\
   "									;
   for target in $targets                                                ;
   do                                                                    \

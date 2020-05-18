@@ -14,7 +14,7 @@ test -n "$HostedZoneName"	|| exit 100				;
 export=" 								\
   export debug=$debug 							\
 "									;
-log=/etc/kubernetes/kubernetes-install.log                              ;
+log=/root/kubernetes-install.log                              		;
 path=$AWS/install/Kubernetes						;
 #########################################################################
 file=kube-install.sh							;

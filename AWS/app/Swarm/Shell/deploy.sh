@@ -21,10 +21,10 @@ for app in $apps							;
 do 									\
   for file in $app.yaml $app-BLUE.yaml					;
   do									\
-    folder=/root/$( uuidgen )						;
-    curl --output $folder/$file https://$domain/$path/$file           	;
-    sudo docker stack deploy --compose-file $folder/$file $app 		;
-    rm --force $folder/$file						;
+    uuid=$( uuidgen )							;
+    curl --output $uuid https://$domain/$path/$file           		;
+    sudo docker stack deploy --compose-file $uuid $app 			;
+    rm --force $uuid							;
   done									;
 done									;
 #########################################################################

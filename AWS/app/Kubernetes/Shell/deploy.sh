@@ -34,10 +34,10 @@ for app in $apps							;
 do 									\
   for file in $app.yaml $app-BLUE.yaml					;
   do									\
-    folder=/root/$( uuidgen )						;
-    curl --output $folder/$file https://$domain/$path/$file           	;
-    kubectl apply --filename $folder/$file --kubeconfig $kubeconfig	;
-    rm --force $folder/$file						;
+    uuid=$( uuidgen )							;
+    curl --output $uuid https://$domain/$path/$file           		;
+    kubectl apply --filename $uuid --kubeconfig $kubeconfig		;
+    rm --force $uuid							;
   done									;
 done									;
 #########################################################################
