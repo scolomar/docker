@@ -16,7 +16,7 @@ uuid=$( uuidgen )							;
 git clone https://github.com/$username/$repository $uuid		;
 for folder in $folders 							;
 do 									\
-  sudo cp --recursive --verbose $uuid/$folder /root 	 		;
+  sudo cp --recursive --verbose $uuid/$folder /run 	 		;
 done 									;
 sudo rm --recursive --force $uuid 		 			;
 #########################################################################

@@ -12,6 +12,6 @@ folders=" configs secrets " 						;
 #########################################################################
 for folder in $folders 							;
 do 									\
-  sudo rm --recursive --force --verbose /$folder 			;
+  sudo rm --recursive --force --verbose /run/$folder 			;
 done 									;
 #########################################################################
