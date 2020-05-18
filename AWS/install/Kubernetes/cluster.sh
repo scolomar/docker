@@ -18,6 +18,13 @@ export=" 								\
 log=/root/kubernetes-install.log                              		;
 path=$AWS/install/Kubernetes						;
 #########################################################################
+export=" 								\
+  $export								\
+  && 									\
+  export AWS=$AWS							\
+  && 									\
+  export domain=$domain							\
+"									;
 file=kube-install.sh							;
 targets="								\
 	InstanceManager1						\

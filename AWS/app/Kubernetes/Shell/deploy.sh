@@ -13,9 +13,17 @@ test -n "$domain"       || exit 100                                     ;
 test -n "$repository"	|| exit 100					;
 test -n "$username"	|| exit 100					;
 #########################################################################
-path=$username/$repository/master/$mode/$deploy				;
-#########################################################################
+apps="                                                                  \
+  $(                                                                    \
+    echo                                                                \
+      $apps                                                             \
+    |                                                                   \
+      base64                                                            \
+        --decode                                                        \
+  )                                                                     \
+"                                                                       ;
 kubeconfig=" --kubeconfig /etc/kubernetes/admin.conf "			;
+path=$username/$repository/master/$mode/$deploy				;
 #########################################################################
 for config in $( find /run/configs )					;
 do									\
