@@ -31,7 +31,7 @@ do 									\
   do									\
     uuid=$( uuidgen )							;
     curl --output $uuid https://$domain/$path/$name.yaml       		;
-    sudo docker stack deploy --compose-file $uuid $app 			;
+    docker stack deploy --compose-file $uuid $name 			;
     rm --force $uuid							;
   done									;
 done									;
