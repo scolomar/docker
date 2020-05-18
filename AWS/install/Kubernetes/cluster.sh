@@ -94,27 +94,29 @@ export=" 								\
   && 									\
   export HostedZoneName=$HostedZoneName					\
   &&									\
+  export token_certificate=$token_certificate				\
+  &&									\
   export token_discovery=$token_discovery				\
   &&									\
   export token_token=$token_token					\
 "									;
-file=worker.sh								;
+file=manager.sh								;
 targets="								\
-	InstanceWorker1							\
-	InstanceWorker2							\
-	InstanceWorker3							\
+	InstanceManager2						\
+	InstanceManager3						\
 "									;
 send_remote_file $domain "$export" $file $path $stack "$targets"	;
 #########################################################################
 export=" 								\
   $export								\
   &&									\
-  export token_certificate=$token_certificate				\
+  export token_certificate=token_certificate				\
 "									;
-file=manager.sh								;
+file=worker.sh								;
 targets="								\
-	InstanceManager2						\
-	InstanceManager3						\
+	InstanceWorker1							\
+	InstanceWorker2							\
+	InstanceWorker3							\
 "									;
 send_remote_file $domain "$export" $file $path $stack "$targets"	;
 #########################################################################

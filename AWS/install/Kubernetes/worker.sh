@@ -12,7 +12,6 @@ test -n "$log"                	|| exit 100                             ;
 test -n "$token_discovery"      || exit 100                             ;
 test -n "$token_token"          || exit 100                             ;
 #########################################################################
-ip=10.168.1.100                                                         ;
 kube=kube-apiserver.$HostedZoneName					;
 #########################################################################
 token_discovery="$(							\
