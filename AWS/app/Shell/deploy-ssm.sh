@@ -29,6 +29,8 @@ targets=" 								\
   InstanceManager1 							\
 "			 						;
 #########################################################################
+sleep=10								;
+#########################################################################
 export=" 								\
   $export 								\
   &&									\
@@ -44,5 +46,5 @@ export=" 								\
   &&									\
   export username=$username						\
 "									;
-send_remote_file $domain "$export" $file $path $stack "$targets"    	;
+send_remote_file $domain "$export" $file $path $sleep $stack "$targets" ;
 #########################################################################

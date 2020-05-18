@@ -17,6 +17,7 @@ export=" 								\
 "									;
 log=/root/kubernetes-install.log                              		;
 path=$AWS/install/Kubernetes						;
+sleep=10								;
 #########################################################################
 export=" 								\
   $export								\
@@ -34,7 +35,7 @@ targets="								\
 	InstanceWorker2							\
 	InstanceWorker3							\
 "									;
-send_remote_file $domain "$export" $file $path $stack "$targets"	;
+send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
 export=" 								\
   $export								\
@@ -45,10 +46,10 @@ file=leader.sh								;
 targets="								\
 	InstanceManager1						\
 "									;
-send_remote_file $domain "$export" $file $path $stack "$targets"	;
+send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
 file=kube-wait.sh							;
-send_remote_file $domain "$export" $file $path $stack "$targets"	;
+send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
 command="								\
 	grep --max-count 1						\
@@ -58,7 +59,7 @@ command="								\
 token_certificate=$(							\
   encode_string "							\
     $(									\
-      send_wait_targets "$command" $stack "$targets"			\
+      send_wait_targets "$command" $sleep $stack "$targets"		\
     )									\
   "									;	
 )									;
@@ -71,7 +72,7 @@ command="								\
 token_discovery=$(							\
   encode_string "							\
     $(									\
-      send_wait_targets "$command" $stack "$targets"			\
+      send_wait_targets "$command" $sleep $stack "$targets"		\
     )									\
   "									;	
 )									;
@@ -84,7 +85,7 @@ command="								\
 token_token=$(								\
   encode_string "							\
     $(									\
-      send_wait_targets "$command" $stack "$targets"			\
+      send_wait_targets "$command" $sleep $stack "$targets"		\
     )									\
   "									;	
 )									;
@@ -105,7 +106,7 @@ targets="								\
 	InstanceManager2						\
 	InstanceManager3						\
 "									;
-send_remote_file $domain "$export" $file $path $stack "$targets"	;
+send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
 export=" 								\
   $export								\
@@ -118,5 +119,5 @@ targets="								\
 	InstanceWorker2							\
 	InstanceWorker3							\
 "									;
-send_remote_file $domain "$export" $file $path $stack "$targets"	;
+send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################

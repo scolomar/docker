@@ -42,8 +42,9 @@ function send_command {							\
 #########################################################################
 function send_list_command {						\
   local command="$1" 							;
-  local stack=$2 							;
-  local target=$3 							;
+  local sleep=$2							;
+  local stack=$3 							;
+  local target=$4 							;
   local CommandId=$( 							\
     send_command "$command" $stack $target				\
   ) 									;
@@ -56,7 +57,7 @@ function send_list_command {						\
       --output text 							\
     | 									\
       grep [a-zA-Z0-9] && break 					;
-    sleep 10								;
+    sleep $sleep							;
   done 									;
 }									;
 #########################################################################
@@ -65,8 +66,9 @@ function send_remote_file {						\
   local export="$2"							;
   local file=$3								;
   local path=$4								;
-  local stack=$5							;
-  local targets="$6"							;
+  local sleep=$5							;
+  local stack=$6							;
+  local targets="$7"							;
   local uuid=$( uuidgen )						;
   local command="							\
     $export								\
@@ -84,27 +86,29 @@ function send_remote_file {						\
   "									;
   for target in $targets                                                ;
   do                                                                    \
-    send_list_command "$command" "$stack" "$target"			;
+    send_list_command "$command" $sleep $stack $target			;
   done                                                                  ;
 }									;
 #########################################################################
 function send_wait_targets {						\
   local command="$1"							;
-  local stack=$2							;
-  local targets="$3"							;
+  local sleep=$2							;
+  local stack=$3							;
+  local targets="$4"							;
   for target in $targets                                                ;
   do                                                                    \
-    send_list_command "$command" $stack $target                   	;
+    send_list_command "$command" $sleep $stack $target			;
   done                                                                  ;
 }									;
 #########################################################################
 function service_wait_targets {						\
   local service=$1							;
-  local stack=$2							;
-  local targets="$3"							;
+  local sleep=$2							;
+  local stack=$3							;
+  local targets="$4"							;
   command="                                                             \
     sudo service $service status 2> /dev/null | grep running		\
   "                                                                     ;
-  send_wait_targets "$command" $stack "$targets"                   	; 
+  send_wait_targets "$command" $sleep $stack "$targets"                 ; 
 }									;
 #########################################################################
