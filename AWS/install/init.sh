@@ -50,6 +50,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output
 #########################################################################
 file=cluster.sh                                               		;
 path=$AWS/install/$mode							;
@@ -58,4 +59,5 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output
 #########################################################################

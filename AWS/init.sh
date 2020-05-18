@@ -58,6 +58,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output
 #########################################################################
 file=cluster.sh                                               		;
 path=$AWS/install/$mode							;
@@ -66,6 +67,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output
 #########################################################################
 file=deploy-ssm.sh      	                                        ;
 path=$AWS/app/Shell                                 			;
@@ -77,6 +79,7 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output
 #########################################################################
 export deploy_file=deploy.sh						;
 export deploy_path=$AWS/app/$mode/Shell					;
@@ -85,6 +88,7 @@ output="								\
     exec_remote_file $domain $file $path 				; 
   )									\
 "									;
+echo $output
 #########################################################################
 export deploy_file=remove-config.sh                                     ;
 export deploy_path=$path						;
@@ -93,4 +97,5 @@ output="								\
     exec_remote_file $domain $file $path				;
   )									\
 "									;
+echo $output
 #########################################################################

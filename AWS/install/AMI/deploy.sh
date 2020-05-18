@@ -44,17 +44,15 @@ aws cloudformation create-stack 					\
 #########################################################################
 while true 								;
 do 									\
-  output=$( 								\
-    aws cloudformation describe-stacks 					\
-      --query 								\
-        "Stacks[].StackStatus" 						\
-      --output 								\
-        text 								\
-      --stack-name 							\
-        $stack 								\
-  ) 									;
-  echo $output | grep CREATE_COMPLETE && break 				;
+  aws cloudformation describe-stacks 					\
+    --query 								\
+      "Stacks[].StackStatus" 						\
+    --output 								\
+      text 								\
+    --stack-name 							\
+      $stack 								\
+  | 									\
+    grep CREATE_COMPLETE && break 					;
   sleep 100 								;
 done									;
-echo $output								;
 #########################################################################

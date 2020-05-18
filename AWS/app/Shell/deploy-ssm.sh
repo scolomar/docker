@@ -45,4 +45,5 @@ output="                                                                \
     send_remote_file $domain "$export" $file $path $stack "$targets"    ;
   )                                                                     \
 "                                                                       ;
+echo $output
 #########################################################################
