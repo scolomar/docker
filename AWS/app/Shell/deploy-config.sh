@@ -11,12 +11,16 @@ test -n "$repository"	|| exit 100					;
 test -n "$username"	|| exit 100					;
 #########################################################################
 folders=" configs secrets " 						;
+umask_new=0077								;
+umask_old=$( umask ) 							;
 #########################################################################
+umask $umask_new							;
 uuid=$( uuidgen )							;
-git clone https://github.com/$username/$repository $uuid		;
+git clone https://github.com/$username/$repository /root/$uuid		;
 for folder in $folders 							;
 do 									\
-  sudo cp --recursive --verbose $uuid/$folder /run 	 		;
+  sudo cp --recursive --verbose /root/$uuid/run/$folder /run  		;
 done 									;
-sudo rm --recursive --force $uuid 		 			;
+sudo rm --recursive --force /root/$uuid 		 		;
+umask $umask_old							;
 #########################################################################
