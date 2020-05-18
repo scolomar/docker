@@ -13,6 +13,7 @@ calico=https://docs.projectcalico.org/v3.14/manifests			;
 cidr=192.168.0.0/16							;
 ip=10.168.1.100                                                         ;
 kube=kube-apiserver.sebastian-colomar.com                               ;
+kubeconfig=/etc/kubernetes/admin.conf 					;
 #########################################################################
 while true								;
 do									\
@@ -43,7 +44,7 @@ sudo kubectl apply							\
 	--filename							\
 		$calico/calico.yaml					\
 	--kubeconfig							\
-		/etc/kubernetes/admin.conf				\
+                $kubeconfig						\
 	2>&1								\
 	|								\
 		sudo tee --append $log					\

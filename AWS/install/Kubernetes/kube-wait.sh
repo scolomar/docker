@@ -8,32 +8,28 @@ set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
 #########################################################################
+kubeconfig=/etc/kubernetes/admin.conf                   		;
+#########################################################################
 USER=ssm-user								;
 HOME=/home/$USER							;
 while true								;
 do									\
-	test								\
-		-f							\
-			$HOME/.kube/config				\
-	&&								\
-	break								\
+  test -f $HOME/.kube/config						\
+  &&									\
+  break									\
 									;
 done									;	
 #########################################################################
 while true								;
 do									\
-	su --login $USER --command "					\
-			kubectl get node				\
-		"							\
-		|							\
-			grep						\
-				Ready					\
-			|						\
-				grep					\
-					--invert-match			\
-						NotReady		\
-				&&					\
-				break					\
+  kubectl get node							\
+    --kubeconfig $kubeconfig						\
+  |									\
+    grep Ready								\
+    |									\
+      grep --invert-match NotReady					\
+      &&								\
+      break								\
 									;
 done									;
 #########################################################################
