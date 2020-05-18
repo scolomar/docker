@@ -52,8 +52,18 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=init.sh                                               		;
-path=$AWS/install							;
+file=deploy.sh                                               		;
+path=$AWS/install/AMI							;
+#########################################################################
+output="								\
+  $(									\
+    exec_remote_file $domain $file $path				;
+  )									\
+"									;
+echo $output
+#########################################################################
+file=cluster.sh                                               		;
+path=$AWS/install/$mode							;
 #########################################################################
 output="								\
   $(									\
