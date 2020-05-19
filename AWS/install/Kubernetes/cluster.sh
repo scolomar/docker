@@ -40,6 +40,8 @@ send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 export=" 								\
   $export								\
   && 									\
+  export HostedZoneName=$HostedZoneName					\
+  && 									\
   export log=$log							\
 "									;
 file=leader.sh								;
@@ -92,8 +94,6 @@ token_token=$(								\
 #########################################################################
 export=" 								\
   $export								\
-  && 									\
-  export HostedZoneName=$HostedZoneName					\
   &&									\
   export token_certificate=$token_certificate				\
   &&									\
@@ -108,10 +108,10 @@ targets="								\
 "									;
 send_remote_file $domain "$export" $file $path $sleep $stack "$targets"	;
 #########################################################################
+unset token_certificate							;
+#########################################################################
 export=" 								\
   $export								\
-  &&									\
-  export token_certificate=token_certificate				\
 "									;
 file=worker.sh								;
 targets="								\

@@ -7,12 +7,13 @@
 set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$debug"                || exit 100                             ;
+test -n "$HostedZoneName"       || exit 100                             ;
 test -n "$log"                  || exit 100                             ;
 #########################################################################
 calico=https://docs.projectcalico.org/v3.14/manifests			;
 cidr=192.168.0.0/16							;
 ip=10.168.1.100                                                         ;
-kube=kube-apiserver.sebastian-colomar.com                               ;
+kube=kube-apiserver.$HostedZoneName                                     ;
 kubeconfig=/etc/kubernetes/admin.conf 					;
 #########################################################################
 while true								;
@@ -61,6 +62,4 @@ echo									\
 	|								\
 		tee --append $HOME/.bashrc				\
 									;
-#########################################################################
-sed --in-place /$kube/d /etc/hosts					;
 #########################################################################
