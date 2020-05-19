@@ -1,6 +1,5 @@
 services:
   web:
-    container_name: petclinic
     deploy:
       placement:
         constraints:
