@@ -1,0 +1,49 @@
+services:
+  hasher:
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      replicas: 1
+      restart_policy:
+        condition: any
+    image: dockercoins/hasher
+  redis:
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      replicas: 1
+      restart_policy:
+        condition: any
+    image: redis
+  rng:
+    deploy:
+      mode: global
+      placement:
+        constraints:
+        - node.role == worker
+      restart_policy:
+        condition: any
+    image: dockercoins/rng
+  webui:
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      replicas: 1
+      restart_policy:
+        condition: any
+    image: dockercoins/webui
+    ports:
+    - "30001:80"
+  worker:
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      replicas: 1
+      restart_policy:
+        condition: any
+    image: dockercoins/worker
+version: "3.8"

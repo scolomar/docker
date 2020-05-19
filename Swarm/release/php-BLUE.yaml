@@ -1,0 +1,13 @@
+services:
+  php:
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      replicas: 3
+      restart_policy:
+        condition: any
+    image: secobau/php:rc-apache-1.1
+    ports:
+    - "31003:80"
+version: "3.8"

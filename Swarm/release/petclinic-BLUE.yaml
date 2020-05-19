@@ -1,0 +1,14 @@
+services:
+  web:
+    container_name: petclinic
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      replicas: 1
+      restart_policy:
+        condition: any
+    image: petclinic
+    ports:
+      - 31002:8080
+version: '3.8'
