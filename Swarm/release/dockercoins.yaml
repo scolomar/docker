@@ -25,7 +25,7 @@ services:
         - node.role == worker
       restart_policy:
         condition: any
-    image: dockercoins/rng:v0.2
+    image: dockercoins/rng:v0.4
   webui:
     deploy:
       placement:
