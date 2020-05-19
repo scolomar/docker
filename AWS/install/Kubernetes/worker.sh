@@ -29,11 +29,11 @@ token_token="$(								\
 			--decode					\
 )"							         	;
 #########################################################################
-echo $ip $kube | sudo tee --append /etc/hosts                           ;
+echo $ip $kube | tee --append /etc/hosts                           	;
 #########################################################################
 while true								;
 do									\
-        sudo systemctl							\
+        systemctl							\
 		is-enabled						\
 			kubelet                               		\
 	|								\
@@ -42,13 +42,12 @@ do									\
                                                                         ;
 done									;	
 #########################################################################
-sudo									\
-	$token_token                                            	\
+$token_token                                            		\
 	$token_discovery                                        	\
 	--ignore-preflight-errors					\
 		all							\
 	2>&1								\
 	|								\
-		sudo tee $log						\
+		tee $log						\
 									;
 #########################################################################

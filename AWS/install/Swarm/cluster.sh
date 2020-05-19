@@ -17,7 +17,7 @@ targets=" InstanceManager1 " 						;
 service_wait_targets $service $sleep $stack "$targets"			;
 #########################################################################
 command=" 								\
-  sudo docker swarm init 2> /dev/null | grep token --max-count 1 	\
+  docker swarm init 2> /dev/null | grep token --max-count 1 		\
 " 									;
 token_worker="								\
   $(									\
@@ -26,7 +26,7 @@ token_worker="								\
 "									;	
 #########################################################################
 command=" 								\
-  sudo docker swarm join-token manager 2> /dev/null | grep token 	\
+  docker swarm join-token manager 2> /dev/null | grep token 		\
 " 									;
 token_manager="								\
   $(									\
@@ -38,13 +38,13 @@ targets=" InstanceManager2 InstanceManager3 " 				;
 #########################################################################
 service_wait_targets $service $sleep $stack "$targets"			;
 #########################################################################
-command=" sudo $token_manager 2> /dev/null " 				;
+command=" $token_manager 2> /dev/null " 				;
 send_wait_targets "$command" $sleep $stack "$targets"			;
 #########################################################################
 targets=" InstanceWorker1 InstanceWorker2 InstanceWorker3 " 		;
 #########################################################################
 service_wait_targets $service $sleep $stack "$targets"			;
 #########################################################################
-command=" sudo $token_worker 2> /dev/null " 				;
+command=" $token_worker 2> /dev/null " 					;
 send_wait_targets "$command" $sleep $stack "$targets"			;
 #########################################################################

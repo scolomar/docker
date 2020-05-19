@@ -8,13 +8,13 @@ export debug=$debug							;
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-sudo yum update -y							;
-sudo amazon-linux-extras install docker -y				;
-sudo systemctl enable docker						;
-sudo systemctl start docker						;
+yum update -y								;
+amazon-linux-extras install docker -y					;
+systemctl enable docker							;
+systemctl start docker							;
 while true								;
 do 									\
-  sudo service docker status | grep running -q && break			;
+  service docker status | grep running -q && break			;
   sleep 10								;
 done									;
 #########################################################################

@@ -107,7 +107,7 @@ function service_wait_targets {						\
   local stack=$3							;
   local targets="$4"							;
   command="                                                             \
-    sudo service $service status 2> /dev/null | grep running		\
+    service $service status 2> /dev/null | grep running			\
   "                                                                     ;
   send_wait_targets "$command" $sleep $stack "$targets"                 ; 
 }									;

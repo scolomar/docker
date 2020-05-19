@@ -18,7 +18,7 @@ kubeconfig=/etc/kubernetes/admin.conf 					;
 #########################################################################
 while true								;
 do									\
-        sudo systemctl							\
+        systemctl							\
 		is-enabled						\
 			kubelet                               		\
 	|								\
@@ -27,8 +27,8 @@ do									\
                                                                         ;
 done									;	
 #########################################################################
-echo $ip $kube | sudo tee --append /etc/hosts                           ;
-sudo kubeadm init							\
+echo $ip $kube | tee --append /etc/hosts                           	;
+kubeadm init								\
 	--upload-certs							\
 	--control-plane-endpoint					\
 		"$kube"							\
@@ -38,25 +38,25 @@ sudo kubeadm init							\
 		all							\
 	2>&1								\
 	|								\
-		sudo tee --append $log					\
+		tee --append $log					\
 									;
 #########################################################################
-sudo kubectl apply							\
+kubectl apply								\
 	--filename							\
 		$calico/calico.yaml					\
 	--kubeconfig							\
                 $kubeconfig						\
 	2>&1								\
 	|								\
-		sudo tee --append $log					\
+		tee --append $log					\
 									;
 #########################################################################
 userID=1001								;
 USER=ssm-user								;
 HOME=/home/$USER							;
 mkdir -p $HOME/.kube							;
-sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
-sudo chown -R $userID:$userID $HOME					;
+cp /etc/kubernetes/admin.conf $HOME/.kube/config			;
+chown -R $userID:$userID $HOME						;
 echo									\
 	'source <(kubectl completion bash)'				\
 	|								\

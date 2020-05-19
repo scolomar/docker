@@ -38,11 +38,11 @@ token_token="$(								\
 			--decode					\
 )"							         	;
 #########################################################################
-echo $ip $kube | sudo tee --append /etc/hosts                           ;
+echo $ip $kube | tee --append /etc/hosts                           	;
 #########################################################################
 while true								;
 do									\
-        sudo systemctl							\
+        systemctl							\
 		is-enabled						\
 			kubelet                               		\
 	|								\
@@ -51,23 +51,22 @@ do									\
                                                                         ;
 done									;	
 #########################################################################
-sudo									\
-	$token_token                                            	\
+$token_token                                            		\
 	$token_discovery                                        	\
 	$token_certificate                                      	\
 	--ignore-preflight-errors					\
 		all							\
 	2>&1								\
 	|								\
-		sudo tee $log						\
+		tee $log						\
 									;
 #########################################################################
 userID=1001                                                             ;
 USER=ssm-user                                                           ;
 HOME=/home/$USER                                                        ;
 mkdir -p $HOME/.kube                                                    ;
-sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config                   ;
-sudo chown -R $userID:$userID $HOME                                     ;
+cp /etc/kubernetes/admin.conf $HOME/.kube/config                   	;
+chown -R $userID:$userID $HOME                                     	;
 echo                                                                    \
         'source <(kubectl completion bash)'                             \
         |                                                               \
