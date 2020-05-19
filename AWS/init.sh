@@ -12,15 +12,15 @@ test -n "$debug"                || exit 100                             ;
 test -n "$deploy" 		|| exit 100				;
 test -n "$domain" 		|| exit 100				;
 test -n "$HostedZoneName"       || exit 100                             ;
-test -n "$Identifier"           || exit 100                             ;  
-test -n "$KeyName"	        || exit 100                             ;  
-test -n "$mode"                 || exit 100                             ;        
-test -n "$RecordSetName1"       || exit 100                             ;     
-test -n "$RecordSetName2"       || exit 100                             ;     
-test -n "$RecordSetName3"       || exit 100                             ;     
-test -n "$repository"           || exit 100                             ;       
-test -n "$stack"                || exit 100                             ;       
-test -n "$username"             || exit 100                             ;       
+test -n "$Identifier"           || exit 100                             ; 
+test -n "$KeyName"	        || exit 100                             ; 
+test -n "$mode"                 || exit 100                             ;
+test -n "$RecordSetName1"       || exit 100                             ;
+test -n "$RecordSetName2"       || exit 100                             ;
+test -n "$RecordSetName3"       || exit 100                             ;
+test -n "$repository"           || exit 100                             ;
+test -n "$stack"                || exit 100                             ;
+test -n "$username"             || exit 100                             ;
 #########################################################################
 export apps="$apps"							;
 export AWS=$AWS								;
@@ -41,6 +41,7 @@ export username=$username 						;
 file=functions.sh                                                       ;
 path=$AWS/common                                 			;
 uuid=$( uuidgen )							;
+#########################################################################
 curl --output $uuid https://$domain/$path/$file                         ;
 source ./$uuid                                                          ;
 rm --force ./$uuid							;
@@ -78,6 +79,7 @@ path=$AWS/app/Shell                                 			;
 #########################################################################
 export deploy_file=deploy-config.sh                                     ;
 export deploy_path=$path						;
+#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
@@ -87,6 +89,7 @@ echo $output
 #########################################################################
 export deploy_file=deploy.sh						;
 export deploy_path=$AWS/app/$mode/Shell					;
+#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path 				; 
@@ -96,6 +99,7 @@ echo $output
 #########################################################################
 export deploy_file=remove-config.sh                                     ;
 export deploy_path=$path						;
+#########################################################################
 output="								\
   $(									\
     exec_remote_file $domain $file $path				;
