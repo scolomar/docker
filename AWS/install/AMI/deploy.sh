@@ -9,8 +9,8 @@ set +x && test "$debug" = true && set -x				;
 test -n "$debug" 		|| exit 100				;
 test -n "$HostedZoneName" 	|| exit 100                             ;
 test -n "$Identifier" 		|| exit 100                             ;
-test -n "$InstTypeMng"      	|| exit 100    				;
-test -n "$InstTypeWrk"      	|| exit 100    				;
+test -n "$TypeManager"      	|| exit 100    				;
+test -n "$TypeWorker"      	|| exit 100    				;
 test -n "$KeyName" 		|| exit 100                             ;
 test -n "$mode" 		|| exit 100                             ;
 test -n "$RecordSetName1" 	|| exit 100                             ;
@@ -27,8 +27,8 @@ aws cloudformation create-stack 					\
   --capabilities 							\
     $caps 								\
   --parameters 								\
-    ParameterKey=InstanceManagerInstanceType,ParameterValue=$InstTypeMng\
-    ParameterKey=InstanceWorkerInstanceType,ParameterValue=$InstTypeWrk \
+    ParameterKey=InstanceManagerInstanceType,ParameterValue=$TypeManager\
+    ParameterKey=InstanceWorkerInstanceType,ParameterValue=$TypeWorker  \
     ParameterKey=HostedZoneName,ParameterValue=$HostedZoneName		\
     ParameterKey=Identifier,ParameterValue=$Identifier			\
     ParameterKey=KeyName,ParameterValue=$KeyName			\
