@@ -8,12 +8,10 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 apps=" app1 app2 app3 "                                                 ;
 apps=" aws2cloud aws2prem "						;
-AWS=secobau/docker/master/AWS						;
 debug=false                                                     	;
 debug=true                                                     		;
 deploy=latest                                                   	;
 deploy=release                                                   	;
-domain=raw.githubusercontent.com					;
 HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
@@ -29,15 +27,16 @@ RecordSetName2=aws2prem                                   		;
 RecordSetName3=service-3                                   		;
 repository=myproject							;
 repository=proxy2aws							;
-stack=$repository                                                     	;
+stack=mystack                                                     	;
+stack=proxy2aws                                                     	;
 username=johndoe							;
 username=secobau							;
 #########################################################################
 export apps								;
-export AWS								;
+export AWS=secobau/docker/master/AWS					;
 export debug								;
 export deploy								;
-export domain								;
+export domain=raw.githubusercontent.com					;
 export HostedZoneName							;
 export Identifier							;
 export KeyName								;
