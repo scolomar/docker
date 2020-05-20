@@ -14,8 +14,8 @@ HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         ;
-TypeManager=t3a.nano                                                    ;
-TypeWorker=t3a.nano                                                     ;
+TypeManager=t3a.micro                                                   ;
+TypeWorker=t3a.micro                                                    ;
 KeyName=mySSHpublicKey							;
 KeyName=proxy2aws							;
 mode=Kubernetes                                                       	;
