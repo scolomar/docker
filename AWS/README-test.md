@@ -14,8 +14,6 @@ HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         ;
-TypeManager=t3a.micro                                                   ;
-TypeWorker=t3a.micro                                                    ;
 KeyName=mySSHpublicKey							;
 KeyName=proxy2aws							;
 mode=Kubernetes                                                       	;
@@ -28,16 +26,16 @@ RecordSetName3=service-3                                   		;
 RecordSetName3=php                                   			;
 stack=mystack                                                     	;
 stack=docker                                                     	;
+TypeManager=t3a.micro                                                   ;
+TypeWorker=t3a.micro                                                    ;
 #########################################################################
-export apps=" dockercoins petclinic php "				;
+export apps=" dockercoins.yaml petclinic.yaml php.yaml "		;
 export AWS=secobau/docker/master/AWS					;
 export debug								;
 export deploy								;
 export domain=raw.githubusercontent.com					;
 export HostedZoneName							;
 export Identifier							;
-export TypeManager                                                      ;
-export TypeWorker                                                       ;
 export KeyName								;
 export mode								;
 export RecordSetName1							;
@@ -45,6 +43,8 @@ export RecordSetName2							;
 export RecordSetName3							;
 export repository=docker						;
 export stack								;
+export TypeManager                                                      ;
+export TypeWorker                                                       ;
 export username=secobau							;
 #########################################################################
 path=$AWS								;

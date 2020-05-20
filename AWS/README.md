@@ -6,8 +6,8 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-apps=" app1 app2 app3 "                                                 ;
-apps=" aws2cloud aws2prem "						;
+apps=" app1.yml app2.yml app3.yml "                                     ;
+apps=" aws2cloud.yaml aws2prem.yaml "					;
 debug=false                                                     	;
 debug=true                                                     		;
 deploy=latest                                                   	;
@@ -16,8 +16,6 @@ HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         ;
-TypeManager=t3a.nano                                                    ;
-TypeWorker=t3a.nano                                                     ;
 KeyName=mySSHpublicKey							;
 KeyName=proxy2aws							;
 mode=Kubernetes                                                       	;
@@ -31,6 +29,8 @@ repository=myproject							;
 repository=proxy2aws							;
 stack=mystack                                                     	;
 stack=proxy2aws                                                     	;
+TypeManager=t3a.nano                                                    ;
+TypeWorker=t3a.nano                                                     ;
 username=johndoe							;
 username=secobau							;
 #########################################################################
@@ -41,8 +41,6 @@ export deploy								;
 export domain=raw.githubusercontent.com					;
 export HostedZoneName							;
 export Identifier							;
-export TypeManager							;
-export TypeWorker							;
 export KeyName								;
 export mode								;
 export RecordSetName1							;
@@ -50,6 +48,8 @@ export RecordSetName2							;
 export RecordSetName3							;
 export repository							;
 export stack								;
+export TypeManager							;
+export TypeWorker							;
 export username								;
 #########################################################################
 path=$AWS								;
