@@ -6,14 +6,10 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-apps=" app1 app2 app3 "                                                 ;
-apps=" dockercoins petclinic php "					;
-AWS=secobau/docker/master/AWS						;
 debug=false                                                     	;
 debug=true                                                     		;
 deploy=latest                                                   	;
 deploy=release                                                   	;
-domain=raw.githubusercontent.com					;
 HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
@@ -28,17 +24,14 @@ RecordSetName2=service-2                                   		;
 RecordSetName2=petclinic                                   		;
 RecordSetName3=service-3                                   		;
 RecordSetName3=php                                   			;
-repository=myproject							;
-repository=docker							;
-stack=$repository                                                     	;
-username=johndoe							;
-username=secobau							;
+stack=mystack                                                     	;
+stack=docker                                                     	;
 #########################################################################
-export apps								;
-export AWS								;
+export apps=" dockercoins petclinic php "				;
+export AWS=secobau/docker/master/AWS					;
 export debug								;
 export deploy								;
-export domain								;
+export domain=raw.githubusercontent.com					;
 export HostedZoneName							;
 export Identifier							;
 export KeyName								;
@@ -46,9 +39,9 @@ export mode								;
 export RecordSetName1							;
 export RecordSetName2							;
 export RecordSetName3							;
-export repository							;
+export repository=docker						;
 export stack								;
-export username								;
+export username=secobau							;
 #########################################################################
 path=$AWS								;
 file=init.sh								;
