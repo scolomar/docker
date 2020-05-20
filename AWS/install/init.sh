@@ -6,29 +6,17 @@
 #########################################################################
 set +x && test "$debug" = true && set -x				;
 #########################################################################
-test -n "$AWS"	                || exit 100                             ;
-test -n "$debug"                || exit 100                             ;
-test -n "$domain" 		|| exit 100				;
-test -n "$HostedZoneName"       || exit 100                             ;
-test -n "$Identifier"           || exit 100                             ;  
-test -n "$KeyName"	        || exit 100                             ;  
-test -n "$mode"                 || exit 100                             ;        
-test -n "$RecordSetName1"       || exit 100                             ;     
-test -n "$RecordSetName2"       || exit 100                             ;     
-test -n "$RecordSetName3"       || exit 100                             ;     
-test -n "$stack"                || exit 100                             ;       
-#########################################################################
-export AWS=$AWS								;
-export debug=$debug							;
-export domain=$domain							;
-export HostedZoneName=$HostedZoneName					;
-export Identifier=$Identifier						;
-export KeyName=$KeyName							;
-export mode=$mode							;
-export RecordSetName1=$RecordSetName1					;
-export RecordSetName2=$RecordSetName2					;
-export RecordSetName3=$RecordSetName3					;
-export stack=$stack	 						;
+test -n "$AWS"	                && export AWS            || exit 100    ;
+test -n "$debug"                && export debug          || exit 100    ;
+test -n "$domain" 		&& export domain         || exit 100    ;
+test -n "$HostedZoneName"       && export HostedZoneName || exit 100    ;
+test -n "$Identifier"           && export Identifier     || exit 100    ;  
+test -n "$KeyName"	        && export KeyName        || exit 100    ;  
+test -n "$mode"                 && export mode           || exit 100    ;        
+test -n "$RecordSetName1"       && export RecordSetName1 || exit 100    ;     
+test -n "$RecordSetName2"       && export RecordSetName2 || exit 100    ;     
+test -n "$RecordSetName3"       && export RecordSetName3 || exit 100    ;     
+test -n "$stack"                && export stack          || exit 100    ;       
 #########################################################################
 file=functions.sh                                                       ;
 path=$AWS/common                                 			;

@@ -30,10 +30,8 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-AWS=secobau/docker/master/AWS						;
 debug=false                                                     	;
 debug=true                                                     		;
-domain=raw.githubusercontent.com					;
 HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
@@ -49,9 +47,9 @@ RecordSetName2=aws2prem                                   		;
 RecordSetName3=service-3                                   		;
 stack=docker                                                     	;
 #########################################################################
-export AWS								;
+export AWS=secobau/docker/master/AWS					;
 export debug								;
-export domain								;
+export domain=raw.githubusercontent.com					;
 export HostedZoneName							;
 export Identifier							;
 export KeyName								;
