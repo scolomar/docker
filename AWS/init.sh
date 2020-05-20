@@ -13,6 +13,8 @@ test -n "$deploy" 		&& export deploy	 || exit 100	;
 test -n "$domain" 		&& export domain	 || exit 100	;
 test -n "$HostedZoneName"       && export HostedZoneName || exit 100    ;
 test -n "$Identifier"           && export Identifier	 || exit 100    ; 
+test -n "$InstTypeMng 		&& export InstTypeMng	 || exit 100 	;
+test -n "$InstTypeWrk 		&& export InstTypeWrk	 || exit 100 	;
 test -n "$KeyName"	        && export KeyName	 || exit 100    ; 
 test -n "$mode"                 && export mode		 || exit 100    ;
 test -n "$RecordSetName1"       && export RecordSetName1 || exit 100    ;
