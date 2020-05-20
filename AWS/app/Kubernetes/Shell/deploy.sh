@@ -47,10 +47,12 @@ done									;
 #########################################################################
 for app in $apps							;
 do 									\
-  for name in $app $app-BLUE    					;
+  prefix=$( echo $app | cut --delimiter . --field 1 )			;
+  suffix=$( echo $app | cut --delimiter . --field 2 )			;
+  for name in $prefix $prefix-BLUE					;
   do									\
     uuid=$( uuidgen )							;
-    curl --output $uuid https://$domain/$path/$name.yaml       		;
+    curl --output $uuid https://$domain/$path/$name.$suffix     	;
     kubectl apply --filename $uuid --kubeconfig $kubeconfig		;
     rm --force $uuid							;
   done									;

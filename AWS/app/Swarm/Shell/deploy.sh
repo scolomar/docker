@@ -27,10 +27,12 @@ path=$username/$repository/master/$mode/$deploy				;
 #########################################################################
 for app in $apps							;
 do 									\
-  for name in $app $app-BLUE						;
+  prefix=$( echo $app | cut --delimiter . --field 1 )			;
+  suffix=$( echo $app | cut --delimiter . --field 2 )			;
+  for name in $prefix $prefix-BLUE					;
   do									\
     uuid=$( uuidgen )							;
-    curl --output $uuid https://$domain/$path/$name.yaml       		;
+    curl --output $uuid https://$domain/$path/$name.$suffix     	;
     docker stack deploy --compose-file $uuid $name 			;
     rm --force $uuid							;
   done									;
