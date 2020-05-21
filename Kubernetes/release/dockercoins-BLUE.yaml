@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: redis-blue
-        image: redis-blue
+        image: redis
 ---
 apiVersion: apps/v1
 kind: Deployment
