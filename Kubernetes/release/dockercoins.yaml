@@ -4,7 +4,7 @@
 #########################################################################
 ---
 apiVersion: apps/v1
-kind: Daemonset
+kind: DaemonSet
 metadata:
   name: rng
 spec:
