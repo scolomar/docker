@@ -45,7 +45,10 @@ RecordSetName1=aws2cloud                                   		;
 RecordSetName2=service-2                                   		;
 RecordSetName2=aws2prem                                   		;
 RecordSetName3=service-3                                   		;
+stack=mystack                                                     	;
 stack=docker                                                     	;
+TypeManager=t3a.micro                                                   ;
+TypeWorker=t3a.micro                                                    ;
 #########################################################################
 export AWS=secobau/docker/master/AWS					;
 export debug								;
@@ -58,6 +61,8 @@ export RecordSetName1							;
 export RecordSetName2							;
 export RecordSetName3							;
 export stack								;
+export TypeManager                                                      ;
+export TypeWorker                                                       ;
 #########################################################################
 path=$AWS/install							;
 file=init.sh								;
