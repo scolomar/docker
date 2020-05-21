@@ -65,3 +65,19 @@ nohup ./$file								&
 
 ```
 
+
+You can optionally remove the AWS infrastructure created in CloudFormation otherwise you might be charged for any created object:
+
+
+```BASH
+
+
+#########################################################################
+## TO REMOVE THE CLOUDFORMATION STACK                           	#
+aws cloudformation delete-stack --stack-name $stack             	;
+#########################################################################
+
+
+```
+
+
