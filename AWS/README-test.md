@@ -47,7 +47,7 @@ export TypeManager                                                      ;
 export TypeWorker                                                       ;
 export username=secobau							;
 #########################################################################
-path=$AWS								;
+path=$AWS/Shell								;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

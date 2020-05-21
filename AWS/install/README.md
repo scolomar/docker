@@ -64,7 +64,7 @@ export stack								;
 export TypeManager                                                      ;
 export TypeWorker                                                       ;
 #########################################################################
-path=$AWS/install							;
+path=$AWS/install/Shell							;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

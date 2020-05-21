@@ -1,6 +1,6 @@
 This project will allow you to deploy a containerized application in AWS on a production-grade highly available and secure infrastructure consisting of private and public subnets, NAT gateways, security groups and application load balancers in order to ensure the isolation and resilience of the different components.
 
-The following script will first create the infrastructure and then deploy your application. You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
+The following script will deploy your application in a previously created cluster. You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
 You may also configure the variables so as to customize the setup:
 
 ```BASH 
@@ -52,7 +52,7 @@ export TypeManager							;
 export TypeWorker							;
 export username								;
 #########################################################################
-path=$AWS/Shell								;
+path=$AWS/app/Shell							;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

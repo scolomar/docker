@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/init.sh
+#	./install/Shell/init.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #

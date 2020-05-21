@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./init.sh
+#	./app/Shell/init.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -11,15 +11,7 @@ test -n "$AWS"	                && export AWS            || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
 test -n "$deploy" 		&& export deploy	 || exit 100	;
 test -n "$domain" 		&& export domain	 || exit 100	;
-test -n "$HostedZoneName"       && export HostedZoneName || exit 100    ;
-test -n "$Identifier"           && export Identifier	 || exit 100    ; 
-test -n "$TypeManager"		&& export TypeManager	 || exit 100 	;
-test -n "$TypeWorker"		&& export TypeWorker	 || exit 100 	;
-test -n "$KeyName"	        && export KeyName	 || exit 100    ; 
 test -n "$mode"                 && export mode		 || exit 100    ;
-test -n "$RecordSetName1"       && export RecordSetName1 || exit 100    ;
-test -n "$RecordSetName2"       && export RecordSetName2 || exit 100    ;
-test -n "$RecordSetName3"       && export RecordSetName3 || exit 100    ;
 test -n "$repository"           && export repository  	 || exit 100    ;
 test -n "$stack"                && export stack		 || exit 100    ;
 test -n "$username"             && export username	 || exit 100    ;
@@ -39,26 +31,6 @@ export -f send_list_command						;
 export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
-#########################################################################
-file=deploy.sh                                               		;
-path=$AWS/install/AMI							;
-#########################################################################
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output
-#########################################################################
-file=cluster.sh                                               		;
-path=$AWS/install/$mode							;
-#########################################################################
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output
 #########################################################################
 file=deploy-ssm.sh      	                                        ;
 path=$AWS/app/Shell                                 			;
