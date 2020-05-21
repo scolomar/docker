@@ -6,134 +6,134 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: rng
+  name: rng-BLUE
 spec:
   selector:
     matchLabels:
-      service: rng
+      service: rng-BLUE
   template:
     metadata:
       labels:
-        service: rng
+        service: rng-BLUE
     spec:
       containers:
-      - name: rng
+      - name: rng-BLUE
         image: secobau/dockercoins-rng:release-1.1
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hasher
+  name: hasher-BLUE
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: hasher
+      service: hasher-BLUE
   template:
     metadata:
       labels:
-        service: hasher
+        service: hasher-BLUE
     spec:
       containers:
-      - name: hasher
+      - name: hasher-BLUE
         image: secobau/dockercoins-hasher:release-1.1
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
+  name: redis-BLUE
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: redis
+      service: redis-BLUE
   template:
     metadata:
       labels:
-        service: redis
+        service: redis-BLUE
     spec:
       containers:
-      - name: redis
-        image: redis
+      - name: redis-BLUE
+        image: redis-BLUE
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webui
+  name: webui-BLUE
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: webui
+      service: webui-BLUE
   template:
     metadata:
       labels:
-        service: webui
+        service: webui-BLUE
     spec:
       containers:
-      - name: webui
+      - name: webui-BLUE
         image: secobau/dockercoins-webui:release-1.1
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: worker
+  name: worker-BLUE
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: worker
+      service: worker-BLUE
   template:
     metadata:
       labels:
-        service: worker
+        service: worker-BLUE
     spec:
       containers:
-      - name: worker
+      - name: worker-BLUE
         image: secobau/dockercoins-worker:release-1.1
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hasher
+  name: hasher-BLUE
 spec:
   ports:
   - port: 80
   selector:
-    service: hasher
+    service: hasher-BLUE
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis
+  name: redis-BLUE
 spec:
   ports:
   - port: 6379
   selector:
-    service: redis
+    service: redis-BLUE
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: rng
+  name: rng-BLUE
 spec:
   ports:
   - port: 80
   selector:
-    service: rng
+    service: rng-BLUE
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: webui
+  name: webui-BLUE
 spec:
   ports:
   - port: 80
     nodePort: 31001
   selector:
-    service: webui
+    service: webui-BLUE
   type: NodePort
 ---
 #########################################################################
-# kubectl apply -f dockercoins.yaml                                     ;
+# kubectl apply -f dockercoins-BLUE.yaml                                ;
 #########################################################################

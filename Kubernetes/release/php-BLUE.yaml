@@ -6,33 +6,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php
+  name: php-BLUE
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: php
+      service: php-BLUE
   template:
     metadata:
       labels:
-        service: php
+        service: php-BLUE
     spec:
       containers:
-      - name: php
+      - name: php-BLUE
         image: secobau/php:rc-apache-1.1
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: php
+  name: php-BLUE
 spec:
   ports:
   - port: 80
     nodePort: 31003
   selector:
-    service: php
+    service: php-BLUE
   type: NodePort
 ---
 #########################################################################
-# kubectl apply -f php.yaml						;
+# kubectl apply -f php-BLUE.yaml						;
 #########################################################################
