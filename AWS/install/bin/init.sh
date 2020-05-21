@@ -33,7 +33,7 @@ export -f send_remote_file						;
 export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
-file=deploy.sh                                               		;
+file=init.sh                                               		;
 path=$AWS/install/AMI							;
 exec_remote_file $domain $file $path					;
 #########################################################################
