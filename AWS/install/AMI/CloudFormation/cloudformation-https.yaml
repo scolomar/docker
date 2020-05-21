@@ -564,7 +564,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/node.sh && ./docker/AWS/install/AMI/node.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/bin/node.sh && ./docker/AWS/install/AMI/bin/node.sh && rm -rf docker
     Type: AWS::EC2::Instance
             
   InstanceManager2:
@@ -583,7 +583,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/node.sh && ./docker/AWS/install/AMI/node.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/bin/node.sh && ./docker/AWS/install/AMI/bin/node.sh && rm -rf docker
     Type: AWS::EC2::Instance
 
   InstanceManager3:
@@ -602,7 +602,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/node.sh && ./docker/AWS/install/AMI/node.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/bin/node.sh && ./docker/AWS/install/AMI/bin/node.sh && rm -rf docker
     Type: AWS::EC2::Instance
 
   InstanceProfile:
@@ -622,7 +622,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/node.sh && ./docker/AWS/install/AMI/node.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/bin/node.sh && ./docker/AWS/install/AMI/bin/node.sh && rm -rf docker
     Type: AWS::EC2::Instance
 
   InstanceWorker2:
@@ -637,7 +637,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/node.sh && ./docker/AWS/install/AMI/node.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/bin/node.sh && ./docker/AWS/install/AMI/bin/node.sh && rm -rf docker
     Type: AWS::EC2::Instance
 
   InstanceWorker3:
@@ -652,7 +652,7 @@ Resources:
           !Sub |
             #!/bin/sh
             cd /tmp && curl https://amazon-ssm-${AWS::Region}.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm -o amazon-ssm-agent.rpm && sudo yum install -y amazon-ssm-agent.rpm
-            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/node.sh && ./docker/AWS/install/AMI/node.sh && rm -rf docker
+            sudo yum install -y git && git clone https://github.com/secobau/docker.git && chmod +x docker/AWS/install/AMI/bin/node.sh && ./docker/AWS/install/AMI/bin/node.sh && rm -rf docker
     Type: AWS::EC2::Instance
 
   InternetGateway:

@@ -34,7 +34,7 @@ export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
 file=init.sh                                               		;
-path=$AWS/install/AMI							;
+path=$AWS/install/AMI/bin							;
 exec_remote_file $domain $file $path					;
 #########################################################################
 file=cluster.sh                                               		;
