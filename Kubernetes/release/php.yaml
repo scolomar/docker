@@ -1,0 +1,38 @@
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: php
+  template:
+    metadata:
+      labels:
+        service: php
+    spec:
+      containers:
+      - name: php
+        image: secobau/php:rc-apache-1.1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php
+spec:
+  ports:
+  - port: 80
+    nodePort: 30003
+  selector:
+    service: php
+  type: NodePort
+---
+#########################################################################
+# kubectl apply -f php.yaml						;
+#########################################################################

@@ -1,0 +1,139 @@
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
+---
+apiVersion: apps/v1
+kind: Daemonset
+metadata:
+  name: rng
+spec:
+  selector:
+    matchLabels:
+      service: rng
+  template:
+    metadata:
+      labels:
+        service: rng
+    spec:
+      containers:
+      - name: rng
+        image: secobau/dockercoins-rng:release-1.1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hasher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: hasher
+  template:
+    metadata:
+      labels:
+        service: hasher
+    spec:
+      containers:
+      - name: hasher
+        image: secobau/dockercoins-hasher:release-1.1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: redis
+  template:
+    metadata:
+      labels:
+        service: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: webui
+  template:
+    metadata:
+      labels:
+        service: webui
+    spec:
+      containers:
+      - name: webui
+        image: secobau/dockercoins-webui:release-1.1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: worker
+  template:
+    metadata:
+      labels:
+        service: worker
+    spec:
+      containers:
+      - name: worker
+        image: secobau/dockercoins-worker:release-1.1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hasher
+spec:
+  ports:
+  - port: 80
+  selector:
+    service: hasher
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  ports:
+  - port: 6379
+  selector:
+    service: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rng
+spec:
+  ports:
+  - port: 80
+  selector:
+    service: rng
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webui
+spec:
+  ports:
+  - port: 80
+    nodePort: 30001
+  selector:
+    service: webui
+  type: NodePort
+---
+#########################################################################
+# kubectl apply -f dockercoins.yaml                                     ;
+#########################################################################
