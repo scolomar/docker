@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./app/Kubernetes/Shell/deploy.sh
+#	./app/kubernetes/bin/deploy.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -23,7 +23,7 @@ apps="                                                                  \
   )                                                                     \
 "                                                                       ;
 kubeconfig=/etc/kubernetes/admin.conf 					;
-path=$username/$repository/master/$mode/$deploy				;
+path=$username/$repository/master/etc/docker/$mode/$deploy		;
 #########################################################################
 for config in $( find /run/configs -type f )				;
 do									\
@@ -49,7 +49,7 @@ for app in $apps							;
 do 									\
   prefix=$( echo $app | cut --delimiter . --field 1 )			;
   suffix=$( echo $app | cut --delimiter . --field 2 )			;
-  for name in $prefix $prefix-BLUE					;
+  for name in $prefix $prefix-blue					;
   do									\
     uuid=$( uuidgen )							;
     curl --output $uuid https://$domain/$path/$name.$suffix     	;

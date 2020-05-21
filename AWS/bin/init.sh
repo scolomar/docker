@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./Shell/init.sh
+#	./bin/init.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -61,7 +61,7 @@ output="								\
 echo $output
 #########################################################################
 file=deploy-ssm.sh      	                                        ;
-path=$AWS/app/Shell                                 			;
+path=$AWS/app/bin                                 			;
 #########################################################################
 export deploy_file=deploy-config.sh                                     ;
 export deploy_path=$path						;
@@ -74,7 +74,7 @@ output="								\
 echo $output
 #########################################################################
 export deploy_file=deploy.sh						;
-export deploy_path=$AWS/app/$mode/Shell					;
+export deploy_path=$AWS/app/$mode/bin					;
 #########################################################################
 output="								\
   $(									\

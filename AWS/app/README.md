@@ -12,7 +12,7 @@ debug=false                                                     	;
 debug=true                                                     		;
 deploy=latest                                                   	;
 deploy=release                                                   	;
-mode=Kubernetes                                                       	;
+mode=kubernetes                                                       	;
 mode=Swarm                                                       	;
 repository=myproject							;
 repository=proxy2aws							;
@@ -31,7 +31,7 @@ export repository							;
 export stack								;
 export username								;
 #########################################################################
-path=$AWS/app/Shell							;
+path=$AWS/app/bin							;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

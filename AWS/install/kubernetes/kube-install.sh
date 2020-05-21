@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/Kubernetes/kube-install.sh
+#	./install/kubernetes/kube-install.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -13,7 +13,7 @@ test -n "$domain"               || exit 100                             ;
 file=kubernetes.repo							;
 repos=etc/yum.repos.d							;
 #########################################################################
-path=$AWS/install/Kubernetes/$repos					;
+path=$AWS/install/kubernetes/$repos					;
 uuid=$( uuidgen )							;
 curl --output $uuid https://$domain/$path/$file                         ;
 mv $uuid /$repos/$file							;

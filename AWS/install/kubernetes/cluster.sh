@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/Kubernetes/cluster.sh
+#	./install/kubernetes/cluster.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -16,7 +16,7 @@ export=" 								\
   export debug=$debug 							\
 "									;
 log=/root/kubernetes-install.log                              		;
-path=$AWS/install/Kubernetes						;
+path=$AWS/install/kubernetes						;
 sleep=10								;
 #########################################################################
 export=" 								\

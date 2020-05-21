@@ -16,7 +16,7 @@ HostedZoneName=sebastian-colomar.com                                   	;
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         ;
 KeyName=mySSHpublicKey							;
 KeyName=proxy2aws							;
-mode=Kubernetes                                                       	;
+mode=kubernetes                                                       	;
 mode=Swarm                                                       	;
 RecordSetName1=service-1                                   		;
 RecordSetName1=dockercoins                                   		;
@@ -47,7 +47,7 @@ export TypeManager                                                      ;
 export TypeWorker                                                       ;
 export username=secobau							;
 #########################################################################
-path=$AWS/Shell								;
+path=$AWS/bin								;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

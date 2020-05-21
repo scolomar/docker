@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./app/Swarm/Shell/deploy.sh
+#	./app/Swarm/bin/deploy.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -23,13 +23,13 @@ apps="									\
         --decode                                        		\
   )									\
 "                                                                      	;
-path=$username/$repository/master/$mode/$deploy				;
+path=$username/$repository/master/etc/docker/$mode/$deploy		;
 #########################################################################
 for app in $apps							;
 do 									\
   prefix=$( echo $app | cut --delimiter . --field 1 )			;
   suffix=$( echo $app | cut --delimiter . --field 2 )			;
-  for name in $prefix $prefix-BLUE					;
+  for name in $prefix $prefix-blue					;
   do									\
     uuid=$( uuidgen )							;
     curl --output $uuid https://$domain/$path/$name.$suffix     	;
