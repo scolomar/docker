@@ -25,7 +25,9 @@ stack=proxy2aws                                                     	;
 TypeManager=t3a.nano                                                    ;
 TypeWorker=t3a.nano                                                     ;
 #########################################################################
+export AWS=secobau/docker/master/AWS                                    ;
 export debug								;
+export domain=raw.githubusercontent.com                                 ;
 export HostedZoneName							;
 export Identifier							;
 export KeyName								;
@@ -36,7 +38,7 @@ export stack								;
 export TypeManager							;
 export TypeWorker							;
 #########################################################################
-path=$AWS/bin								;
+path=$AWS/install/AMI/bin						;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;
