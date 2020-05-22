@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 ################################################################################
 ##	Copyright (C) 2020	  Alejandro Colomar Andrés		      ##
 ##	Copyright (C) 2020	  Sebastian Francisco Colomar Bauza	      ##
