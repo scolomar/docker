@@ -6,7 +6,7 @@ You may also configure the variables so as to customize the setup:
 ```BASH 
 
 #########################################################################
-# Identifier is the ID of the certificate in case you are using HTTPS	#
+# Identifier is the ID of the certificate in case you are using HTTPS   #
 #########################################################################
 apps=" app1.yml app2.yml app3.yml "                                     \
 apps=" aws2cloud.yaml aws2prem.yaml "                                   \
@@ -71,14 +71,14 @@ export TypeWorker                                                       \
 export username                                                         \
                                                                         ;
 #########################################################################
-path=$AWS/bin								\
-file=init.sh								\
-date=$( date +%F_%H%M )							\
-mkdir $date								\
-cd $date								\
-curl --remote-name https://$domain/$path/$file				\
-chmod +x ./$file							\
-nohup ./$file								&
+path=$AWS/bin                                                           \
+file=init.sh                                                            \
+date=$( date +%F_%H%M )                                                 \
+mkdir $date                                                             \
+cd $date                                                                \
+curl --remote-name https://$domain/$path/$file                          \
+chmod +x ./$file                                                        \
+nohup ./$file                                                           &
 #########################################################################
 
 
@@ -92,8 +92,8 @@ You can optionally remove the AWS infrastructure created in CloudFormation other
 
 
 #########################################################################
-## TO REMOVE THE CLOUDFORMATION STACK					#
-aws cloudformation delete-stack --stack-name $stack			;
+## TO REMOVE THE CLOUDFORMATION STACK                                   #
+aws cloudformation delete-stack --stack-name $stack                     ;
 #########################################################################
 
 
