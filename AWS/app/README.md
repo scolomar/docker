@@ -12,6 +12,7 @@ debug=false                                                     	;
 debug=true                                                     		;
 deploy=latest                                                   	;
 deploy=release                                                   	;
+docker_branch=master							;
 mode=kubernetes                                                       	;
 mode=swarm                                                       	;
 repository=myproject							;
@@ -22,7 +23,7 @@ username=johndoe							;
 username=secobau							;
 #########################################################################
 export apps								;
-export AWS=secobau/docker/master/AWS					;
+export AWS=secobau/docker/$docker_branch/AWS				;
 export debug								;
 export deploy								;
 export domain=raw.githubusercontent.com					;

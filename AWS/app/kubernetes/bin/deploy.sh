@@ -7,6 +7,7 @@
 set +x && test "$debug" = true && set -x 				;
 #########################################################################
 test -n "$apps"		|| exit 100					;
+test -n "$branch"       || exit 100                                     ;
 test -n "$debug"        || exit 100                                     ;
 test -n "$deploy"       || exit 100                                     ;
 test -n "$domain"       || exit 100                                     ;
@@ -23,7 +24,7 @@ apps="                                                                  \
   )                                                                     \
 "                                                                       ;
 kubeconfig=/etc/kubernetes/admin.conf 					;
-path=$username/$repository/master/etc/docker/$mode/$deploy		;
+path=$username/$repository/$branch/etc/docker/$mode/$deploy		;
 #########################################################################
 for config in $( find /run/configs -type f )				;
 do									\

@@ -10,10 +10,12 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 apps=" app1.yml app2.yml app3.yml "                                     \
 apps=" aws2cloud.yaml aws2prem.yaml "                                   \
+branch=master                                                           \
 debug=false                                                             \
 debug=true                                                              \
 deploy=latest                                                           \
 deploy=release                                                          \
+docker_branch=master                                                    \
 HostedZoneName=example.com                                              \
 HostedZoneName=sebastian-colomar.com                                    \
 Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         \
@@ -38,7 +40,9 @@ username=secobau                                                        \
 #########################################################################
 export apps                                                             \
 &&                                                                      \
-export AWS=secobau/docker/master/AWS                                    \
+export AWS=secobau/docker/$docker_branch/AWS                            \
+&&                                                                      \
+export branch                                                           \
 &&                                                                      \
 export debug                                                            \
 &&                                                                      \

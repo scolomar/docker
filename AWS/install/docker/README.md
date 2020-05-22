@@ -34,6 +34,7 @@ You may also configure the variables so as to customize the setup:
 #########################################################################
 debug=false                                                     	;
 debug=true                                                     		;
+docker_branch=master							;
 HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 mode=kubernetes                                                       	;
@@ -41,14 +42,14 @@ mode=swarm                                                       	;
 stack=mystack                                                     	;
 stack=docker                                                     	;
 #########################################################################
-export AWS=secobau/docker/master/AWS					;
+export AWS=secobau/docker/$docker_branch/AWS				;
 export debug								;
 export domain=raw.githubusercontent.com					;
 export HostedZoneName							;
 export mode								;
 export stack								;
 #########################################################################
-path=$AWS/install/docker/bin							;
+path=$AWS/install/docker/bin						;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

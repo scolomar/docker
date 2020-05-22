@@ -8,6 +8,7 @@ set +x && test "$debug" = true && set -x				;
 #########################################################################
 test -n "$apps"	                && export apps           || exit 100    ;
 test -n "$AWS"	                && export AWS            || exit 100    ;
+test -n "$branch"               && export branch         || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
 test -n "$deploy" 		&& export deploy	 || exit 100	;
 test -n "$domain" 		&& export domain	 || exit 100	;
