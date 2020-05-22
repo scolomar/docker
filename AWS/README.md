@@ -72,12 +72,19 @@ export username                                                         \
                                                                         ;
 #########################################################################
 path=$AWS/bin                                                           \
+&&                                                                      \
 file=init.sh                                                            \
+&&                                                                      \
 date=$( date +%F_%H%M )                                                 \
+&&                                                                      \
 mkdir $date                                                             \
+&&                                                                      \
 cd $date                                                                \
+&&                                                                      \
 curl --remote-name https://$domain/$path/$file                          \
+&&                                                                      \
 chmod +x ./$file                                                        \
+&&                                                                      \
 nohup ./$file                                                           &
 #########################################################################
 
