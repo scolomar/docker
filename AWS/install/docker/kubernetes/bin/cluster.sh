@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/kubernetes/bin/cluster.sh
+#	./install/docker/kubernetes/bin/cluster.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -9,14 +9,14 @@ set +x && test "$debug" = true && set -x				;
 test -n "$AWS"			|| exit 100				;
 test -n "$debug"		|| exit 100				;
 test -n "$domain"		|| exit 100				;
-test -n "$stack"		|| exit 100				;
 test -n "$HostedZoneName"	|| exit 100				;
+test -n "$stack"		|| exit 100				;
 #########################################################################
 export=" 								\
   export debug=$debug 							\
 "									;
 log=/root/kubernetes-install.log                              		;
-path=$AWS/install/kubernetes/bin					;
+path=$AWS/install/docker/kubernetes/bin					;
 sleep=10								;
 #########################################################################
 export=" 								\

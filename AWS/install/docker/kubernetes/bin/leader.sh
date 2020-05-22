@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/kubernetes/bin/leader.sh
+#	./install/docker/kubernetes/bin/leader.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #

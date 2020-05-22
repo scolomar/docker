@@ -64,7 +64,7 @@ export stack								;
 export TypeManager                                                      ;
 export TypeWorker                                                       ;
 #########################################################################
-path=$AWS/install/bin							;
+path=$AWS/install/docker/bin							;
 file=init.sh								;
 date=$( date +%F_%H%M )							;
 mkdir $date								;

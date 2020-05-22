@@ -41,7 +41,7 @@ export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
 file=init.sh                                               		;
-path=$AWS/install/AMI/bin							;
+path=$AWS/install/AMI/bin						;
 #########################################################################
 output="								\
   $(									\
@@ -51,7 +51,7 @@ output="								\
 echo $output
 #########################################################################
 file=cluster.sh                                               		;
-path=$AWS/install/$mode							;
+path=$AWS/install/docker/$mode/bin					;
 #########################################################################
 output="								\
   $(									\

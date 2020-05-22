@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#	./install/bin/init.sh
+#	./install/docker/bin/init.sh
 #########################################################################
 #      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
 #      SPDX-License-Identifier:  GPL-2.0-only                           #
@@ -34,10 +34,10 @@ export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
 file=init.sh                                               		;
-path=$AWS/install/AMI/bin							;
+path=$AWS/install/AMI/bin						;
 exec_remote_file $domain $file $path					;
 #########################################################################
 file=cluster.sh                                               		;
-path=$AWS/install/$mode							;
+path=$AWS/install/docker/$mode						;
 exec_remote_file $domain $file $path					;
 #########################################################################
