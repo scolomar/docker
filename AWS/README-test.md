@@ -10,7 +10,7 @@ debug=false                                                     	;
 debug=true                                                     		;
 deploy=latest                                                   	;
 deploy=release                                                   	;
-docker_branch=v7.0                                                   	;
+docker_branch=v3.0                                                   	;
 HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
 # Identifier is the ID of the certificate in case you are using HTTPS	#
