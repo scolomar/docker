@@ -30,7 +30,7 @@ function send_command {							\
   local stack="$2" 							;
   local target="$3" 							;
   aws ssm send-command 							\
-    --document-name "AWS-RunbinScript" 				\
+    --document-name "AWS-RunShellScript" 				\
     --parameters commands="$command" 					\
     --targets 								\
       Key=tag:"aws:cloudformation:stack-name",Values="$stack" 		\
