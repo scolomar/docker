@@ -26,7 +26,7 @@ update_version()
 			-i AWS/install/AMI/README.md			\
 			-i AWS/install/docker/README.md			\
 			-i AWS/README.md				\
-			-i README-test.md
+			-i AWS/README-test.md
 }
 
 
