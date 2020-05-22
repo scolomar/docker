@@ -1,6 +1,6 @@
-This project will deploy in AWS a production-grade highly available and secure infrastructure consisting of private and public subnets, NAT gateways, security groups and application load balancers in order to ensure the isolation and resilience of the different components.
+This project will deploy a Docker cluster in AWS in a production-grade highly available and secure infrastructure consisting of private and public subnets, NAT gateways, security groups and application load balancers in order to ensure the isolation and resilience of the different components.
 
-The template will create 6 EC2 machines spread on 3 different Availability Zones with Docker-CE installed, 3 Private and Public Subnets, 3 NAT Gateways, 3 Security Groups, 3 Application Load Balancers and the necessary Routes, Roles and attachments to ensure the isolation of the EC2 machines and the security and resilience of the whole infrastructure.
+The infrastructure should have been previously created with the corresponding template that will create 6 EC2 machines spread on 3 different Availability Zones with Docker-CE installed, 3 Private and Public Subnets, 3 NAT Gateways, 3 Security Groups, 3 Application Load Balancers and the necessary Routes, Roles and attachments to ensure the isolation of the EC2 machines and the security and resilience of the whole infrastructure.
 
 The reason to have 3 Application Load Balancers is to make it available to 3 different internet service applications. The access from internet to the applications will be through the ALB standard ports (HTTP/HTTPS).
 
@@ -24,7 +24,9 @@ You might need the following documentation if you want to connect to the machine
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html
 * https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html#install-plugin-linux
 
-The following script will create the infrastructure in AWS. You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
+The following script will create the cluster in AWS. You can choose between Kubernetes and Swarm as the orchestrator of your cluster.
+
+You need to run the following commands from a terminal in a Cloud9 environment with enough privileges.
 You may also configure the variables so as to customize the setup:
 
 ```BASH 
@@ -34,35 +36,17 @@ debug=false                                                     	;
 debug=true                                                     		;
 HostedZoneName=example.com                                  	 	;
 HostedZoneName=sebastian-colomar.com                                   	;
-# Identifier is the ID of the certificate in case you are using HTTPS	#
-Identifier=c3f3310b-f4ed-4874-8849-bd5c2cfe001f                         ;
-KeyName=mySSHpublicKey							;
-KeyName=proxy2aws							;
 mode=kubernetes                                                       	;
 mode=swarm                                                       	;
-RecordSetName1=service-1                                   		;
-RecordSetName1=aws2cloud                                   		;
-RecordSetName2=service-2                                   		;
-RecordSetName2=aws2prem                                   		;
-RecordSetName3=service-3                                   		;
 stack=mystack                                                     	;
 stack=docker                                                     	;
-TypeManager=t3a.micro                                                   ;
-TypeWorker=t3a.micro                                                    ;
 #########################################################################
 export AWS=secobau/docker/master/AWS					;
 export debug								;
 export domain=raw.githubusercontent.com					;
 export HostedZoneName							;
-export Identifier							;
-export KeyName								;
 export mode								;
-export RecordSetName1							;
-export RecordSetName2							;
-export RecordSetName3							;
 export stack								;
-export TypeManager                                                      ;
-export TypeWorker                                                       ;
 #########################################################################
 path=$AWS/install/docker/bin							;
 file=init.sh								;
@@ -87,5 +71,6 @@ aws cloudformation delete-stack                                                 
 
 
 ```
-This project will allow you to deploy a containerized application in AWS on a production-grade highly available and secure infrastructure consisting of private and public subnets, NAT gateways, security groups and application load balancers in order to ensure the isolation and resilience of the different components.
+
+
 

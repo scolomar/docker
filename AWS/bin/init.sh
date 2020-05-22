@@ -50,7 +50,7 @@ output="								\
 "									;
 echo $output
 #########################################################################
-file=cluster.sh                                               		;
+file=init.sh                                               		;
 path=$AWS/install/docker/$mode/bin					;
 #########################################################################
 output="								\
@@ -60,31 +60,8 @@ output="								\
 "									;
 echo $output
 #########################################################################
-file=deploy-ssm.sh      	                                        ;
-path=$AWS/app/bin                                 			;
-#########################################################################
-export deploy_file=deploy-config.sh                                     ;
-export deploy_path=$path						;
-#########################################################################
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path				;
-  )									\
-"									;
-echo $output
-#########################################################################
-export deploy_file=deploy.sh						;
-export deploy_path=$AWS/app/$mode/bin					;
-#########################################################################
-output="								\
-  $(									\
-    exec_remote_file $domain $file $path 				; 
-  )									\
-"									;
-echo $output
-#########################################################################
-export deploy_file=remove-config.sh                                     ;
-export deploy_path=$path						;
+file=init.sh                                               		;
+path=$AWS/app/bin							;
 #########################################################################
 output="								\
   $(									\

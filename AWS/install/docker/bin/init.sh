@@ -9,13 +9,8 @@ set +x && test "$debug" = true && set -x				;
 test -n "$AWS"	                && export AWS            || exit 100    ;
 test -n "$debug"                && export debug          || exit 100    ;
 test -n "$domain" 		&& export domain         || exit 100    ;
-test -n "$HostedZoneName"       && export HostedZoneName || exit 100    ;
-test -n "$Identifier"           && export Identifier     || exit 100    ;  
-test -n "$KeyName"	        && export KeyName        || exit 100    ;  
-test -n "$mode"                 && export mode           || exit 100    ;        
-test -n "$RecordSetName1"       && export RecordSetName1 || exit 100    ;     
-test -n "$RecordSetName2"       && export RecordSetName2 || exit 100    ;     
-test -n "$RecordSetName3"       && export RecordSetName3 || exit 100    ;     
+test -n "$HostedZoneName"	&& export HostedZoneName || exit 100    ;
+test -n "$mode"                 && export mode           || exit 100    ;       
 test -n "$stack"                && export stack          || exit 100    ;       
 #########################################################################
 file=functions.sh                                                       ;
@@ -34,10 +29,6 @@ export -f send_wait_targets						;
 export -f service_wait_targets						;
 #########################################################################
 file=init.sh                                               		;
-path=$AWS/install/AMI/bin						;
-exec_remote_file $domain $file $path					;
-#########################################################################
-file=cluster.sh                                               		;
-path=$AWS/install/docker/$mode						;
+path=$AWS/install/docker/$mode/bin					;
 exec_remote_file $domain $file $path					;
 #########################################################################
