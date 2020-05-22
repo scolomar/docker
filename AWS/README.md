@@ -36,24 +36,40 @@ username=johndoe                                                        \
 username=secobau                                                        \
                                                                         ;
 #########################################################################
-export apps								\
-export AWS=secobau/docker/master/AWS					\
-export debug								\
-export deploy								\
-export domain=raw.githubusercontent.com					\
-export HostedZoneName							\
-export Identifier							\
-export KeyName								\
-export mode								\
-export RecordSetName1							\
-export RecordSetName2							\
-export RecordSetName3							\
-export repository							\
-export stack								\
-export TypeManager							\
-export TypeWorker							\
-export username								\
-									;
+export apps                                                             \
+&&                                                                      \
+export AWS=secobau/docker/master/AWS                                    \
+&&                                                                      \
+export debug                                                            \
+&&                                                                      \
+export deploy                                                           \
+&&                                                                      \
+export domain=raw.githubusercontent.com                                 \
+&&                                                                      \
+export HostedZoneName                                                   \
+&&                                                                      \
+export Identifier                                                       \
+&&                                                                      \
+export KeyName                                                          \
+&&                                                                      \
+export mode                                                             \
+&&                                                                      \
+export RecordSetName1                                                   \
+&&                                                                      \
+export RecordSetName2                                                   \
+&&                                                                      \
+export RecordSetName3                                                   \
+&&                                                                      \
+export repository                                                       \
+&&                                                                      \
+export stack                                                            \
+&&                                                                      \
+export TypeManager                                                      \
+&&                                                                      \
+export TypeWorker                                                       \
+&&                                                                      \
+export username                                                         \
+                                                                        ;
 #########################################################################
 path=$AWS/bin								\
 file=init.sh								\
