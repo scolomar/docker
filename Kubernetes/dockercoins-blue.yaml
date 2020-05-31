@@ -1,0 +1,143 @@
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: rng-blue
+spec:
+  selector:
+    matchLabels:
+      service: rng-blue
+  template:
+    metadata:
+      labels:
+        service: rng-blue
+    spec:
+      containers:
+      -
+        image: secobau/dockercoins-rng:release-1.1
+        name: rng-blue
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hasher-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: hasher-blue
+  template:
+    metadata:
+      labels:
+        service: hasher-blue
+    spec:
+      containers:
+      -
+        image: secobau/dockercoins-hasher:release-1.1
+        name: hasher-blue
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: redis-blue
+  template:
+    metadata:
+      labels:
+        service: redis-blue
+    spec:
+      containers:
+      -
+        image: redis
+        name: redis-blue
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webui-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: webui-blue
+  template:
+    metadata:
+      labels:
+        service: webui-blue
+    spec:
+      containers:
+      -
+        image: secobau/dockercoins-webui:release-1.1
+        name: webui-blue
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: worker-blue
+  template:
+    metadata:
+      labels:
+        service: worker-blue
+    spec:
+      containers:
+      -
+        image: secobau/dockercoins-worker:release-1.1
+        name: worker-blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hasher-blue
+spec:
+  ports:
+  - port: 80
+  selector:
+    service: hasher-blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-blue
+spec:
+  ports:
+  - port: 6379
+  selector:
+    service: redis-blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rng-blue
+spec:
+  ports:
+  - port: 80
+  selector:
+    service: rng-blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webui-blue
+spec:
+  ports:
+  -
+    nodePort: 31001
+    port: 80
+  selector:
+    service: webui-blue
+  type: NodePort
+---
+#########################################################################

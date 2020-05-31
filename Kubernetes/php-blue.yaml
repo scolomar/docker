@@ -1,0 +1,38 @@
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: php-blue
+  template:
+    metadata:
+      labels:
+        service: php-blue
+    spec:
+      containers:
+      -
+        image: secobau/php:rc-apache-1.1
+        name: php-blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-blue
+spec:
+  ports:
+  -
+    nodePort: 31003
+    port: 80
+  selector:
+    service: php-blue
+  type: NodePort
+---
+#########################################################################

@@ -1,0 +1,38 @@
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: petclinic
+  template:
+    metadata:
+      labels:
+        service: petclinic
+    spec:
+      containers:
+      -
+        image: secobau/petclinic
+        name: petclinic
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic
+spec:
+  ports:
+  -
+    nodePort: 30002
+    port: 8080
+  selector:
+    service: petclinic
+  type: NodePort
+---
+#########################################################################
