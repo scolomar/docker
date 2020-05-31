@@ -20,10 +20,18 @@ https://aws.amazon.com/blogs/publicsector/how-to-develop-microservices-using-aws
 ```bash
 sudo apt-get update
 sudo apt-get install apt-transport-https gnupg2 -y
+
+
+```
+```bash
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install kubectl -y
+
+
+```
+```bash
 kubectl version --client
 kubectl completion bash >> ~/.bash_completion
 source /etc/profile.d/bash_completion.sh
