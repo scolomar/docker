@@ -5,6 +5,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
+
 ```
 https://aws.amazon.com/blogs/publicsector/how-to-develop-microservices-using-aws-cloud9-docker-and-docker-compose/
 
@@ -30,6 +31,7 @@ source ~/.bash_completion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl
 
+
 ```
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
@@ -38,6 +40,7 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo dpkg -i minikube_latest_amd64.deb
 
+
 ```
 https://minikube.sigs.k8s.io/docs/start/
 
@@ -45,12 +48,14 @@ Now you need to resize the volume (2x):
 ```bash
 sudo growpart /dev/nvme0n1 1 && sudo resize2fs /dev/nvme0n1p1
 
+
 ```
 Now you can continue the installation:
 ```bash
 minikube start
 kubectl get node
 minikube ip
+
 
 ```
 https://minikube.sigs.k8s.io/docs/start/
