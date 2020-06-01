@@ -1,7 +1,7 @@
 version: "3"
 services:
  php:
-  image: secobau/php:rc-apache-1.1
+  image: secobau/php:rc-apache-1.1@sha256:c82dba0a5651b50ec3a8c95b675bde71c58c94511853e380e0a5e40b95f36832
   ports:
    - "8080:80"
   deploy:
